@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>淘宝库存查询</title>
+</head>
+<script typet="text/javascript" src="http://libs.baidu.com/jquery/1.9.1/jquery.min.js"></script>
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+<script type="text/javascript">
+    function startSelect() {
+        var itemId=$("#itemId").val();
+        var time=$("#time").val();
+        if(itemId == "" || itemId == undefined || itemId == null){
+            alert("请输入商品id")
+            return;
+        }
+        if(time == "" || time == undefined || time == null){
+            alert("请输入查询间隔")
+            return;
+        }
+        $.ajax({
+            url:"startSelect",
+            // dataType: "json",
+            data:{"itemId":itemId,"time":time},
+            type: "post",
+        })
+
+    }
+    function stopSelect() {
+        $.ajax({
+            url:"stopSelect",
+            dataType: "json",
+            type: "post",
+        })
+
+    }
+
+
+</script>
+<body>
+<div style="width: 100%;margin-top: 5%">
+    <span style="display:inline-block;width: 100px;float: left;font-size: 18px;vertical-align: middle;line-height: 40px;margin-left: 30%">监控商品id:</span>
+    <input type="text" id="itemId" class="form-control" style="width:100px;float: left;margin-left: 1%" >
+    <span style="display:inline-block;width: 80px;float: left;font-size: 18px;vertical-align: middle;line-height: 40px;margin-left: 1%">查询间隔:</span>
+    <input type="text" id="time" class="form-control" style="width:100px;float: left;margin-left: 1%" placeholder="秒为单位" >
+    <button id="startSelect"   class="btn btn-default" value="开始监控" onclick="startSelect()" style="float: left;margin-left: 1%">开始监控</button>
+    <button id="stopSelect"  class="btn btn-default"  value="停止监控" onclick="stopSelect()" style="float: left;margin-left: 1%">停止监控</button>
+</div>
+</body>
+</html>
