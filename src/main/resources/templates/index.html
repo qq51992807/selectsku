@@ -5,7 +5,7 @@
     <title>淘宝库存查询</title>
 </head>
 <script typet="text/javascript" src="http://libs.baidu.com/jquery/1.9.1/jquery.min.js"></script>
-<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+<link href="/bootstrap.min.css" rel="stylesheet">
 <script type="text/javascript">
     function startSelect() {
         var itemId=$("#itemId").val();
@@ -34,17 +34,105 @@
         })
 
     }
+    function startSelectJd1() {
+        var itemId=$("#jdItemId1").val();
+        var time=$("#jdTime1").val();
+        if(itemId == "" || itemId == undefined || itemId == null){
+            alert("请输入商品id")
+            return;
+        }
+        if(time == "" || time == undefined || time == null){
+            alert("请输入查询间隔")
+            return;
+        }
+        $.ajax({
+            url:"startSelectJd1",
+            // dataType: "json",
+            data:{"itemId":itemId,"time":time,"areaCode":"22_1930_49324_49398"},
+            type: "post",
+        })
 
+    }
+    function startSelectJd2() {
+        var itemId=$("#jdItemId2").val();
+        var time=$("#jdTime2").val();
+        if(itemId == "" || itemId == undefined || itemId == null){
+            alert("请输入商品id")
+            return;
+        }
+        if(time == "" || time == undefined || time == null){
+            alert("请输入查询间隔")
+            return;
+        }
+        $.ajax({
+            url:"startSelectJd2",
+            // dataType: "json",
+            data:{"itemId":itemId,"time":time,"areaCode":"19_1601_50259_51886"},
+            type: "post",
+        })
+
+    }
+    function stopSelectJd1() {
+        $.ajax({
+            url:"stopSelectJd1",
+            dataType: "json",
+            type: "post",
+        })
+
+    }
+    function stopSelectJd2() {
+        $.ajax({
+            url:"stopSelectJd2",
+            dataType: "json",
+            type: "post",
+        })
+
+    }
 
 </script>
 <body>
 <div style="width: 100%;margin-top: 5%">
     <span style="display:inline-block;width: 100px;float: left;font-size: 18px;vertical-align: middle;line-height: 40px;margin-left: 30%">监控商品id:</span>
-    <input type="text" id="itemId" class="form-control" style="width:100px;float: left;margin-left: 1%" >
+    <input type="text" id="itemId" class="form-control" style="width:200px;float: left;margin-left: 1%" >
     <span style="display:inline-block;width: 80px;float: left;font-size: 18px;vertical-align: middle;line-height: 40px;margin-left: 1%">查询间隔:</span>
     <input type="text" id="time" class="form-control" style="width:100px;float: left;margin-left: 1%" placeholder="秒为单位" >
     <button id="startSelect"   class="btn btn-default" value="开始监控" onclick="startSelect()" style="float: left;margin-left: 1%">开始监控</button>
     <button id="stopSelect"  class="btn btn-default"  value="停止监控" onclick="stopSelect()" style="float: left;margin-left: 1%">停止监控</button>
 </div>
+<br>
+<br>
+<br>
+<div style="width: 100%;text-align: center">
+    <span style="font-size: 25px;width: 100%;vertical-align: middle;display:inline-block;">
+    群霸专用京东库存查询
+    </span>
+</div>
+<br>
+<div style="width: 100%;">
+    <span style="display:inline-block;width: 100px;float: left;font-size: 18px;vertical-align: middle;line-height: 40px;margin-left: 30%">监控商品id:</span>
+    <input type="text" id="jdItemId1" class="form-control" style="width:200px;float: left;margin-left: 1%" >
+    <span style="display:inline-block;width: 80px;float: left;font-size: 18px;vertical-align: middle;line-height: 40px;margin-left: 1%">查询间隔:</span>
+    <input type="text" id="jdTime1" class="form-control" style="width:100px;float: left;margin-left: 1%" placeholder="秒为单位" >
+    <button id="startSelectJd1"   class="btn btn-default" value="开始监控" onclick="startSelectJd1()" style="float: left;margin-left: 1%">开始监控</button>
+    <button id="stopSelectJd1"  class="btn btn-default"  value="停止监控" onclick="stopSelectJd1()" style="float: left;margin-left: 1%">停止监控</button>
+</div>
+<br>
+<br>
+<br>
+<div style="width: 100%;text-align: center">
+    <span style="font-size: 25px;width: 100%;vertical-align: middle;display:inline-block;">
+    白夜专用京东库存查询
+    </span>
+</div>
+<br>
+<div style="width: 100%;">
+    <span style="display:inline-block;width: 100px;float: left;font-size: 18px;vertical-align: middle;line-height: 40px;margin-left: 30%">监控商品id:</span>
+    <input type="text" id="jdItemId2" class="form-control" style="width:200px;float: left;margin-left: 1%" >
+    <span style="display:inline-block;width: 80px;float: left;font-size: 18px;vertical-align: middle;line-height: 40px;margin-left: 1%">查询间隔:</span>
+    <input type="text" id="jdTime2" class="form-control" style="width:100px;float: left;margin-left: 1%" placeholder="秒为单位" >
+    <button id="startSelectJd2"   class="btn btn-default" value="开始监控" onclick="startSelectJd2()" style="float: left;margin-left: 1%">开始监控</button>
+    <button id="stopSelectJd2"  class="btn btn-default"  value="停止监控" onclick="stopSelectJd2()" style="float: left;margin-left: 1%">停止监控</button>
+</div>
+
 </body>
 </html>

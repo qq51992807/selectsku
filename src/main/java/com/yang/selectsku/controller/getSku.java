@@ -112,9 +112,9 @@ if(method==1) {
                 "  ]," +
                 "  \"contentType\":2, " +
                 "  \"uids\":[" +
-                "      \"UID_yV8nb3gdc7I6eYSBRWY0IQP3bcgk\"," +
-                "      \"UID_N5AytME3daIlngtVm6Yt71xx7nrA\"," +
-                "      \"UID_EXA4w2hi8PSinrndA9dK4ux8y5yw\"" +
+                "      \"UID_yV8nb3gdc7I6eYSBRWY0IQP3bcgk\"" +
+//                "      \"UID_N5AytME3daIlngtVm6Yt71xx7nrA\"," +
+//                "      \"UID_EXA4w2hi8PSinrndA9dK4ux8y5yw\"" +
                 "  ]}" ;
         getSku.post("http://wxpusher.zjiecode.com/api/send/message",message);
         }
