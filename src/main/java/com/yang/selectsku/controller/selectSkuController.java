@@ -13,6 +13,11 @@ public class selectSkuController {
     public getJdSku getJdSku2;
     public Thread jdThread2;
 
+    public analysisKaoLa analysisKaoLa;
+
+    public getKaoLaSku getKaoLaSku;
+    public Thread KlThread;
+
     @RequestMapping("/startSelect")
     public void startSelect(String itemId,int time){
         getSku= new getSku(itemId,time);//634411655593
@@ -49,5 +54,27 @@ public class selectSkuController {
     public void stopSelectJd2(){
         System.out.println("停止监控2");
         jdThread2.stop();
+    }
+
+    @RequestMapping("/JxtKl")
+    public String JxtKl(String JxklGoodId){
+        analysisKaoLa= new analysisKaoLa(JxklGoodId);//634411655593
+        analysisKaoLa.getkaolaInfo(JxklGoodId);
+        String info=analysisKaoLa.stringBuffer.toString();
+        return info;
+    }
+
+
+    @RequestMapping("/startSelectKl")
+    public void startSelectKl(String klGoodId,int klGoodTime,int klGoodIndex){
+        getKaoLaSku= new getKaoLaSku(klGoodId,klGoodTime,klGoodIndex);//634411655593
+        KlThread=new Thread(getKaoLaSku,"kl线程");
+        KlThread.start();
+
+    }
+    @RequestMapping("/stopSelectKl")
+    public void stopSelectKl(){
+        System.out.println("停止考拉监控");
+        KlThread.stop();
     }
 }
