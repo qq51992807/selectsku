@@ -31,7 +31,7 @@
                         <div class="layui-card-header">
                             <!--<button class="layui-btn layui-btn-danger" onclick="delAll()">-->
                                 <!--<i class="layui-icon"></i>批量删除</button>-->
-                            <button class="layui-btn" onclick="xadmin.open('添加用户','itemAdd',450,300)">
+                            <button class="layui-btn" onclick="xadmin.open('添加用户','itemAdd2',450,300)">
                                 <i class="layui-icon"></i>添加</button>
                             <button class="layui-btn layui-btn-danger" onclick="startMonitor()">
                             <i class="layui-icon"></i>一键开启监控</button>
@@ -47,7 +47,7 @@
                                         <th>商品id</th>
                                         <th>自己注释的商品名字</th>
                                         <th>查询间隔</th>
-                                        <th>状态</th>
+<!--                                        <th>状态</th>-->
                                         <th>操作</th></tr>
                                 </thead>
                                 <tbody>
@@ -56,7 +56,7 @@
                                         <td th:text="${jdItem.itemId}"></td>
                                         <td th:text="${jdItem.itemName}"></td>
                                         <td th:text="${jdItem.time}"></td>
-                                        <td th:text="${jdItem.status==1?'监控中':'未监控'}"></td>
+<!--                                        <td th:text="${jdItem.status==1?'监控中':'未监控'}"></td>-->
                                         <td class="td-manage">
                                             <a title="删除监控商品" th:onclick="'member_del(this,'+${jdItem.id}+')'" href="javascript:;">
                                                 <i class="layui-icon">&#xe640;</i></a>
@@ -96,36 +96,7 @@
             });
         });
 
-        /*用户-停用*/
-        function member_stop(obj, id) {
-            layer.confirm('确认要停用吗？',
-            function(index) {
 
-                if ($(obj).attr('title') == '启用') {
-
-                    //发异步把用户状态进行更改
-                    $(obj).attr('title', '停用');
-                    $(obj).find('i').html('&#xe62f;');
-
-                    $(obj).parents("tr").find(".td-status").find('span').addClass('layui-btn-disabled').html('已停用');
-                    layer.msg('已停用!', {
-                        icon: 5,
-                        time: 1000
-                    });
-
-                } else {
-                    $(obj).attr('title', '启用');
-                    $(obj).find('i').html('&#xe601;');
-
-                    $(obj).parents("tr").find(".td-status").find('span').removeClass('layui-btn-disabled').html('已启用');
-                    layer.msg('已启用!', {
-                        icon: 5,
-                        time: 1000
-                    });
-                }
-
-            });
-        }
 
         /*用户-删除*/
         function member_del(obj, itemId) {
@@ -159,7 +130,7 @@
 
             $.ajax({
                 url:"startMonitor",
-                data:{"byUser":1},
+                data:{"byUser":2},
                 type: "post",
                 async : true,
                 success : function(data) {
@@ -172,11 +143,12 @@
                 }
             })
         }
+
         function stopMonitor() {
 
             $.ajax({
                 url:"stopMonitor",
-                data:{"byUser":1},
+                data:{"byUser":2},
                 type: "post",
                 async : true,
                 success : function(data) {
