@@ -65,12 +65,20 @@ public class JdSkuController {
         jditem.setTime(time);
         jditem.setStatus(1);
         jditem.setByUser(byUser);
-
+        Jditem jditem2= new Jditem();
+        if(byUser==2) {
+            jditem2.setItemId(itemId);
+            jditem2.setItemName(itemName);
+            jditem2.setTime(time);
+            jditem2.setStatus(1);
+            jditem2.setByUser(byUser);
+        }
         Jditem result=jditemRepository.save(jditem);
         if (byUser==1) {
             new Thread(new getJdSku(jditem.getItemId(), jditem.getTime(), "19_1601_50259_51886", 1, jditem.getItemName()), "jd" + jditem.getId()).start();
         }else{
             new Thread(new getJdSku(jditem.getItemId(), jditem.getTime(), "22_1930_49324_49398", 2, jditem.getItemName()), "jd" + jditem.getId()).start();
+            new Thread(new getJdSku(jditem2.getItemId(), jditem2.getTime(), "19_1601_50259_51886", 1, jditem2.getItemName()), "jd" + jditem2.getId()).start();
         }
         return "success";
     }

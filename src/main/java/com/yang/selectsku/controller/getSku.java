@@ -20,21 +20,37 @@ import org.codehaus.jettison.json.JSONObject;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class getSku implements Runnable  {
 
     public int time;
     public  String itemId;
     public static int  num;
+    public int send;//1为白夜  2 为群霸
     public  static String skuMessage="";
-    public  getSku(String itemId,int time){
+    public boolean firstCome=true;
+    public String itemName;
+    public  getSku(String itemId,int time,int send ,String itemName){
         this.itemId=itemId;
         this.time=time;
+        this.send=send;
+        this.itemName=itemName;
     }
+    public  SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
     public void run() {
+        //判断发送的对象 1为白夜 2为群霸
+        String sendIds;
+        if(send==1){
+            sendIds=  "      \"UID_yV8nb3gdc7I6eYSBRWY0IQP3bcgk\"";
+        }else{
+            sendIds=  "      \"UID_yV8nb3gdc7I6eYSBRWY0IQP3bcgk\"";
+//            sendIds="      \"UID_yV8nb3gdc7I6eYSBRWY0IQP3bcgk\",  \"UID_N5AytME3daIlngtVm6Yt71xx7nrA\", \"UID_EXA4w2hi8PSinrndA9dK4ux8y5yw\"";
+        }
         while(1==1) {
             try {
-                getSku.httpGet("https://mdskip.taobao.com/mobile/queryH5Detail.htm?decision=sku&itemId="+itemId+"&areaId=440000", "GBK", 1);
+                httpGet("https://mdskip.taobao.com/mobile/queryH5Detail.htm?decision=sku&itemId="+itemId+"&areaId=440106020", "GBK", 1,sendIds,itemName);
                 Thread.sleep(1000*time);
             } catch (HttpException e) {
                 e.printStackTrace();
@@ -45,20 +61,22 @@ public class getSku implements Runnable  {
             }
         }
     }
-//    public static void main(String[] args) {//mao  20739895092   mate40  634411655593
-//        //pcCode = {11: '北京市', 12: '天津市', 13: '河北省', 14: '山西省', 15: '内蒙古自治区', 21: '辽宁省', 22: '吉林省',
+    public static void main(String[] args) {//mao  20739895092   mate40  634411655593
+        //pcCode = {11: '北京市', 12: '天津市', 13: '河北省', 14: '山西省', 15: '内蒙古自治区', 21: '辽宁省', 22: '吉林省',
 //        //          23: '黑龙江省', 31: '上海市', 32: '江苏省', 33: '浙江省', 34: '安徽省', 35: '福建省', 36: '江西省',
 //        //          37: '山东省', 41: '河南省', 42: '湖北省', 43: '湖南省', 44: '广东省', 45: '广西壮族自治区', 46: '海南省',
 //        //          50: '重庆市', 51: '四川省', 52: '贵州省', 53: '云南省', 54: '西藏自治区', 61: '陕西省', 62: '甘肃省',
 //        //          63: '青海省', 64: '宁夏回族自治区', 65: '新疆维吾尔自治区', 71: '台湾省', 81: '香港特别行政区', 82: '澳门特别行政区'}
-//        getSku getSku=new getSku();
+//        getSku getSku;
+//        getSku= new getSku("630047971548",1);//634411655593
+//        getSku.run();
 //        Thread mThread1=new Thread(getSku,"线程1");
 //        mThread1.start();
-//
-//
-//    }
 
-public static String httpGet(String url, String charset,int method)
+
+    }
+
+public  String httpGet(String url, String charset,int method,String sendIds,String itemName)
             throws HttpException, IOException  {
         String json = null;
         HttpGet httpGet = new HttpGet();
@@ -83,7 +101,6 @@ public static String httpGet(String url, String charset,int method)
         } else {
             throw new HttpException("statusCode="+statusCode);
         }
-if(method==1) {
     try {
         //title
         JSONObject jsonArray = new JSONObject(json);
@@ -98,30 +115,60 @@ if(method==1) {
         JSONObject jsonArray4 = new JSONObject(jsonArray3.get("0") + "");
 //        System.out.println(jsonArray4);
         int newNum=Integer.parseInt(jsonArray4.get("quantity")+"");
-        System.out.println("当前库存为 " + newNum);
-        skuMessage=title+" 当前库存为:"+newNum;
-        if(num!=newNum){
-            num=newNum;
-//        getSku.httpGet("http://wxpusher.zjiecode.com/api/send/message/?appToken=AT_Q45yzpNW3dKPNaFF0SLXHZCfMjMcPFrJ&content="+title.trim()+"库存为"+jsonArray4.get("quantity")+"&uid=UID_yV8nb3gdc7I6eYSBRWY0IQP3bcgk","UTF-8",2);
-        String message=
-                " { \"appToken\":\"AT_Q45yzpNW3dKPNaFF0SLXHZCfMjMcPFrJ\"," +
-                "  \"content\":\" "+title+"库存为"+num+"\"," +
-                "  \"summary\":\"库存提醒 "+title+"库存现在为"+num+" \"," +
-                "  \"topicIds\":[ \n" +
-                "      1205\n" +
-                "  ]," +
-                "  \"contentType\":2, " +
-                "  \"uids\":[" +
-                "      \"UID_yV8nb3gdc7I6eYSBRWY0IQP3bcgk\"" +
-//                "      \"UID_N5AytME3daIlngtVm6Yt71xx7nrA\"," +
-//                "      \"UID_EXA4w2hi8PSinrndA9dK4ux8y5yw\"" +
-                "  ]}" ;
-        getSku.post("http://wxpusher.zjiecode.com/api/send/message",message);
+        System.out.println(df.format(new Date())+"title"+" 当前库存为 " + newNum);
+        //skuMessage=title+" 当前库存为:"+newNum;
+        if(num!=newNum) {
+           if(firstCome) {
+               String message =
+                       " { \"appToken\":\"AT_Q45yzpNW3dKPNaFF0SLXHZCfMjMcPFrJ\"," +
+                               "  \"content\":\" " + title + " 库存为" + newNum + "\"," +
+                               "  \"summary\":\"开启Tb商品监控库存提醒 " + itemName + " 库存现在为 " + newNum + " \"," +
+                               "  \"topicIds\":[ \n" +
+                               "      1205\n" +
+                               "  ]," +
+                               "  \"contentType\":2, " +
+                               "  \"uids\":[" +
+                               sendIds +
+                               "  ]}";
+               getSku.post("http://wxpusher.zjiecode.com/api/send/message", message);
+               num = newNum;
+               firstCome=false;
+           }else{
+               String message =
+                       " { \"appToken\":\"AT_Q45yzpNW3dKPNaFF0SLXHZCfMjMcPFrJ\"," +
+                               "  \"content\":\" " + title + " 库存为" + newNum + "\"," +
+                               "  \"summary\":\"监控库存提醒 " + itemName + " 库存变化为" + num + " -> "+newNum+" \"," +
+                               "  \"topicIds\":[ \n" +
+                               "      1205\n" +
+                               "  ]," +
+                               "  \"contentType\":2, " +
+                               "  \"uids\":[" +
+                               sendIds +
+                               "  ]}";
+               getSku.post("http://wxpusher.zjiecode.com/api/send/message", message);
+               num = newNum;
+           }
+        }else{
+            if(firstCome) {
+                String message =
+                        " { \"appToken\":\"AT_Q45yzpNW3dKPNaFF0SLXHZCfMjMcPFrJ\"," +
+                                "  \"content\":\" " + title + "库存为" + newNum + "\"," +
+                                "  \"summary\":\"开启Tb商品监控库存提醒 " + itemName + " 库存现在为 " + newNum + " \"," +
+                                "  \"topicIds\":[ \n" +
+                                "      1205\n" +
+                                "  ]," +
+                                "  \"contentType\":2, " +
+                                "  \"uids\":[" +
+                                sendIds +
+                                "  ]}";
+                getSku.post("http://wxpusher.zjiecode.com/api/send/message", message);
+                firstCome = false;
+            }
         }
     } catch (JSONException e) {
         e.printStackTrace();
     }
-}
+
 
         return json;
     }

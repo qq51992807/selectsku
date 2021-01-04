@@ -48,12 +48,13 @@ public class getJdSku implements Runnable{
         if(send==1){
             sendIds=  "      \"UID_yV8nb3gdc7I6eYSBRWY0IQP3bcgk\"";
         }else{
-            sendIds="      \"UID_yV8nb3gdc7I6eYSBRWY0IQP3bcgk\",  \"UID_N5AytME3daIlngtVm6Yt71xx7nrA\", \"UID_EXA4w2hi8PSinrndA9dK4ux8y5yw\"";
+            sendIds="        \"UID_N5AytME3daIlngtVm6Yt71xx7nrA\", \"UID_EXA4w2hi8PSinrndA9dK4ux8y5yw\"";
         }
         while(1==1) {
             try {//100006359561  //apple 100016034400
 //                getJdSku.httpGet("http://c0.3.cn/stocks?type=batchstocks&skuIds="+itemId+"&area=19_1601_3635&_=1608961684270&scriptCharset=GBK&buyNum=1&province=%E5%B9%BF%E4%B8%9C", "GBK", itemId);
-                httpGet("http://c0.3.cn/stocks?type=batchstocks&skuIds="+itemId+"&area="+areaCode+"", "GBK", itemId,sendIds,itemName);
+//                 httpGet("http://c0.3.cn/stocks?type=batchstocks&skuIds="+itemId+"&area="+areaCode+"", "GBK", itemId,sendIds,itemName);
+                 httpGet("https://c0.3.cn/stocks?callback=jQuery1951451&type=getstocks&skuIds="+itemId+"&area="+areaCode+"&_=1609066125592", "GBK", itemId,sendIds,itemName);
                 Thread.sleep(1000*time);
             } catch (HttpException e) {
                 e.printStackTrace();
@@ -66,9 +67,18 @@ public class getJdSku implements Runnable{
     }
 
 //        public static void main(String[] args) {
-//        getJdSku getJdSku=new getJdSku("100016034400",60,"19_1601_50259_51886");
-//        Thread mThread1=new Thread(getJdSku,"线程1");
+//        getJdSku getJdSku1=new getJdSku("100009808169",10,"19_1601_50259_51886",1,"mate40黑色");
+//        getJdSku getJdSku2=new getJdSku("100006359561",10,"19_1601_50259_51886",1,"xs");
+//        getJdSku getJdSku3=new getJdSku("100017133254",10,"19_1601_50259_51886",1,"mate40银色");
+//        getJdSku getJdSku4=new getJdSku("100009808171",10,"19_1601_50259_51886",1,"mate40白色");
+//        Thread mThread1=new Thread(getJdSku1,"线程1");
+//        Thread mThread2=new Thread(getJdSku2,"线程2");
+//        Thread mThread3=new Thread(getJdSku3,"线程3");
+//        Thread mThread4=new Thread(getJdSku4,"线程4");
 //        mThread1.start();
+//        mThread2.start();
+//        mThread3.start();
+//        mThread4.start();
 //    }
 
 
@@ -99,7 +109,8 @@ public class getJdSku implements Runnable{
         }
 
             try {
-                JSONObject jsonArray = new JSONObject(json);
+//                JSONObject jsonArray = new JSONObject(json);
+                JSONObject jsonArray = new JSONObject(json.substring(json.indexOf("{"),json.lastIndexOf("}")+1));
                 JSONObject item = new JSONObject(jsonArray.getString(itemId) + "");
                 //sku
                 String StockStateName=item.getString("StockStateName");

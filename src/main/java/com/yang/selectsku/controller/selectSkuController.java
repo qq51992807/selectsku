@@ -20,21 +20,21 @@ public class selectSkuController {
     public Thread KlThread;
 
 
-    @RequestMapping("/startSelect")
-    public void startSelect(String itemId, int time) {
-        getSku = new getSku(itemId, time);//634411655593
-        mThread1 = new Thread(getSku, "线程1");
-        mThread1.start();
-
-    }
-
-    @RequestMapping("/stopSelect")
-    public void stopSelect() {
-
-        System.out.println("淘宝停止监控");
-        mThread1.stop();
-
-    }
+//    @RequestMapping("/startSelect")
+//    public void startSelect(String itemId, int time) {
+//        getSku = new getSku(itemId, time);//634411655593
+//        mThread1 = new Thread(getSku, "线程1");
+//        mThread1.start();
+//
+//    }
+//
+//    @RequestMapping("/stopSelect")
+//    public void stopSelect() {
+//
+//        System.out.println("淘宝停止监控");
+//        mThread1.stop();
+//
+//    }
 
 
 //    @RequestMapping("/startSelectJd1")
