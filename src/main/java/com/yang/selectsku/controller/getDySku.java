@@ -38,32 +38,34 @@ public class getDySku implements Runnable{
     }
 
     public void run(){
-        try {
-            httpGet("https://ec.snssdk.com/product/getstock?id="+itemId,itemId,itemName);
-            Thread.sleep(1000*time);
-        } catch (HttpException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
+        while (1==1) {
+            try {
+                httpGet("https://ec.snssdk.com/product/getstock?id=" + itemId, itemId, itemName);
+                Thread.sleep(1000 * time);
+            } catch (HttpException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
         }
     }
 
-    public static  void main(String args[]){
-        getDySku getDySku=new getDySku("3449075513329613691","mate40",3);
-        Thread mThread1=new Thread(getDySku,"线程1");
-        mThread1.start();
-    }
+//    public static  void main(String args[]){
+//        getDySku getDySku=new getDySku("3449075513329613691","mate40",3);
+//        Thread mThread1=new Thread(getDySku,"线程1");
+//        mThread1.start();
+//    }
 
 
     SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
 
     public  String httpGet(String url,String itemId,String itemName)
             throws HttpException, IOException {
-        System.out.println(url);
         String json = null;
         HttpGet httpGet = new HttpGet();
+        httpGet.setHeader("User-Agent","Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36");
 
 // 设置参数
         try {
@@ -85,68 +87,70 @@ public class getDySku implements Runnable{
         } else {
             throw new HttpException("statusCode="+statusCode);
         }
-        System.out.println(json);
-//        try {
-//                JSONObject jsonArray = new JSONObject(json);
-//            JSONObject data = new JSONObject(jsonArray.getString("data") + "");
-//            //sku
-//            int StockNum=Integer.parseInt(data.getString("total_stock_num"));
-//            System.out.println(df.format(new Date())+" 商品编号："+itemId+" 商品名称为："+itemName+" 当前库存状态为 " + StockNum);
-//            // skuMessage="商品编号："+itemId+" 当前库存为:"+StockStateName;
-//
-//            if(StockNum!=num){
-//                if(firstCome){
-//                    String message=
-//                            " { \"appToken\":\"AT_Q45yzpNW3dKPNaFF0SLXHZCfMjMcPFrJ\"," +
-//                                    "  \"content\":\"商品名称："+itemName+" 当前库存状态为 "+StockNum+" " +
-//                                    "  \"summary\":\"开启抖音监控商品 "+itemName+" 成功 当前库存状态为 "+StockNum+"  \"," +
-//                                    "  \"topicIds\":[ \n" +
-//                                    "      1205\n" +
-//                                    "  ]," +
-//                                    "  \"contentType\":2, " +
-//                                    "  \"uids\":[" +
-//                                    "      \"UID_yV8nb3gdc7I6eYSBRWY0IQP3bcgk\",  \"UID_N5AytME3daIlngtVm6Yt71xx7nrA\", \"UID_EXA4w2hi8PSinrndA9dK4ux8y5yw\" "+
-//                                    "  ]}" ;
-//                    getSku.post("http://wxpusher.zjiecode.com/api/send/message",message);
-//                    firstCome=false;
-//                    num=statusCode;
-//                }else{
-//                    //        getSku.httpGet("http://wxpusher.zjiecode.com/api/send/message/?appToken=AT_Q45yzpNW3dKPNaFF0SLXHZCfMjMcPFrJ&content="+title.trim()+"库存为"+jsonArray4.get("quantity")+"&uid=UID_yV8nb3gdc7I6eYSBRWY0IQP3bcgk","UTF-8",2);
-//                    String message=
-//                            " { \"appToken\":\"AT_Q45yzpNW3dKPNaFF0SLXHZCfMjMcPFrJ\"," +
-//                                    "  \"content\":\"商品名称："+itemName+" 库存变化为 "+num+" -> "+StockNum+" " +
-//                                    "  \"summary\":\"库存提醒 抖音商品名称："+itemName+" 库存变化为 "+num+" -> "+StockNum+" \"," +
-//                                    "  \"topicIds\":[ \n" +
-//                                    "      1205\n" +
-//                                    "  ]," +
-//                                    "  \"contentType\":2, " +
-//                                    "  \"uids\":[" +
-//                                    "      \"UID_yV8nb3gdc7I6eYSBRWY0IQP3bcgk\",  \"UID_N5AytME3daIlngtVm6Yt71xx7nrA\", \"UID_EXA4w2hi8PSinrndA9dK4ux8y5yw\" " +
-//                                    "  ]}" ;
-//                    getSku.post("http://wxpusher.zjiecode.com/api/send/message",message);
-//                }
-//
-//                num=statusCode;
-//            }else{
-//                if(firstCome) {
-//                    String message=
-//                            " { \"appToken\":\"AT_Q45yzpNW3dKPNaFF0SLXHZCfMjMcPFrJ\"," +
-//                                    "  \"content\":\"商品名称："+itemName+" 当前库存状态为 "+StockNum+" " +
-//                                    "  \"summary\":\"开启抖音监控商品 "+itemName+" 成功 当前库存状态为 "+StockNum+"  \"," +
-//                                    "  \"topicIds\":[ \n" +
-//                                    "      1205\n" +
-//                                    "  ]," +
-//                                    "  \"contentType\":2, " +
-//                                    "  \"uids\":[" +
-//                                    "      \"UID_yV8nb3gdc7I6eYSBRWY0IQP3bcgk\",  \"UID_N5AytME3daIlngtVm6Yt71xx7nrA\", \"UID_EXA4w2hi8PSinrndA9dK4ux8y5yw\" "+
-//                                    "  ]}" ;
-//                    getSku.post("http://wxpusher.zjiecode.com/api/send/message",message);
-//                    firstCome = false;
-//                }
-//            }
-//        } catch (JSONException e) {
-//            e.printStackTrace();
-//        }
+        try {
+                JSONObject jsonArray = new JSONObject(json);
+            JSONObject data = new JSONObject(jsonArray.getString("data") + "");
+            //sku
+            int StockNum=Integer.parseInt(data.getString("total_stock_num"));
+            System.out.println(df.format(new Date())+" 商品编号："+itemId+" 商品名称为："+itemName+" 当前库存状态为 " + StockNum);
+            // skuMessage="商品编号："+itemId+" 当前库存为:"+StockStateName;
+
+            if(StockNum!=num){
+                if(firstCome){
+                    String message=
+                            " { \"appToken\":\"AT_Q45yzpNW3dKPNaFF0SLXHZCfMjMcPFrJ\"," +
+                                    "  \"content\":\"商品名称："+itemName+" 当前库存状态为 "+StockNum+ " \"," +
+                                    "  \"summary\":\"开启抖音监控商品 "+itemName+" 成功 当前库存状态为 "+StockNum+"  \"," +
+                                    "  \"topicIds\":[ \n" +
+                                    "      1205\n" +
+                                    "  ]," +
+                                    "  \"contentType\":2, " +
+                                    "  \"uids\":[" +
+                                    "      \"UID_yV8nb3gdc7I6eYSBRWY0IQP3bcgk\""+
+                                    ",  \"UID_N5AytME3daIlngtVm6Yt71xx7nrA\", \"UID_EXA4w2hi8PSinrndA9dK4ux8y5yw\" "+
+                                    "  ]}" ;
+                    getSku.post("http://wxpusher.zjiecode.com/api/send/message",message);
+                    firstCome=false;
+                    num=statusCode;
+                }else{
+                    //        getSku.httpGet("http://wxpusher.zjiecode.com/api/send/message/?appToken=AT_Q45yzpNW3dKPNaFF0SLXHZCfMjMcPFrJ&content="+title.trim()+"库存为"+jsonArray4.get("quantity")+"&uid=UID_yV8nb3gdc7I6eYSBRWY0IQP3bcgk","UTF-8",2);
+                    String message=
+                            " { \"appToken\":\"AT_Q45yzpNW3dKPNaFF0SLXHZCfMjMcPFrJ\"," +
+                                    "  \"content\":\"商品名称："+itemName+" 库存变化为 "+num+" -> "+StockNum+ " \"," +
+                                    "  \"summary\":\"库存提醒 抖音商品名称："+itemName+" 库存变化为 "+num+" -> "+StockNum+" \"," +
+                                    "  \"topicIds\":[ \n" +
+                                    "      1205\n" +
+                                    "  ]," +
+                                    "  \"contentType\":2, " +
+                                    "  \"uids\":[" +
+                                    "      \"UID_yV8nb3gdc7I6eYSBRWY0IQP3bcgk\""+
+                                    ",  \"UID_N5AytME3daIlngtVm6Yt71xx7nrA\", \"UID_EXA4w2hi8PSinrndA9dK4ux8y5yw\" " +
+                                    "  ]}" ;
+                    getSku.post("http://wxpusher.zjiecode.com/api/send/message",message);
+                }
+
+                num=statusCode;
+            }else{
+                if(firstCome) {
+                    String message=
+                            " { \"appToken\":\"AT_Q45yzpNW3dKPNaFF0SLXHZCfMjMcPFrJ\"," +
+                                    "  \"content\":\"商品名称："+itemName+" 当前库存状态为 "+StockNum+ " \"," +
+                                    "  \"summary\":\"开启抖音监控商品 "+itemName+" 成功 当前库存状态为 "+StockNum+"  \"," +
+                                    "  \"topicIds\":[ \n" +
+                                    "      1205\n" +
+                                    "  ]," +
+                                    "  \"contentType\":2, " +
+                                    "  \"uids\":[" +
+                                    "      \"UID_yV8nb3gdc7I6eYSBRWY0IQP3bcgk\""+
+                                    ",  \"UID_N5AytME3daIlngtVm6Yt71xx7nrA\", \"UID_EXA4w2hi8PSinrndA9dK4ux8y5yw\" "+
+                                    "  ]}" ;
+                    getSku.post("http://wxpusher.zjiecode.com/api/send/message",message);
+                    firstCome = false;
+                }
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
         return json;
     }
     public  String post(String url,String data) {
