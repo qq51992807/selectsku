@@ -9,8 +9,5 @@ public class commonController {
 
 
 
-    @RequestMapping("/klList")
-    public String klList(){
-        return "klList";
-    }
+
 }

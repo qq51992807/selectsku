@@ -92,7 +92,7 @@ public class tbItemController {
             boolean flag=true;
             tbItem tbItem=list.get(i);
             for (int j = 0; j < noThreads; j++) {
-                if (lstThreads[j].getName().equals("jd"+tbItem.getId())){
+                if (lstThreads[j].getName().equals("tb"+tbItem.getId())){
                     flag=false;
                 }
             }

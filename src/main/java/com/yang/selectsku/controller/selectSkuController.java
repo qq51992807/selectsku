@@ -62,26 +62,26 @@ public class selectSkuController {
 //        jdThread2.stop();
 //    }
 
-    @RequestMapping("/JxtKl")
-    public String JxtKl(String JxklGoodId){
-        analysisKaoLa= new analysisKaoLa(JxklGoodId);//634411655593
-        analysisKaoLa.getkaolaInfo(JxklGoodId);
-        String info=analysisKaoLa.stringBuffer.toString();
-        return info;
-    }
-
-
-    @RequestMapping("/startSelectKl")
-    public void startSelectKl(String klGoodId,int klGoodTime,int klGoodIndex){
-        getKaoLaSku= new getKaoLaSku(klGoodId,klGoodTime,klGoodIndex);//634411655593
-        KlThread=new Thread(getKaoLaSku,"kl线程");
-        KlThread.start();
-
-    }
-    @RequestMapping("/stopSelectKl")
-    public void stopSelectKl(){
-        System.out.println("停止考拉监控");
-        KlThread.stop();
-    }
+//    @RequestMapping("/JxtKl")
+//    public String JxtKl(String JxklGoodId){
+//        analysisKaoLa= new analysisKaoLa(JxklGoodId);//634411655593
+//        analysisKaoLa.getkaolaInfo(JxklGoodId);
+//        String info=analysisKaoLa.stringBuffer.toString();
+//        return info;
+//    }
+//
+//
+//    @RequestMapping("/startSelectKl")
+//    public void startSelectKl(String klGoodId,int klGoodTime,int klGoodIndex){
+//        getKaoLaSku= new getKaoLaSku(klGoodId,klGoodTime,klGoodIndex);//634411655593
+//        KlThread=new Thread(getKaoLaSku,"kl线程");
+//        KlThread.start();
+//
+//    }
+//    @RequestMapping("/stopSelectKl")
+//    public void stopSelectKl(){
+//        System.out.println("停止考拉监控");
+//        KlThread.stop();
+//    }
 
 }

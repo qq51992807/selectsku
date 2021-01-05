@@ -31,15 +31,15 @@ public class analysisKaoLa  {
     }
 
 
-    public static void  main(String[] args){
-        analysisKaoLa analysisKaoLa=new analysisKaoLa("5481535");//5481535
-//        long time=System.currentTimeMillis();
-
-          //  analysisKaoLa.httpGet("https://goods.kaola.com/product/getPcGoodsDetailDynamic.json?provinceCode=440000&cityCode=440100&districtCode=440106&goodsId=8234486&categoryId=7991&t="+time+"&t="+time,"UTF-8");
-        analysisKaoLa.getkaolaInfo(analysisKaoLa.goodsId);//8234486
-        System.out.println(analysisKaoLa.stringBuffer);
-
-    }
+//    public static void  main(String[] args){
+//        analysisKaoLa analysisKaoLa=new analysisKaoLa("5481535");//5481535
+////        long time=System.currentTimeMillis();
+//
+//          //  analysisKaoLa.httpGet("https://goods.kaola.com/product/getPcGoodsDetailDynamic.json?provinceCode=440000&cityCode=440100&districtCode=440106&goodsId=8234486&categoryId=7991&t="+time+"&t="+time,"UTF-8");
+//        analysisKaoLa.getkaolaInfo(analysisKaoLa.goodsId);//8234486
+//        System.out.println(analysisKaoLa.stringBuffer);
+//
+//    }
 
 
 
