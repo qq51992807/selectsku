@@ -95,7 +95,7 @@ public class getDySku implements Runnable{
             System.out.println(df.format(new Date())+" 商品编号："+itemId+" 商品名称为："+itemName+" 当前库存状态为 " + StockNum);
             // skuMessage="商品编号："+itemId+" 当前库存为:"+StockStateName;
 
-            if(StockNum!=num){
+            if(num!=StockNum){
                 if(firstCome){
                     String message=
                             " { \"appToken\":\"AT_Q45yzpNW3dKPNaFF0SLXHZCfMjMcPFrJ\"," +
@@ -111,7 +111,7 @@ public class getDySku implements Runnable{
                                     "  ]}" ;
                     getSku.post("http://wxpusher.zjiecode.com/api/send/message",message);
                     firstCome=false;
-                    num=statusCode;
+                    num=StockNum;
                 }else{
                     //        getSku.httpGet("http://wxpusher.zjiecode.com/api/send/message/?appToken=AT_Q45yzpNW3dKPNaFF0SLXHZCfMjMcPFrJ&content="+title.trim()+"库存为"+jsonArray4.get("quantity")+"&uid=UID_yV8nb3gdc7I6eYSBRWY0IQP3bcgk","UTF-8",2);
                     String message=
@@ -127,9 +127,8 @@ public class getDySku implements Runnable{
                                     ",  \"UID_N5AytME3daIlngtVm6Yt71xx7nrA\", \"UID_EXA4w2hi8PSinrndA9dK4ux8y5yw\" " +
                                     "  ]}" ;
                     getSku.post("http://wxpusher.zjiecode.com/api/send/message",message);
+                    num=StockNum;
                 }
-
-                num=statusCode;
             }else{
                 if(firstCome) {
                     String message=
