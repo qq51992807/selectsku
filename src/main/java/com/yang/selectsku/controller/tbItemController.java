@@ -46,9 +46,9 @@ public class tbItemController {
 
         tbItem result=tbItemRepository.save(tbItem);
         if (byUser==1) {
-            new Thread(new getSku(tbItem.getItemId(), tbItem.getTime(),  1, tbItem.getItemName()), "tb" + tbItem.getId()).start();
+            new Thread(new getSku(tbItem.getItemId(), tbItem.getTime(),  1, tbItem.getItemName(),true), "tb" + tbItem.getId()).start();
         }else{
-            new Thread(new getSku(tbItem.getItemId(), tbItem.getTime(),  2, tbItem.getItemName()), "tb" + tbItem.getId()).start();
+            new Thread(new getSku(tbItem.getItemId(), tbItem.getTime(),  2, tbItem.getItemName(),true), "tb" + tbItem.getId()).start();
         }
         return "success";
     }
@@ -98,9 +98,9 @@ public class tbItemController {
             }
             if(flag) {
                 if (byUser==1) {
-                    new Thread(new getSku(tbItem.getItemId(), tbItem.getTime(),  1, tbItem.getItemName()), "tb" + tbItem.getId()).start();
+                    new Thread(new getSku(tbItem.getItemId(), tbItem.getTime(),  1, tbItem.getItemName(),false), "tb" + tbItem.getId()).start();
                 }else{
-                    new Thread(new getSku(tbItem.getItemId(), tbItem.getTime(),  2, tbItem.getItemName()), "tb" + tbItem.getId()).start();
+                    new Thread(new getSku(tbItem.getItemId(), tbItem.getTime(),  2, tbItem.getItemName(),false), "tb" + tbItem.getId()).start();
                 }
             }
         }

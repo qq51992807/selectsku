@@ -43,7 +43,7 @@ public class dyItemController {
         dyItem.setStatus(1);
 
         dyItem result=dyItemRepository.save(dyItem);
-        new Thread(new getDySku(dyItem.getItemId(),dyItem.getItemName(), dyItem.getTime()), "dy" + dyItem.getId()).start();
+        new Thread(new getDySku(dyItem.getItemId(),dyItem.getItemName(), dyItem.getTime(),true), "dy" + dyItem.getId()).start();
 
         return "success";
     }
@@ -92,7 +92,7 @@ public class dyItemController {
                 }
             }
             if(flag) {
-                new Thread(new getDySku(dyItem.getItemId(),dyItem.getItemName(), dyItem.getTime()), "dy" + dyItem.getId()).start();
+                new Thread(new getDySku(dyItem.getItemId(),dyItem.getItemName(), dyItem.getTime(),false), "dy" + dyItem.getId()).start();
             }
         }
         return "success";

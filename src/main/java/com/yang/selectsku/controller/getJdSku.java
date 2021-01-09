@@ -33,12 +33,14 @@ public class getJdSku implements Runnable{
     public String itemName;
     public  String  itemState="无货";
     public boolean firstCome=true;
-    public  getJdSku(String itemId,int time,String areaCode,int send,String itemName){
+    public boolean addStart=true;
+    public  getJdSku(String itemId,int time,String areaCode,int send,String itemName, boolean addStart){
         this.itemId=itemId;
         this.time=time;
         this.areaCode=areaCode;
         this.send=send;
         this.itemName=itemName;
+        this.addStart=addStart;
     }
 
     SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
@@ -114,55 +116,63 @@ public class getJdSku implements Runnable{
                 JSONObject item = new JSONObject(jsonArray.getString(itemId) + "");
                 //sku
                 String StockStateName=item.getString("StockStateName");
+                if(firstCome)
                 System.out.println(df.format(new Date())+" 商品编号："+itemId+" 商品名称为："+itemName+" 当前库存状态为 " + StockStateName+"来自用户 "+send);
                // skuMessage="商品编号："+itemId+" 当前库存为:"+StockStateName;
 
                 if(!itemState.equals(StockStateName)){
                     if(firstCome){
-                        String message=
-                                " { \"appToken\":\"AT_Q45yzpNW3dKPNaFF0SLXHZCfMjMcPFrJ\"," +
-                                        "  \"content\":\"商品名称："+itemName+" 当前库存状态为 "+StockStateName+" 直接链接为 <a href=' https://p.m.jd.com/norder/order.action?wareId="+itemId+"&wareNum=1&enterOrder=true '>https://p.m.jd.com/norder/order.action?wareId="+itemId+"&wareNum=1&enterOrder=true</a>  \"," +
-                                        "  \"summary\":\"开启JD监控商品 "+itemName+" 成功 当前库存状态为 "+StockStateName+"  \"," +
-                                        "  \"topicIds\":[ \n" +
-                                        "      1205\n" +
-                                        "  ]," +
-                                        "  \"contentType\":2, " +
-                                        "  \"uids\":[" +
-                                        sendIds +
-                                        "  ]}" ;
-                        getSku.post("http://wxpusher.zjiecode.com/api/send/message",message);
+                        if(addStart) {
+                            String message =
+                                    " { \"appToken\":\"AT_Q45yzpNW3dKPNaFF0SLXHZCfMjMcPFrJ\"," +
+                                            "  \"content\":\"商品名称：" + itemName + " 当前库存状态为 " + StockStateName + " 直接链接为 <a href=' https://p.m.jd.com/norder/order.action?wareId=" + itemId + "&wareNum=1&enterOrder=true '>https://p.m.jd.com/norder/order.action?wareId=" + itemId + "&wareNum=1&enterOrder=true</a>  \"," +
+                                            "  \"summary\":\"开启JD监控商品 " + itemName + " 成功 当前库存状态为 " + StockStateName + "  \"," +
+                                            "  \"topicIds\":[ \n" +
+                                            "      1205\n" +
+                                            "  ]," +
+                                            "  \"contentType\":2, " +
+                                            "  \"uids\":[" +
+                                            sendIds +
+                                            "  ]}";
+                            getSku.post("http://wxpusher.zjiecode.com/api/send/message", message);
+                        }
                         firstCome=false;
+
                     }else{
                         //        getSku.httpGet("http://wxpusher.zjiecode.com/api/send/message/?appToken=AT_Q45yzpNW3dKPNaFF0SLXHZCfMjMcPFrJ&content="+title.trim()+"库存为"+jsonArray4.get("quantity")+"&uid=UID_yV8nb3gdc7I6eYSBRWY0IQP3bcgk","UTF-8",2);
-                        String message=
-                                " { \"appToken\":\"AT_Q45yzpNW3dKPNaFF0SLXHZCfMjMcPFrJ\"," +
-                                        "  \"content\":\"商品名称："+itemName+" 库存变化为 "+itemState+" -> "+StockStateName+" 直接链接为 <a href=' https://p.m.jd.com/norder/order.action?wareId="+itemId+"&wareNum=1&enterOrder=true '>https://p.m.jd.com/norder/order.action?wareId="+itemId+"&wareNum=1&enterOrder=true</a>  \"," +
-                                        "  \"summary\":\"库存提醒 JD商品名称："+itemName+" 库存变化为 "+itemState+" -> "+StockStateName+" \"," +
-                                        "  \"topicIds\":[ \n" +
-                                        "      1205\n" +
-                                        "  ]," +
-                                        "  \"contentType\":2, " +
-                                        "  \"uids\":[" +
-                                        sendIds +
-                                        "  ]}" ;
-                        getSku.post("http://wxpusher.zjiecode.com/api/send/message",message);
+                        if(!StockStateName.equals("无货")) {
+                            String message =
+                                    " { \"appToken\":\"AT_Q45yzpNW3dKPNaFF0SLXHZCfMjMcPFrJ\"," +
+                                            "  \"content\":\"商品名称：" + itemName + " 库存变化为 " + itemState + " -> " + StockStateName + " 直接链接为 <a href=' https://p.m.jd.com/norder/order.action?wareId=" + itemId + "&wareNum=1&enterOrder=true '>https://p.m.jd.com/norder/order.action?wareId=" + itemId + "&wareNum=1&enterOrder=true</a>  \"," +
+                                            "  \"summary\":\"库存提醒 JD商品名称：" + itemName + " 库存变化为 " + itemState + " -> " + StockStateName + " \"," +
+                                            "  \"topicIds\":[ \n" +
+                                            "      1205\n" +
+                                            "  ]," +
+                                            "  \"contentType\":2, " +
+                                            "  \"uids\":[" +
+                                            sendIds +
+                                            "  ]}";
+                            getSku.post("http://wxpusher.zjiecode.com/api/send/message", message);
+                        }
                     }
 
                     itemState=StockStateName;
                 }else{
                     if(firstCome) {
-                        String message =
-                                " { \"appToken\":\"AT_Q45yzpNW3dKPNaFF0SLXHZCfMjMcPFrJ\"," +
-                                        "  \"content\":\"商品名称：" + itemName + " 当前库存状态为 " + StockStateName + " 直接链接为 <a href=' https://p.m.jd.com/norder/order.action?wareId=" + itemId + "&wareNum=1&enterOrder=true '>https://p.m.jd.com/norder/order.action?wareId=" + itemId + "&wareNum=1&enterOrder=true</a>  \"," +
-                                        "  \"summary\":\"开启监控JD商品 " + itemName + " 成功 当前库存状态为 " + StockStateName + "  \"," +
-                                        "  \"topicIds\":[ \n" +
-                                        "      1205\n" +
-                                        "  ]," +
-                                        "  \"contentType\":2, " +
-                                        "  \"uids\":[" +
-                                        sendIds +
-                                        "  ]}";
-                        getSku.post("http://wxpusher.zjiecode.com/api/send/message", message);
+                        if(addStart) {
+                            String message =
+                                    " { \"appToken\":\"AT_Q45yzpNW3dKPNaFF0SLXHZCfMjMcPFrJ\"," +
+                                            "  \"content\":\"商品名称：" + itemName + " 当前库存状态为 " + StockStateName + " 直接链接为 <a href=' https://p.m.jd.com/norder/order.action?wareId=" + itemId + "&wareNum=1&enterOrder=true '>https://p.m.jd.com/norder/order.action?wareId=" + itemId + "&wareNum=1&enterOrder=true</a>  \"," +
+                                            "  \"summary\":\"开启监控JD商品 " + itemName + " 成功 当前库存状态为 " + StockStateName + "  \"," +
+                                            "  \"topicIds\":[ \n" +
+                                            "      1205\n" +
+                                            "  ]," +
+                                            "  \"contentType\":2, " +
+                                            "  \"uids\":[" +
+                                            sendIds +
+                                            "  ]}";
+                            getSku.post("http://wxpusher.zjiecode.com/api/send/message", message);
+                        }
                         firstCome = false;
                     }
                 }

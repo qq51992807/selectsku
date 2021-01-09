@@ -33,13 +33,15 @@ public class getKaoLaSku implements Runnable {
     public int index;
     public int time;
     public String itemName;
+    public boolean addStart=true;
 
     public SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
-    public  getKaoLaSku(String goodsId,String itemName,int time,int index){
+    public  getKaoLaSku(String goodsId,String itemName,int time,int index,boolean addStart){
         this.goodsId=goodsId;
         this.index=index;
         this.time=time;
         this.itemName=itemName;
+        this.addStart=addStart;
     }
 
     public void run(){
@@ -186,22 +188,25 @@ public class getKaoLaSku implements Runnable {
             int currentStoreskuStore=Integer.parseInt(skuStore.getString("currentStore")+"");
 
             //sku
+            if(firstCome)
             System.out.println(df.format(new Date())+itemName+" 当前库存为 " + currentStoreskuStore);
 
             if(num!=currentStoreskuStore) {
                 if(firstCome){
-                    String message3 =
-                            " { \"appToken\":\"AT_Q45yzpNW3dKPNaFF0SLXHZCfMjMcPFrJ\"," +
-                                    "  \"content\":\"考拉开始监控商品 " + itemName + " 成功 当前库存为 "  + currentStoreskuStore + " \"," +
-                                    "  \"summary\":\"考拉开始监控商品 " + itemName + " 成功 当前库存为 "  + currentStoreskuStore + " \"," +
-                                    "  \"topicIds\":[ \n" +
-                                    "      1205\n" +
-                                    "  ]," +
-                                    "  \"contentType\":2, " +
-                                    "  \"uids\":[" +
-                                    "      \"UID_yV8nb3gdc7I6eYSBRWY0IQP3bcgk\",  \"UID_N5AytME3daIlngtVm6Yt71xx7nrA\", \"UID_EXA4w2hi8PSinrndA9dK4ux8y5yw\"" +
-                                    "  ]}";
-                    getSku.post("http://wxpusher.zjiecode.com/api/send/message", message3);
+                    if(addStart) {
+                        String message3 =
+                                " { \"appToken\":\"AT_Q45yzpNW3dKPNaFF0SLXHZCfMjMcPFrJ\"," +
+                                        "  \"content\":\"考拉开始监控商品 " + itemName + " 成功 当前库存为 " + currentStoreskuStore + " \"," +
+                                        "  \"summary\":\"考拉开始监控商品 " + itemName + " 成功 当前库存为 " + currentStoreskuStore + " \"," +
+                                        "  \"topicIds\":[ \n" +
+                                        "      1205\n" +
+                                        "  ]," +
+                                        "  \"contentType\":2, " +
+                                        "  \"uids\":[" +
+                                        "      \"UID_yV8nb3gdc7I6eYSBRWY0IQP3bcgk\",  \"UID_N5AytME3daIlngtVm6Yt71xx7nrA\", \"UID_EXA4w2hi8PSinrndA9dK4ux8y5yw\"" +
+                                        "  ]}";
+                        getSku.post("http://wxpusher.zjiecode.com/api/send/message", message3);
+                    }
                     firstCome=false;
                     num = currentStoreskuStore;
                 }else {
@@ -221,18 +226,20 @@ public class getKaoLaSku implements Runnable {
                 }
             }else{
                 if(firstCome){
-                    String message3 =
-                            " { \"appToken\":\"AT_Q45yzpNW3dKPNaFF0SLXHZCfMjMcPFrJ\"," +
-                                    "  \"content\":\"考拉开始监控商品 " + itemName + " 成功 当前库存为 "  + currentStoreskuStore + " \"," +
-                                    "  \"summary\":\"考拉开始监控商品 " + itemName + " 成功 当前库存为 "  + currentStoreskuStore + " \"," +
-                                    "  \"topicIds\":[ \n" +
-                                    "      1205\n" +
-                                    "  ]," +
-                                    "  \"contentType\":2, " +
-                                    "  \"uids\":[" +
-                                    "      \"UID_yV8nb3gdc7I6eYSBRWY0IQP3bcgk\",  \"UID_N5AytME3daIlngtVm6Yt71xx7nrA\", \"UID_EXA4w2hi8PSinrndA9dK4ux8y5yw\"" +
-                                    "  ]}";
-                    getSku.post("http://wxpusher.zjiecode.com/api/send/message", message3);
+                    if(addStart) {
+                        String message3 =
+                                " { \"appToken\":\"AT_Q45yzpNW3dKPNaFF0SLXHZCfMjMcPFrJ\"," +
+                                        "  \"content\":\"考拉开始监控商品 " + itemName + " 成功 当前库存为 " + currentStoreskuStore + " \"," +
+                                        "  \"summary\":\"考拉开始监控商品 " + itemName + " 成功 当前库存为 " + currentStoreskuStore + " \"," +
+                                        "  \"topicIds\":[ \n" +
+                                        "      1205\n" +
+                                        "  ]," +
+                                        "  \"contentType\":2, " +
+                                        "  \"uids\":[" +
+                                        "      \"UID_yV8nb3gdc7I6eYSBRWY0IQP3bcgk\",  \"UID_N5AytME3daIlngtVm6Yt71xx7nrA\", \"UID_EXA4w2hi8PSinrndA9dK4ux8y5yw\"" +
+                                        "  ]}";
+                        getSku.post("http://wxpusher.zjiecode.com/api/send/message", message3);
+                    }
                     firstCome=false;
                 }
             }

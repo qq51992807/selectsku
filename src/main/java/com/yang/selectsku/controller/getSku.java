@@ -27,16 +27,18 @@ public class getSku implements Runnable  {
 
     public int time;
     public  String itemId;
-    public static int  num;
+    public  int  num;
     public int send;//1为白夜  2 为群霸
-    public  static String skuMessage="";
+    public   String skuMessage="";
     public boolean firstCome=true;
     public String itemName;
-    public  getSku(String itemId,int time,int send ,String itemName){
+    public boolean addStart=true;
+    public  getSku(String itemId,int time,int send ,String itemName,boolean addStart){
         this.itemId=itemId;
         this.time=time;
         this.send=send;
         this.itemName=itemName;
+        this.addStart=addStart;
     }
     public  SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
     public void run() {
@@ -115,22 +117,25 @@ public  String httpGet(String url, String charset,int method,String sendIds,Stri
         JSONObject jsonArray4 = new JSONObject(jsonArray3.get("0") + "");
 //        System.out.println(jsonArray4);
         int newNum=Integer.parseInt(jsonArray4.get("quantity")+"");
+        if(firstCome)
         System.out.println(df.format(new Date())+"title"+" 当前库存为 " + newNum);
         //skuMessage=title+" 当前库存为:"+newNum;
         if(num!=newNum) {
            if(firstCome) {
-               String message =
-                       " { \"appToken\":\"AT_Q45yzpNW3dKPNaFF0SLXHZCfMjMcPFrJ\"," +
-                               "  \"content\":\" " + title + " 库存为" + newNum + "\"," +
-                               "  \"summary\":\"开启Tb商品监控库存提醒 " + itemName + " 库存现在为 " + newNum + " \"," +
-                               "  \"topicIds\":[ \n" +
-                               "      1205\n" +
-                               "  ]," +
-                               "  \"contentType\":2, " +
-                               "  \"uids\":[" +
-                               sendIds +
-                               "  ]}";
-               getSku.post("http://wxpusher.zjiecode.com/api/send/message", message);
+               if(addStart) {
+                   String message =
+                           " { \"appToken\":\"AT_Q45yzpNW3dKPNaFF0SLXHZCfMjMcPFrJ\"," +
+                                   "  \"content\":\" " + title + " 库存为" + newNum + "\"," +
+                                   "  \"summary\":\"开启Tb商品监控库存提醒 " + itemName + " 库存现在为 " + newNum + " \"," +
+                                   "  \"topicIds\":[ \n" +
+                                   "      1205\n" +
+                                   "  ]," +
+                                   "  \"contentType\":2, " +
+                                   "  \"uids\":[" +
+                                   sendIds +
+                                   "  ]}";
+                   getSku.post("http://wxpusher.zjiecode.com/api/send/message", message);
+               }
                num = newNum;
                firstCome=false;
            }else{
@@ -150,18 +155,20 @@ public  String httpGet(String url, String charset,int method,String sendIds,Stri
            }
         }else{
             if(firstCome) {
-                String message =
-                        " { \"appToken\":\"AT_Q45yzpNW3dKPNaFF0SLXHZCfMjMcPFrJ\"," +
-                                "  \"content\":\" " + title + "库存为" + newNum + "\"," +
-                                "  \"summary\":\"开启Tb商品监控库存提醒 " + itemName + " 库存现在为 " + newNum + " \"," +
-                                "  \"topicIds\":[ \n" +
-                                "      1205\n" +
-                                "  ]," +
-                                "  \"contentType\":2, " +
-                                "  \"uids\":[" +
-                                sendIds +
-                                "  ]}";
-                getSku.post("http://wxpusher.zjiecode.com/api/send/message", message);
+                if(addStart) {
+                    String message =
+                            " { \"appToken\":\"AT_Q45yzpNW3dKPNaFF0SLXHZCfMjMcPFrJ\"," +
+                                    "  \"content\":\" " + title + "库存为" + newNum + "\"," +
+                                    "  \"summary\":\"开启Tb商品监控库存提醒 " + itemName + " 库存现在为 " + newNum + " \"," +
+                                    "  \"topicIds\":[ \n" +
+                                    "      1205\n" +
+                                    "  ]," +
+                                    "  \"contentType\":2, " +
+                                    "  \"uids\":[" +
+                                    sendIds +
+                                    "  ]}";
+                    getSku.post("http://wxpusher.zjiecode.com/api/send/message", message);
+                }
                 firstCome = false;
             }
         }

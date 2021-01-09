@@ -138,7 +138,12 @@ public class testDyBuy {
                 postMethod = new PostMethod("https://ec.snssdk.com/order/newcreate") ;
                 postMethod.setRequestHeader("Content-Type", "application/x-www-form-urlencoded;charset=utf-8") ;
                 postMethod.setRequestHeader("User-Agent","Aweme 12.1.0 rv:141017 (iPhone; iOS 12.2; zh_CN) Cronet");
-                postMethod.setRequestHeader("Cookie","passport_csrf_token=42832717a9f0f60f7f3868569c383319; passport_csrf_token_default=42832717a9f0f60f7f3868569c383319; d_ticket=1b765ab5396764dd57346ec3af8c5a7deb0cd; multi_sids=88742122835%3Ac474aca706b00df7496bc369ec8486e4; n_mh=DxBWqrWtnZ3DN8crkqKQYzcoxJ-Y-BpdBRaxlOGtWvc; odin_tt=e20504e3b496191f6d96a4c25b58ccb6f66671b1328b9a9847c7fe12533e9b7e7034b6894cb74c779d818267a291d8dd246974fceca255dc0163b74f360f6ba79d940c5892b03fc26fd1344a57eba6fa; sessionid=c474aca706b00df7496bc369ec8486e4; sessionid_ss=c474aca706b00df7496bc369ec8486e4; sid_guard=c474aca706b00df7496bc369ec8486e4%7C1609569734%7C5184000%7CWed%2C+03-Mar-2021+06%3A42%3A14+GMT; sid_tt=c474aca706b00df7496bc369ec8486e4; uid_tt=accc6fde60859e80d0d00c7bc91d88de; uid_tt_ss=accc6fde60859e80d0d00c7bc91d88de; install_id=2198675385226238; ttreq=1$a1e08746f12df0b34fd82ec109be91aeafb8b874");
+                postMethod.setRequestHeader("Cookie","passport_csrf_token=42832717a9f0f60f7f3868569c383319; passport_csrf_token_default=42832717a9f0f60f7f3868569c383319; install_id=2198675385226238; ttreq=1$a1e08746f12df0b34fd82ec109be91aeafb8b874; d_ticket=1b765ab5396764dd57346ec3af8c5a7deb0cd; multi_sids=88742122835%3Afbc0259541effd117d4a6d60940bc8a8; odin_tt=9dce4719ff93f0f23e5f9e92df9d0f2c6e0d49f159c966338629d856d4af3ac08db6e88b32b5b67ed761fde43a2a67d0; n_mh=DxBWqrWtnZ3DN8crkqKQYzcoxJ-Y-BpdBRaxlOGtWvc; sid_guard=fbc0259541effd117d4a6d60940bc8a8%7C1610102534%7C5184000%7CTue%2C+09-Mar-2021+10%3A42%3A14+GMT; uid_tt=6703625e4a7c06e3164659655030568f; uid_tt_ss=6703625e4a7c06e3164659655030568f; sid_tt=fbc0259541effd117d4a6d60940bc8a8; sessionid=fbc0259541effd117d4a6d60940bc8a8; sessionid_ss=fbc0259541effd117d4a6d60940bc8a8");
+//                postMethod.setRequestHeader("Cookie","install_id=4186594606323176; ttreq=1$ef5a5fe81d8f80f9dc9dffed8dce17b2f748cfbd; passport_csrf_token=2c7ac9e5c6c75160cf6f7fffdf887e74; passport_csrf_token_default=2c7ac9e5c6c75160cf6f7fffdf887e74; d_ticket=cd9e4e11edff757e10148f870b74b6551edd1; multi_sids=1472985216323047%3A56b49838f55ad6659534ef81ce0f59ab; odin_tt=b8c92c74c34f83ab2793a38b7626ff63f743fba7c1913a56be9a563cc977865d604720b14b61abf563e427a2335b28f7db0ee6b64c6c8a2a60e368504f40c8c9; n_mh=WaqjDB5YUdIJmee3ZJFaEbqV4DFU_lpXINnjn3Kel-o; sid_guard=56b49838f55ad6659534ef81ce0f59ab%7C1610106413%7C5184000%7CTue%2C+09-Mar-2021+11%3A46%3A53+GMT; uid_tt=4b1ed2344420a835463cbf0c3ae6fe2c; uid_tt_ss=4b1ed2344420a835463cbf0c3ae6fe2c; sid_tt=56b49838f55ad6659534ef81ce0f59ab; sessionid=56b49838f55ad6659534ef81ce0f59ab; sessionid_ss=56b49838f55ad6659534ef81ce0f59ab");
+
+//                postMethod.setRequestHeader("Cookie","passport_csrf_token=2c7ac9e5c6c75160cf6f7fffdf887e74; passport_csrf_token_default=2c7ac9e5c6c75160cf6f7fffdf887e74; install_id=4186594606323176; ttreq=1$ef5a5fe81d8f80f9dc9dffed8dce17b2f748cfbd; tt_webid=e254ddac709bbb535ef049fd9e024c3e; d_ticket=fb2f63caf1aaece9b4f7d7386e6d59611edd1; multi_sids=1261852034861415%3A0870973d3653292d6c553b0b2983d1ea; odin_tt=030e7e1d4fdc6cb6c5db70d6fae7ce276adcae2cb8ba19813bed201fe80ba105fe010113a77cc3ceb4161ef15c2334905536f56a06d50d6b5e5295a2b261a23c; n_mh=gyhYXI_ryT7KwoxdKJ-FvHwDVLPgJasRgcioYGrquAk; sid_guard=0870973d3653292d6c553b0b2983d1ea%7C1610117483%7C5184000%7CTue%2C+09-Mar-2021+14%3A51%3A23+GMT; uid_tt=d5b94fa554a94c8888931fa4e73dedfa; uid_tt_ss=d5b94fa554a94c8888931fa4e73dedfa; sid_tt=0870973d3653292d6c553b0b2983d1ea; sessionid=0870973d3653292d6c553b0b2983d1ea; sessionid_ss=0870973d3653292d6c553b0b2983d1ea");
+
+
 //参数设置，需要注意的就是里边不能传NULL，要传空字符串
                 NameValuePair[] data2 = {
                         new NameValuePair("json_form"," {\"b_type\":2," +
@@ -204,8 +209,10 @@ public class testDyBuy {
 //                                "\"warehouse_id\":6882858266968343000," +
                                 "\"post_addr\":" +
                                 "{\"province\":{\"id\":\"440000\",\"name\":\"广东省\"},\"city\":{\"id\":\"440100\",\"name\":\"广州市\"}," +
-                                "\"town\":{\"id\":\"440106\",\"name\":\"天河区\"},\"detail\":\"前进街道石溪村桥头东街四巷一号\"},\"post_receiver\":\"杨梓博\"," +
-                                "\"post_tel\":\"135****0143\",\"address_id\":\"6837435314240340236\",\"freight_insurance\":true," +
+                                "\"town\":{\"id\":\"440106\",\"name\":\"天河区\"}," +
+                                "\"detail\":\"前进街道石溪村桥头新街一巷一号\"}," +
+                                "\"post_receiver\":\"林先生\"," +
+                                "\"post_tel\":\"135****5662\",\"address_id\":\"6837435314240340236\",\"freight_insurance\":true," +
                                 "\"gray_feature\":\"PlatformFullDiscount\"," +
 //                                "\"price_info\":{\"origin\":39900,\"freight\":0,\"coupon\":0,\"pay\":39900}," +
                                 "\"sub_way\":0,\"pay_type\":2,\"s_type\":\"\",\"room_id\":\"\",\"shop_user_id\":\"\"," +

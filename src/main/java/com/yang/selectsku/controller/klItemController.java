@@ -55,7 +55,7 @@ public class klItemController {
         klItem.setItemIndex(itemIndex);
 
         klItem result=klItemRepository.save(klItem);
-        new Thread(new getKaoLaSku(klItem.getItemId(), klItem.getItemName(),klItem.getTime(),klItem.getItemIndex()), "kl" + klItem.getId()).start();
+        new Thread(new getKaoLaSku(klItem.getItemId(), klItem.getItemName(),klItem.getTime(),klItem.getItemIndex(),true), "kl" + klItem.getId()).start();
 //        if (byUser==1) {
 //            new Thread(new getKaoLaSku(klItem.getItemId(), klItem.getItemName(),klItem.getTime(),klItem.getItemIndex()), "kl" + klItem.getId()).start();
 //        }else{
@@ -112,7 +112,7 @@ public class klItemController {
 //                }else{
 //                    new Thread(new getSku(tbItem.getItemId(), tbItem.getTime(),  2, tbItem.getItemName()), "tb" + tbItem.getId()).start();
 //                }
-                new Thread(new getKaoLaSku(klItem.getItemId(), klItem.getItemName(),klItem.getTime(),klItem.getItemIndex()), "kl" + klItem.getId()).start();
+                new Thread(new getKaoLaSku(klItem.getItemId(), klItem.getItemName(),klItem.getTime(),klItem.getItemIndex(),false), "kl" + klItem.getId()).start();
             }
         }
         return "success";

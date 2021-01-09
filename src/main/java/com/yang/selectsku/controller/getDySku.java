@@ -30,13 +30,15 @@ public class getDySku implements Runnable{
     public String itemName;
     public  int  num=0;
     public boolean firstCome=true;
+    public boolean addStart=true;
 
     public testDyBuy testDyBuy=new testDyBuy();
 
-    public getDySku(String itemId,String itemName,int time){
+    public getDySku(String itemId,String itemName,int time,boolean addStart){
         this.itemId=itemId;
         this.itemName=itemName;
         this.time=time;
+        this.addStart=addStart;
     }
 
     public void run(){
@@ -54,11 +56,16 @@ public class getDySku implements Runnable{
         }
     }
 
-//    public static  void main(String args[]){
-//        getDySku getDySku=new getDySku("3449075513329613691","mate40",3);
-//        Thread mThread1=new Thread(getDySku,"线程1");
-//        mThread1.start();
-//    }
+    public static  void main(String args[]){
+        getDySku getDySku=new getDySku("3452440959718151364","mate40p",3,true);
+        Thread mThread1=new Thread(getDySku,"线程1");
+        mThread1.start();
+    }
+//public static void main(String args[]){
+//    getDySku getDySku=new getDySku("3453521734500751426","测试",1,true);
+//    testDyBuy testDyBuy=new testDyBuy();
+//    getDySku.sendMessageDy( testDyBuy.post( getDySku.itemId, "1422354648"),"测试");
+//}
 
 
     SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
@@ -94,24 +101,27 @@ public class getDySku implements Runnable{
             JSONObject data = new JSONObject(jsonArray.getString("data") + "");
             //sku
             int StockNum=Integer.parseInt(data.getString("total_stock_num"));
+            if(firstCome)
             System.out.println(df.format(new Date())+" 商品编号："+itemId+" 商品名称为："+itemName+" 当前库存状态为 " + StockNum);
             // skuMessage="商品编号："+itemId+" 当前库存为:"+StockStateName;
 
             if(num!=StockNum){
                 if(firstCome){
-                    String message=
-                            " { \"appToken\":\"AT_Q45yzpNW3dKPNaFF0SLXHZCfMjMcPFrJ\"," +
-                                    "  \"content\":\"商品名称："+itemName+" 当前库存状态为 "+StockNum+ " \"," +
-                                    "  \"summary\":\"开启抖音监控商品 "+itemName+" 成功 当前库存状态为 "+StockNum+"  \"," +
-                                    "  \"topicIds\":[ \n" +
-                                    "      1205\n" +
-                                    "  ]," +
-                                    "  \"contentType\":2, " +
-                                    "  \"uids\":[" +
-                                    "      \"UID_yV8nb3gdc7I6eYSBRWY0IQP3bcgk\""+
-                                    ",  \"UID_N5AytME3daIlngtVm6Yt71xx7nrA\", \"UID_EXA4w2hi8PSinrndA9dK4ux8y5yw\" "+
-                                    "  ]}" ;
-                    getSku.post("http://wxpusher.zjiecode.com/api/send/message",message);
+                    if(addStart) {
+                        String message =
+                                " { \"appToken\":\"AT_Q45yzpNW3dKPNaFF0SLXHZCfMjMcPFrJ\"," +
+                                        "  \"content\":\"商品名称：" + itemName + " 当前库存状态为 " + StockNum + " \"," +
+                                        "  \"summary\":\"开启抖音监控商品 " + itemName + " 成功 当前库存状态为 " + StockNum + "  \"," +
+                                        "  \"topicIds\":[ \n" +
+                                        "      1205\n" +
+                                        "  ]," +
+                                        "  \"contentType\":2, " +
+                                        "  \"uids\":[" +
+                                        "      \"UID_yV8nb3gdc7I6eYSBRWY0IQP3bcgk\"" +
+                                        ",  \"UID_N5AytME3daIlngtVm6Yt71xx7nrA\", \"UID_EXA4w2hi8PSinrndA9dK4ux8y5yw\" " +
+                                        "  ]}";
+                        getSku.post("http://wxpusher.zjiecode.com/api/send/message", message);
+                    }
                     firstCome=false;
                     num=StockNum;
                 }else{
@@ -134,59 +144,59 @@ public class getDySku implements Runnable{
 
 
                     if(itemId.equals("3453521734500751426")){//mate40
-                        sendMessageDy( testDyBuy.post( itemId, "1422354648"));
-                        sendMessageDy( testDyBuy.post( itemId, "1422354655"));
-                        sendMessageDy( testDyBuy.post( itemId, "1422354649"));
-                        sendMessageDy( testDyBuy.post( itemId, "1422354657"));
-                        sendMessageDy( testDyBuy.post( itemId, "1422354650"));
-                        sendMessageDy( testDyBuy.post( itemId, "1422354659"));
-                        sendMessageDy( testDyBuy.post( itemId, "1422354651"));
-                        sendMessageDy( testDyBuy.post( itemId, "1422354661"));
-                        sendMessageDy( testDyBuy.post( itemId, "1422354653"));
-                        sendMessageDy( testDyBuy.post( itemId, "1422354662"));
+                        sendMessageDy( testDyBuy.post( itemId, "1422354648"),itemName);
+                        sendMessageDy( testDyBuy.post( itemId, "1422354655"),itemName);
+                        sendMessageDy( testDyBuy.post( itemId, "1422354649"),itemName);
+                        sendMessageDy( testDyBuy.post( itemId, "1422354657"),itemName);
+                        sendMessageDy( testDyBuy.post( itemId, "1422354650"),itemName);
+                        sendMessageDy( testDyBuy.post( itemId, "1422354659"),itemName);
+                        sendMessageDy( testDyBuy.post( itemId, "1422354651"),itemName);
+                        sendMessageDy( testDyBuy.post( itemId, "1422354661"),itemName);
+                        sendMessageDy( testDyBuy.post( itemId, "1422354653"),itemName);
+                        sendMessageDy( testDyBuy.post( itemId, "1422354662"),itemName);
                     }else if(itemId.equals("3452440959718151364")){ //mate40p
-                        sendMessageDy( testDyBuy.post( itemId, "1394047553"));
-                        sendMessageDy( testDyBuy.post( itemId, "1394047554"));
-                        sendMessageDy( testDyBuy.post( itemId, "1394047555"));
-                        sendMessageDy( testDyBuy.post( itemId, "1394047556"));
-                        sendMessageDy( testDyBuy.post( itemId, "1394047557"));
-                        sendMessageDy( testDyBuy.post( itemId, "1394047558"));
-                        sendMessageDy( testDyBuy.post( itemId, "1394047559"));
-                        sendMessageDy( testDyBuy.post( itemId, "1394047560"));
-                        sendMessageDy( testDyBuy.post( itemId, "1394047561"));
-                        sendMessageDy( testDyBuy.post( itemId, "1394047562"));
-                        sendMessageDy( testDyBuy.post( itemId, "1394047563"));
-                        sendMessageDy( testDyBuy.post( itemId, "1394047564"));
-                        sendMessageDy( testDyBuy.post( itemId, "1394047565"));
-                        sendMessageDy( testDyBuy.post( itemId, "1394047566"));
-                        sendMessageDy( testDyBuy.post( itemId, "1394047567"));
+                        sendMessageDy( testDyBuy.post( itemId, "1394047553"),itemName);
+                        sendMessageDy( testDyBuy.post( itemId, "1394047554"),itemName);
+                        sendMessageDy( testDyBuy.post( itemId, "1394047555"),itemName);
+                        sendMessageDy( testDyBuy.post( itemId, "1394047556"),itemName);
+                        sendMessageDy( testDyBuy.post( itemId, "1394047557"),itemName);
+                        sendMessageDy( testDyBuy.post( itemId, "1394047558"),itemName);
+                        sendMessageDy( testDyBuy.post( itemId, "1394047559"),itemName);
+                        sendMessageDy( testDyBuy.post( itemId, "1394047560"),itemName);
+                        sendMessageDy( testDyBuy.post( itemId, "1394047561"),itemName);
+                        sendMessageDy( testDyBuy.post( itemId, "1394047562"),itemName);
+                        sendMessageDy( testDyBuy.post( itemId, "1394047563"),itemName);
+                        sendMessageDy( testDyBuy.post( itemId, "1394047564"),itemName);
+                        sendMessageDy( testDyBuy.post( itemId, "1394047565"),itemName);
+                        sendMessageDy( testDyBuy.post( itemId, "1394047566"),itemName);
+                        sendMessageDy( testDyBuy.post( itemId, "1394047567"),itemName);
                     }else if(itemId.equals("3454856842449155193")){ //nova8 3454856842449155193
-                        sendMessageDy( testDyBuy.post( itemId, "1458560510"));
-                        sendMessageDy( testDyBuy.post( itemId, "1458560514"));
-                        sendMessageDy( testDyBuy.post( itemId, "1458560511"));
-                        sendMessageDy( testDyBuy.post( itemId, "1458560515"));
-                        sendMessageDy( testDyBuy.post( itemId, "1458560512"));
-                        sendMessageDy( testDyBuy.post( itemId, "1458560517"));
-                        sendMessageDy( testDyBuy.post( itemId, "1458560513"));
-                        sendMessageDy( testDyBuy.post( itemId, "1458560518"));
+                        sendMessageDy( testDyBuy.post( itemId, "1458560510"),itemName);
+                        sendMessageDy( testDyBuy.post( itemId, "1458560514"),itemName);
+                        sendMessageDy( testDyBuy.post( itemId, "1458560511"),itemName);
+                        sendMessageDy( testDyBuy.post( itemId, "1458560515"),itemName);
+                        sendMessageDy( testDyBuy.post( itemId, "1458560512"),itemName);
+                        sendMessageDy( testDyBuy.post( itemId, "1458560517"),itemName);
+                        sendMessageDy( testDyBuy.post( itemId, "1458560513"),itemName);
+                        sendMessageDy( testDyBuy.post( itemId, "1458560518"),itemName);
                     }else if(itemId.equals("3449855221851887670")) { //保时捷 3449855221851887670
-                        sendMessageDy( testDyBuy.post( itemId, "1313132626"));
-                        sendMessageDy( testDyBuy.post( itemId, "1313132628"));
-                        sendMessageDy( testDyBuy.post( itemId, "1313132627"));
-                        sendMessageDy( testDyBuy.post( itemId, "1313132629"));
-                        sendMessageDy( testDyBuy.post( itemId, "1313132630"));
-                        sendMessageDy( testDyBuy.post( itemId, "1313132632"));
-                        sendMessageDy( testDyBuy.post( itemId, "1313132631"));
-                        sendMessageDy( testDyBuy.post( itemId, "1313132633"));
+                        sendMessageDy( testDyBuy.post( itemId, "1313132626"),itemName);
+                        sendMessageDy( testDyBuy.post( itemId, "1313132628"),itemName);
+                        sendMessageDy( testDyBuy.post( itemId, "1313132627"),itemName);
+                        sendMessageDy( testDyBuy.post( itemId, "1313132629"),itemName);
+                        sendMessageDy( testDyBuy.post( itemId, "1313132630"),itemName);
+                        sendMessageDy( testDyBuy.post( itemId, "1313132632"),itemName);
+                        sendMessageDy( testDyBuy.post( itemId, "1313132631"),itemName);
+                        sendMessageDy( testDyBuy.post( itemId, "1313132633"),itemName);
                     }else if(itemId.equals("3454861367230727564")) { //nova8p 3454861367230727564
-                        sendMessageDy( testDyBuy.post( itemId, "1458855405"));
-                        sendMessageDy( testDyBuy.post( itemId, "1458855410"));
-                        sendMessageDy( testDyBuy.post( itemId, "1458855406"));
-                        sendMessageDy( testDyBuy.post( itemId, "1458855411"));
-                        sendMessageDy( testDyBuy.post( itemId, "1458855408"));
-                        sendMessageDy( testDyBuy.post( itemId, "1458855412"));
-                        sendMessageDy( testDyBuy.post( itemId, "1458855409"));
-                        sendMessageDy( testDyBuy.post( itemId, "1458855414"));
+                        sendMessageDy( testDyBuy.post( itemId, "1458855405"),itemName);
+                        sendMessageDy( testDyBuy.post( itemId, "1458855410"),itemName);
+                        sendMessageDy( testDyBuy.post( itemId, "1458855406"),itemName);
+                        sendMessageDy( testDyBuy.post( itemId, "1458855411"),itemName);
+                        sendMessageDy( testDyBuy.post( itemId, "1458855408"),itemName);
+                        sendMessageDy( testDyBuy.post( itemId, "1458855412"),itemName);
+                        sendMessageDy( testDyBuy.post( itemId, "1458855409"),itemName);
+                        sendMessageDy( testDyBuy.post( itemId, "1458855414"),itemName);
                     }
 
 
@@ -194,19 +204,21 @@ public class getDySku implements Runnable{
                 }
             }else{
                 if(firstCome) {
-                    String message=
-                            " { \"appToken\":\"AT_Q45yzpNW3dKPNaFF0SLXHZCfMjMcPFrJ\"," +
-                                    "  \"content\":\"商品名称："+itemName+" 当前库存状态为 "+StockNum+ " \"," +
-                                    "  \"summary\":\"开启抖音监控商品 "+itemName+" 成功 当前库存状态为 "+StockNum+"  \"," +
-                                    "  \"topicIds\":[ \n" +
-                                    "      1205\n" +
-                                    "  ]," +
-                                    "  \"contentType\":2, " +
-                                    "  \"uids\":[" +
-                                    "      \"UID_yV8nb3gdc7I6eYSBRWY0IQP3bcgk\""+
-                                    ",  \"UID_N5AytME3daIlngtVm6Yt71xx7nrA\", \"UID_EXA4w2hi8PSinrndA9dK4ux8y5yw\" "+
-                                    "  ]}" ;
-                    getSku.post("http://wxpusher.zjiecode.com/api/send/message",message);
+                    if(addStart) {
+                        String message =
+                                " { \"appToken\":\"AT_Q45yzpNW3dKPNaFF0SLXHZCfMjMcPFrJ\"," +
+                                        "  \"content\":\"商品名称：" + itemName + " 当前库存状态为 " + StockNum + " \"," +
+                                        "  \"summary\":\"开启抖音监控商品 " + itemName + " 成功 当前库存状态为 " + StockNum + "  \"," +
+                                        "  \"topicIds\":[ \n" +
+                                        "      1205\n" +
+                                        "  ]," +
+                                        "  \"contentType\":2, " +
+                                        "  \"uids\":[" +
+                                        "      \"UID_yV8nb3gdc7I6eYSBRWY0IQP3bcgk\"" +
+                                        ",  \"UID_N5AytME3daIlngtVm6Yt71xx7nrA\", \"UID_EXA4w2hi8PSinrndA9dK4ux8y5yw\" " +
+                                        "  ]}";
+                        getSku.post("http://wxpusher.zjiecode.com/api/send/message", message);
+                    }
                     firstCome = false;
                 }
             }
@@ -247,11 +259,12 @@ public class getDySku implements Runnable{
         return response;
     }
 
-    void sendMessageDy(String response){
+    void sendMessageDy(String response,String itemName){
+        String response2=TransationMessage(response);
         String message=
                 " { \"appToken\":\"AT_Q45yzpNW3dKPNaFF0SLXHZCfMjMcPFrJ\"," +
-                        "  \"content\":\"抖音提交结果 ："+response+"  \"," +
-                        "  \"summary\":\"抖音提交结果 ："+response+"  \"," +
+                        "  \"content\":\"抖音 "+itemName+" 提交结果 ："+response2+"  \"," +
+                        "  \"summary\":\"抖音 "+itemName+" 提交结果 ："+response2+"  \"," +
                         "  \"topicIds\":[ \n" +
                         "      1205\n" +
                         "  ]," +
@@ -261,5 +274,17 @@ public class getDySku implements Runnable{
                         "  ]}" ;
         getSku.post("http://wxpusher.zjiecode.com/api/send/message",message);
     }
+    public String TransationMessage(String message){
+        String data=null;
+        try {
+            JSONObject jsonArray = new JSONObject(message);
+            data= jsonArray.getString("msg");
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return data;
+    }
+
 
 }
