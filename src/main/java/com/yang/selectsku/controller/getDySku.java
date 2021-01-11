@@ -1,5 +1,6 @@
 package com.yang.selectsku.controller;
 
+import com.yang.selectsku.DyPost.DyBuyHuawei;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpException;
 import org.apache.http.HttpResponse;
@@ -45,7 +46,7 @@ public class getDySku implements Runnable{
         while (1==1) {
             try {
                 httpGet("https://ec.snssdk.com/product/getstock?id=" + itemId, itemId, itemName);
-                Thread.sleep(1000 * time);
+                Thread.sleep(800 * time);
             } catch (HttpException e) {
                 e.printStackTrace();
             } catch (IOException e) {
@@ -63,13 +64,17 @@ public class getDySku implements Runnable{
 //    }
 public static void main(String args[]){
 
-    getDySku getDySku=new getDySku("3457878064195892911","老罗黄金",1,true);
-    testDyBuy testDyBuy=new testDyBuy();
-    testDyBuy2 testDyBuy2=new testDyBuy2();
-    while(1==1) {
-        getDySku.sendMessageDy(testDyBuy.post(getDySku.itemId, "1572967386"), "老罗黄金");
+//    getDySku getDySku=new getDySku("3457878064195892911","老罗黄金",1,true);
+//    testDyBuy testDyBuy=new testDyBuy();
+//    testDyBuy2 testDyBuy2=new testDyBuy2();
+//    while(1==1) {
+//        getDySku.sendMessageDy(testDyBuy.post(getDySku.itemId, "1572967386"), "老罗黄金");
 //        getDySku.sendMessageDy(testDyBuy2.post(getDySku.itemId, "1572967386"), "老罗黄金");
-    }
+//    }
+    getDySku getDySku=new getDySku("3453521734500751426","mate40",1,false);
+    DyBuyHuawei dyBuyHuawei=new DyBuyHuawei();
+    getDySku.sendMessageDy(dyBuyHuawei.post(getDySku.itemId, "1422354648"), "mate40");
+
 }
 
 
@@ -265,21 +270,23 @@ public static void main(String args[]){
     }
 
     void sendMessageDy(String response,String itemName){
-        String response2=TransationMessage(response);
-        System.out.println(response2);
-        if(!response2.equals("商品已抢光")) {
-            String message =
-                    " { \"appToken\":\"AT_Q45yzpNW3dKPNaFF0SLXHZCfMjMcPFrJ\"," +
-                            "  \"content\":\"抖音 " + itemName + " 提交结果 ：" + response2 + "  \"," +
-                            "  \"summary\":\"抖音 " + itemName + " 提交结果 ：" + response2 + "  \"," +
-                            "  \"topicIds\":[ \n" +
-                            "      1205\n" +
-                            "  ]," +
-                            "  \"contentType\":2, " +
-                            "  \"uids\":[" +
-                            "      \"UID_yV8nb3gdc7I6eYSBRWY0IQP3bcgk\"" +
-                            "  ]}";
-            getSku.post("http://wxpusher.zjiecode.com/api/send/message", message);
+        if(response!=null&&response.length()!=0) {
+            String response2 = TransationMessage(response);
+            System.out.println(response2);
+            if (response2.equals("")) {
+                String message =
+                        " { \"appToken\":\"AT_Q45yzpNW3dKPNaFF0SLXHZCfMjMcPFrJ\"," +
+                                "  \"content\":\"抖音 " + itemName + " 提交结果 ：" + response2 + "成功  \"," +
+                                "  \"summary\":\"抖音 " + itemName + " 提交结果 ：" + response2 + "成功  \"," +
+                                "  \"topicIds\":[ \n" +
+                                "      1205\n" +
+                                "  ]," +
+                                "  \"contentType\":2, " +
+                                "  \"uids\":[" +
+                                "      \"UID_yV8nb3gdc7I6eYSBRWY0IQP3bcgk\"" +
+                                "  ]}";
+                getSku.post("http://wxpusher.zjiecode.com/api/send/message", message);
+            }
         }
     }
     public String TransationMessage(String message){
