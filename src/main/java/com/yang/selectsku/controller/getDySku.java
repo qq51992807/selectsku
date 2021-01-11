@@ -56,16 +56,21 @@ public class getDySku implements Runnable{
         }
     }
 
-    public static  void main(String args[]){
-        getDySku getDySku=new getDySku("3452440959718151364","mate40p",3,true);
-        Thread mThread1=new Thread(getDySku,"线程1");
-        mThread1.start();
+//    public static  void main(String args[]){
+//        getDySku getDySku=new getDySku("3452440959718151364","mate40p",3,true);
+//        Thread mThread1=new Thread(getDySku,"线程1");
+//        mThread1.start();
+//    }
+public static void main(String args[]){
+
+    getDySku getDySku=new getDySku("3457878064195892911","老罗黄金",1,true);
+    testDyBuy testDyBuy=new testDyBuy();
+    testDyBuy2 testDyBuy2=new testDyBuy2();
+    while(1==1) {
+        getDySku.sendMessageDy(testDyBuy.post(getDySku.itemId, "1572967386"), "老罗黄金");
+//        getDySku.sendMessageDy(testDyBuy2.post(getDySku.itemId, "1572967386"), "老罗黄金");
     }
-//public static void main(String args[]){
-//    getDySku getDySku=new getDySku("3453521734500751426","测试",1,true);
-//    testDyBuy testDyBuy=new testDyBuy();
-//    getDySku.sendMessageDy( testDyBuy.post( getDySku.itemId, "1422354648"),"测试");
-//}
+}
 
 
     SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
@@ -261,18 +266,21 @@ public class getDySku implements Runnable{
 
     void sendMessageDy(String response,String itemName){
         String response2=TransationMessage(response);
-        String message=
-                " { \"appToken\":\"AT_Q45yzpNW3dKPNaFF0SLXHZCfMjMcPFrJ\"," +
-                        "  \"content\":\"抖音 "+itemName+" 提交结果 ："+response2+"  \"," +
-                        "  \"summary\":\"抖音 "+itemName+" 提交结果 ："+response2+"  \"," +
-                        "  \"topicIds\":[ \n" +
-                        "      1205\n" +
-                        "  ]," +
-                        "  \"contentType\":2, " +
-                        "  \"uids\":[" +
-                        "      \"UID_yV8nb3gdc7I6eYSBRWY0IQP3bcgk\""+
-                        "  ]}" ;
-        getSku.post("http://wxpusher.zjiecode.com/api/send/message",message);
+        System.out.println(response2);
+        if(!response2.equals("商品已抢光")) {
+            String message =
+                    " { \"appToken\":\"AT_Q45yzpNW3dKPNaFF0SLXHZCfMjMcPFrJ\"," +
+                            "  \"content\":\"抖音 " + itemName + " 提交结果 ：" + response2 + "  \"," +
+                            "  \"summary\":\"抖音 " + itemName + " 提交结果 ：" + response2 + "  \"," +
+                            "  \"topicIds\":[ \n" +
+                            "      1205\n" +
+                            "  ]," +
+                            "  \"contentType\":2, " +
+                            "  \"uids\":[" +
+                            "      \"UID_yV8nb3gdc7I6eYSBRWY0IQP3bcgk\"" +
+                            "  ]}";
+            getSku.post("http://wxpusher.zjiecode.com/api/send/message", message);
+        }
     }
     public String TransationMessage(String message){
         String data=null;

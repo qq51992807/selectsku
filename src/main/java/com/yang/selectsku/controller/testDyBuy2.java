@@ -3,14 +3,10 @@ package com.yang.selectsku.controller;
 import org.apache.commons.httpclient.NameValuePair;
 import org.apache.commons.httpclient.methods.PostMethod;
 import org.apache.http.client.methods.CloseableHttpResponse;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.entity.ContentType;
-import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
-import org.apache.http.util.EntityUtils;
 
-public class testDyBuy {
+public class testDyBuy2 {
 
     public static void main(String args[]){
         String url="https://ec.snssdk.com/order/newcreate" ;
@@ -89,7 +85,7 @@ public class testDyBuy {
 //                "\"zg_ext_param\": \"{\\\"credit_pay_param\\\":{\\\"fee_rate_per_day\\\":\\\"0.0267\\\",\\\"has_credit_param\\\":true,\\\"has_trade_time\\\":false,\\\"installment_starting_amount\\\":20000,\\\"is_credit_activate\\\":false,\\\"remaining_credit\\\":0,\\\"trade_time\\\":0},\\\"decision_id\\\":\\\"88742122835_1609939896611501\\\",\\\"jr_uid\\\":\\\"2400924455414748\\\",\\\"promotion_process\\\":{\\\"create_time\\\":1609939896,\\\"process_id\\\":\\\"07982668e44ef9e80f8957b2507ac32e\\\",\\\"process_info\\\":\\\"\\\"}}\"," +
 //                "\"sdk_version\": \"v2\"" +
 //                "}& request_tag_from = lynx";
-        testDyBuy testDyBuy=new testDyBuy();
+        testDyBuy2 testDyBuy=new testDyBuy2();
         String productId="3453521734500751426";
         String comboId="1422354655";// 1422354648     1422354655
         String respones=testDyBuy.post( productId, comboId);
@@ -139,10 +135,9 @@ public class testDyBuy {
                 postMethod.setRequestHeader("Content-Type", "application/x-www-form-urlencoded;charset=utf-8") ;
                 postMethod.setRequestHeader("User-Agent","Aweme 12.1.0 rv:141017 (iPhone; iOS 12.2; zh_CN) Cronet");
 //                postMethod.setRequestHeader("Cookie","passport_csrf_token=42832717a9f0f60f7f3868569c383319; passport_csrf_token_default=42832717a9f0f60f7f3868569c383319; install_id=2198675385226238; ttreq=1$a1e08746f12df0b34fd82ec109be91aeafb8b874; d_ticket=1b765ab5396764dd57346ec3af8c5a7deb0cd; multi_sids=88742122835%3Afbc0259541effd117d4a6d60940bc8a8; odin_tt=9dce4719ff93f0f23e5f9e92df9d0f2c6e0d49f159c966338629d856d4af3ac08db6e88b32b5b67ed761fde43a2a67d0; n_mh=DxBWqrWtnZ3DN8crkqKQYzcoxJ-Y-BpdBRaxlOGtWvc; sid_guard=fbc0259541effd117d4a6d60940bc8a8%7C1610102534%7C5184000%7CTue%2C+09-Mar-2021+10%3A42%3A14+GMT; uid_tt=6703625e4a7c06e3164659655030568f; uid_tt_ss=6703625e4a7c06e3164659655030568f; sid_tt=fbc0259541effd117d4a6d60940bc8a8; sessionid=fbc0259541effd117d4a6d60940bc8a8; sessionid_ss=fbc0259541effd117d4a6d60940bc8a8");
-                postMethod.setRequestHeader("Cookie","passport_csrf_token=42832717a9f0f60f7f3868569c383319; passport_csrf_token_default=42832717a9f0f60f7f3868569c383319; install_id=2198675385226238; ttreq=1$a1e08746f12df0b34fd82ec109be91aeafb8b874; multi_sids=1472985216323047%3A0fbc826685d425016f42a565e5668789; odin_tt=919305ac7ba5c097a05e065668a9c1b067ed96db1e9d61d3ed3a8bbd617cc950b59799e200e454b906319738dde84d3a1465c2f9948938e31e697bab80c5db44; n_mh=WaqjDB5YUdIJmee3ZJFaEbqV4DFU_lpXINnjn3Kel-o; d_ticket=5898336d74f838f0ae041bb8059dbe18eb0cd; sid_guard=0fbc826685d425016f42a565e5668789%7C1610298880%7C5184000%7CThu%2C+11-Mar-2021+17%3A14%3A40+GMT; uid_tt=4052d67bd165532c1022976559496f8c; uid_tt_ss=4052d67bd165532c1022976559496f8c; sid_tt=0fbc826685d425016f42a565e5668789; sessionid=0fbc826685d425016f42a565e5668789; sessionid_ss=0fbc826685d425016f42a565e5668789");
 //                postMethod.setRequestHeader("Cookie","install_id=4186594606323176; ttreq=1$ef5a5fe81d8f80f9dc9dffed8dce17b2f748cfbd; passport_csrf_token=2c7ac9e5c6c75160cf6f7fffdf887e74; passport_csrf_token_default=2c7ac9e5c6c75160cf6f7fffdf887e74; d_ticket=cd9e4e11edff757e10148f870b74b6551edd1; multi_sids=1472985216323047%3A56b49838f55ad6659534ef81ce0f59ab; odin_tt=b8c92c74c34f83ab2793a38b7626ff63f743fba7c1913a56be9a563cc977865d604720b14b61abf563e427a2335b28f7db0ee6b64c6c8a2a60e368504f40c8c9; n_mh=WaqjDB5YUdIJmee3ZJFaEbqV4DFU_lpXINnjn3Kel-o; sid_guard=56b49838f55ad6659534ef81ce0f59ab%7C1610106413%7C5184000%7CTue%2C+09-Mar-2021+11%3A46%3A53+GMT; uid_tt=4b1ed2344420a835463cbf0c3ae6fe2c; uid_tt_ss=4b1ed2344420a835463cbf0c3ae6fe2c; sid_tt=56b49838f55ad6659534ef81ce0f59ab; sessionid=56b49838f55ad6659534ef81ce0f59ab; sessionid_ss=56b49838f55ad6659534ef81ce0f59ab");
 
-//                postMethod.setRequestHeader("Cookie","passport_csrf_token=2c7ac9e5c6c75160cf6f7fffdf887e74; passport_csrf_token_default=2c7ac9e5c6c75160cf6f7fffdf887e74; install_id=4186594606323176; ttreq=1$ef5a5fe81d8f80f9dc9dffed8dce17b2f748cfbd; tt_webid=e254ddac709bbb535ef049fd9e024c3e; d_ticket=fb2f63caf1aaece9b4f7d7386e6d59611edd1; multi_sids=1261852034861415%3A0870973d3653292d6c553b0b2983d1ea; odin_tt=030e7e1d4fdc6cb6c5db70d6fae7ce276adcae2cb8ba19813bed201fe80ba105fe010113a77cc3ceb4161ef15c2334905536f56a06d50d6b5e5295a2b261a23c; n_mh=gyhYXI_ryT7KwoxdKJ-FvHwDVLPgJasRgcioYGrquAk; sid_guard=0870973d3653292d6c553b0b2983d1ea%7C1610117483%7C5184000%7CTue%2C+09-Mar-2021+14%3A51%3A23+GMT; uid_tt=d5b94fa554a94c8888931fa4e73dedfa; uid_tt_ss=d5b94fa554a94c8888931fa4e73dedfa; sid_tt=0870973d3653292d6c553b0b2983d1ea; sessionid=0870973d3653292d6c553b0b2983d1ea; sessionid_ss=0870973d3653292d6c553b0b2983d1ea");
+                postMethod.setRequestHeader("Cookie","passport_csrf_token=2c7ac9e5c6c75160cf6f7fffdf887e74; passport_csrf_token_default=2c7ac9e5c6c75160cf6f7fffdf887e74; install_id=4186594606323176; ttreq=1$ef5a5fe81d8f80f9dc9dffed8dce17b2f748cfbd; tt_webid=e254ddac709bbb535ef049fd9e024c3e; d_ticket=fb2f63caf1aaece9b4f7d7386e6d59611edd1; multi_sids=1261852034861415%3A0870973d3653292d6c553b0b2983d1ea; odin_tt=030e7e1d4fdc6cb6c5db70d6fae7ce276adcae2cb8ba19813bed201fe80ba105fe010113a77cc3ceb4161ef15c2334905536f56a06d50d6b5e5295a2b261a23c; n_mh=gyhYXI_ryT7KwoxdKJ-FvHwDVLPgJasRgcioYGrquAk; sid_guard=0870973d3653292d6c553b0b2983d1ea%7C1610117483%7C5184000%7CTue%2C+09-Mar-2021+14%3A51%3A23+GMT; uid_tt=d5b94fa554a94c8888931fa4e73dedfa; uid_tt_ss=d5b94fa554a94c8888931fa4e73dedfa; sid_tt=0870973d3653292d6c553b0b2983d1ea; sessionid=0870973d3653292d6c553b0b2983d1ea; sessionid_ss=0870973d3653292d6c553b0b2983d1ea");
 
 
 //参数设置，需要注意的就是里边不能传NULL，要传空字符串
@@ -213,8 +208,7 @@ public class testDyBuy {
                                 "\"town\":{\"id\":\"440106\",\"name\":\"天河区\"}," +
                                 "\"detail\":\"前进街道石溪村桥头新街一巷一号\"}," +
                                 "\"post_receiver\":\"林先生\"," +
-                                "\"post_tel\":\"135****5662\"," +
-                                "\"address_id\":\"6892397162693427459\",\"freight_insurance\":true," +
+                                "\"post_tel\":\"135****5662\",\"address_id\":\"6915401985411793164\",\"freight_insurance\":true," +
                                 "\"gray_feature\":\"PlatformFullDiscount\"," +
 //                                "\"price_info\":{\"origin\":39900,\"freight\":0,\"coupon\":0,\"pay\":39900}," +
                                 "\"sub_way\":0,\"pay_type\":2,\"s_type\":\"\",\"room_id\":\"\",\"shop_user_id\":\"\"," +
