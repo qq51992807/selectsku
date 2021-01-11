@@ -33,7 +33,7 @@ public class getDySku implements Runnable{
     public boolean firstCome=true;
     public boolean addStart=true;
 
-    public testDyBuy testDyBuy=new testDyBuy();
+    public DyBuyHuawei dyBuyHuawei=new DyBuyHuawei();
 
     public getDySku(String itemId,String itemName,int time,boolean addStart){
         this.itemId=itemId;
@@ -154,59 +154,59 @@ public static void main(String args[]){
 
 
                     if(itemId.equals("3453521734500751426")){//mate40
-                        sendMessageDy( testDyBuy.post( itemId, "1422354648"),itemName);
-                        sendMessageDy( testDyBuy.post( itemId, "1422354655"),itemName);
-                        sendMessageDy( testDyBuy.post( itemId, "1422354649"),itemName);
-                        sendMessageDy( testDyBuy.post( itemId, "1422354657"),itemName);
-                        sendMessageDy( testDyBuy.post( itemId, "1422354650"),itemName);
-                        sendMessageDy( testDyBuy.post( itemId, "1422354659"),itemName);
-                        sendMessageDy( testDyBuy.post( itemId, "1422354651"),itemName);
-                        sendMessageDy( testDyBuy.post( itemId, "1422354661"),itemName);
-                        sendMessageDy( testDyBuy.post( itemId, "1422354653"),itemName);
-                        sendMessageDy( testDyBuy.post( itemId, "1422354662"),itemName);
+                        sendMessageDy( dyBuyHuawei.post( itemId, "1422354648"),itemName);
+                        sendMessageDy( dyBuyHuawei.post( itemId, "1422354655"),itemName);
+                        sendMessageDy( dyBuyHuawei.post( itemId, "1422354649"),itemName);
+                        sendMessageDy( dyBuyHuawei.post( itemId, "1422354657"),itemName);
+                        sendMessageDy( dyBuyHuawei.post( itemId, "1422354650"),itemName);
+                        sendMessageDy( dyBuyHuawei.post( itemId, "1422354659"),itemName);
+                        sendMessageDy( dyBuyHuawei.post( itemId, "1422354651"),itemName);
+                        sendMessageDy( dyBuyHuawei.post( itemId, "1422354661"),itemName);
+                        sendMessageDy( dyBuyHuawei.post( itemId, "1422354653"),itemName);
+                        sendMessageDy( dyBuyHuawei.post( itemId, "1422354662"),itemName);
                     }else if(itemId.equals("3452440959718151364")){ //mate40p
-                        sendMessageDy( testDyBuy.post( itemId, "1394047553"),itemName);
-                        sendMessageDy( testDyBuy.post( itemId, "1394047554"),itemName);
-                        sendMessageDy( testDyBuy.post( itemId, "1394047555"),itemName);
-                        sendMessageDy( testDyBuy.post( itemId, "1394047556"),itemName);
-                        sendMessageDy( testDyBuy.post( itemId, "1394047557"),itemName);
-                        sendMessageDy( testDyBuy.post( itemId, "1394047558"),itemName);
-                        sendMessageDy( testDyBuy.post( itemId, "1394047559"),itemName);
-                        sendMessageDy( testDyBuy.post( itemId, "1394047560"),itemName);
-                        sendMessageDy( testDyBuy.post( itemId, "1394047561"),itemName);
-                        sendMessageDy( testDyBuy.post( itemId, "1394047562"),itemName);
-                        sendMessageDy( testDyBuy.post( itemId, "1394047563"),itemName);
-                        sendMessageDy( testDyBuy.post( itemId, "1394047564"),itemName);
-                        sendMessageDy( testDyBuy.post( itemId, "1394047565"),itemName);
-                        sendMessageDy( testDyBuy.post( itemId, "1394047566"),itemName);
-                        sendMessageDy( testDyBuy.post( itemId, "1394047567"),itemName);
+                        sendMessageDy( dyBuyHuawei.post( itemId, "1394047553"),itemName);
+                        sendMessageDy( dyBuyHuawei.post( itemId, "1394047554"),itemName);
+                        sendMessageDy( dyBuyHuawei.post( itemId, "1394047555"),itemName);
+                        sendMessageDy( dyBuyHuawei.post( itemId, "1394047556"),itemName);
+                        sendMessageDy( dyBuyHuawei.post( itemId, "1394047557"),itemName);
+                        sendMessageDy( dyBuyHuawei.post( itemId, "1394047558"),itemName);
+                        sendMessageDy( dyBuyHuawei.post( itemId, "1394047559"),itemName);
+                        sendMessageDy( dyBuyHuawei.post( itemId, "1394047560"),itemName);
+                        sendMessageDy( dyBuyHuawei.post( itemId, "1394047561"),itemName);
+                        sendMessageDy( dyBuyHuawei.post( itemId, "1394047562"),itemName);
+                        sendMessageDy( dyBuyHuawei.post( itemId, "1394047563"),itemName);
+                        sendMessageDy( dyBuyHuawei.post( itemId, "1394047564"),itemName);
+                        sendMessageDy( dyBuyHuawei.post( itemId, "1394047565"),itemName);
+                        sendMessageDy( dyBuyHuawei.post( itemId, "1394047566"),itemName);
+                        sendMessageDy( dyBuyHuawei.post( itemId, "1394047567"),itemName);
                     }else if(itemId.equals("3454856842449155193")){ //nova8 3454856842449155193
-                        sendMessageDy( testDyBuy.post( itemId, "1458560510"),itemName);
-                        sendMessageDy( testDyBuy.post( itemId, "1458560514"),itemName);
-                        sendMessageDy( testDyBuy.post( itemId, "1458560511"),itemName);
-                        sendMessageDy( testDyBuy.post( itemId, "1458560515"),itemName);
-                        sendMessageDy( testDyBuy.post( itemId, "1458560512"),itemName);
-                        sendMessageDy( testDyBuy.post( itemId, "1458560517"),itemName);
-                        sendMessageDy( testDyBuy.post( itemId, "1458560513"),itemName);
-                        sendMessageDy( testDyBuy.post( itemId, "1458560518"),itemName);
+                        sendMessageDy( dyBuyHuawei.post( itemId, "1458560510"),itemName);
+                        sendMessageDy( dyBuyHuawei.post( itemId, "1458560514"),itemName);
+                        sendMessageDy( dyBuyHuawei.post( itemId, "1458560511"),itemName);
+                        sendMessageDy( dyBuyHuawei.post( itemId, "1458560515"),itemName);
+                        sendMessageDy( dyBuyHuawei.post( itemId, "1458560512"),itemName);
+                        sendMessageDy( dyBuyHuawei.post( itemId, "1458560517"),itemName);
+                        sendMessageDy( dyBuyHuawei.post( itemId, "1458560513"),itemName);
+                        sendMessageDy( dyBuyHuawei.post( itemId, "1458560518"),itemName);
                     }else if(itemId.equals("3449855221851887670")) { //保时捷 3449855221851887670
-                        sendMessageDy( testDyBuy.post( itemId, "1313132626"),itemName);
-                        sendMessageDy( testDyBuy.post( itemId, "1313132628"),itemName);
-                        sendMessageDy( testDyBuy.post( itemId, "1313132627"),itemName);
-                        sendMessageDy( testDyBuy.post( itemId, "1313132629"),itemName);
-                        sendMessageDy( testDyBuy.post( itemId, "1313132630"),itemName);
-                        sendMessageDy( testDyBuy.post( itemId, "1313132632"),itemName);
-                        sendMessageDy( testDyBuy.post( itemId, "1313132631"),itemName);
-                        sendMessageDy( testDyBuy.post( itemId, "1313132633"),itemName);
+                        sendMessageDy( dyBuyHuawei.post( itemId, "1313132626"),itemName);
+                        sendMessageDy( dyBuyHuawei.post( itemId, "1313132628"),itemName);
+                        sendMessageDy( dyBuyHuawei.post( itemId, "1313132627"),itemName);
+                        sendMessageDy( dyBuyHuawei.post( itemId, "1313132629"),itemName);
+                        sendMessageDy( dyBuyHuawei.post( itemId, "1313132630"),itemName);
+                        sendMessageDy( dyBuyHuawei.post( itemId, "1313132632"),itemName);
+                        sendMessageDy( dyBuyHuawei.post( itemId, "1313132631"),itemName);
+                        sendMessageDy( dyBuyHuawei.post( itemId, "1313132633"),itemName);
                     }else if(itemId.equals("3454861367230727564")) { //nova8p 3454861367230727564
-                        sendMessageDy( testDyBuy.post( itemId, "1458855405"),itemName);
-                        sendMessageDy( testDyBuy.post( itemId, "1458855410"),itemName);
-                        sendMessageDy( testDyBuy.post( itemId, "1458855406"),itemName);
-                        sendMessageDy( testDyBuy.post( itemId, "1458855411"),itemName);
-                        sendMessageDy( testDyBuy.post( itemId, "1458855408"),itemName);
-                        sendMessageDy( testDyBuy.post( itemId, "1458855412"),itemName);
-                        sendMessageDy( testDyBuy.post( itemId, "1458855409"),itemName);
-                        sendMessageDy( testDyBuy.post( itemId, "1458855414"),itemName);
+                        sendMessageDy( dyBuyHuawei.post( itemId, "1458855405"),itemName);
+                        sendMessageDy( dyBuyHuawei.post( itemId, "1458855410"),itemName);
+                        sendMessageDy( dyBuyHuawei.post( itemId, "1458855406"),itemName);
+                        sendMessageDy( dyBuyHuawei.post( itemId, "1458855411"),itemName);
+                        sendMessageDy( dyBuyHuawei.post( itemId, "1458855408"),itemName);
+                        sendMessageDy( dyBuyHuawei.post( itemId, "1458855412"),itemName);
+                        sendMessageDy( dyBuyHuawei.post( itemId, "1458855409"),itemName);
+                        sendMessageDy( dyBuyHuawei.post( itemId, "1458855414"),itemName);
                     }
 
 
