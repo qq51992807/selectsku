@@ -14,6 +14,10 @@ public class commitDy  {
 //        DyBuyCom dyBuyCom=new DyBuyCom(baiyeCookie,"6837435314240340236","66916631931","1422354648","3453521734500751426");
 //        commitDy.sendMessageDy(dyBuyCom.post(),"mate40");
 
+//        System.getProperties().setProperty("http.proxyHost", "10.22.40.32");
+//        System.getProperties().setProperty("http.proxyPort", "8080");
+        // 判断代理是否设置成功
+        // 发送 GET 请求;
 
         //老罗黄金
         DyBuyCom dyBuyCom2=new DyBuyCom(baiyeCookie,"6837435314240340236","4195355415549012","1572967386","3457878064195892911");
@@ -24,7 +28,7 @@ public class commitDy  {
 
 
 
-   static void sendMessageDy(String response,String itemName){
+   public static void sendMessageDy(String response,String itemName){
         if(response!=null&&response.length()!=0) {
             String response2 = TransationMessage(response);
             System.out.println(response2);
