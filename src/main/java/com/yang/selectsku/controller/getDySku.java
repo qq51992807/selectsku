@@ -1,5 +1,6 @@
 package com.yang.selectsku.controller;
 
+import antlr.StringUtils;
 import com.yang.selectsku.DyPost.DyBuyHuawei;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpException;
@@ -106,22 +107,45 @@ public static void main(String args[]){
         } else {
             throw new HttpException("statusCode="+statusCode);
         }
-        try {
+        if(json==null||json.equals("")){
+
+        }else {
+            try {
                 JSONObject jsonArray = new JSONObject(json);
-            JSONObject data = new JSONObject(jsonArray.getString("data") + "");
-            //sku
-            int StockNum=Integer.parseInt(data.getString("total_stock_num"));
-            if(firstCome)
-            System.out.println(df.format(new Date())+" 商品编号："+itemId+" 商品名称为："+itemName+" 当前库存状态为 " + StockNum);
-            // skuMessage="商品编号："+itemId+" 当前库存为:"+StockStateName;
+                JSONObject data = new JSONObject(jsonArray.getString("data") + "");
+                //sku
+                int StockNum = Integer.parseInt(data.getString("total_stock_num"));
+                if (firstCome)
+                    System.out.println(df.format(new Date()) + " 商品编号：" + itemId + " 商品名称为：" + itemName + " 当前库存状态为 " + StockNum);
+                // skuMessage="商品编号："+itemId+" 当前库存为:"+StockStateName;
 
-            if(num!=StockNum){
-                if(firstCome){
-                    if(addStart) {
+                if (num != StockNum) {
+                    if (firstCome) {
+                        if (addStart) {
+                            String message =
+                                    " { \"appToken\":\"AT_Q45yzpNW3dKPNaFF0SLXHZCfMjMcPFrJ\"," +
+                                            "  \"content\":\"商品名称：" + itemName + " 当前库存状态为 " + StockNum + " \"," +
+                                            "  \"summary\":\"开启抖音监控商品 " + itemName + " 成功 当前库存状态为 " + StockNum + "  \"," +
+                                            "  \"topicIds\":[ \n" +
+                                            "      1205\n" +
+                                            "  ]," +
+                                            "  \"contentType\":2, " +
+                                            "  \"uids\":[" +
+                                            "      \"UID_yV8nb3gdc7I6eYSBRWY0IQP3bcgk\"" +
+                                            ",  \"UID_N5AytME3daIlngtVm6Yt71xx7nrA\", \"UID_EXA4w2hi8PSinrndA9dK4ux8y5yw\" " +
+                                            "  ]}";
+                            getSku.post("http://wxpusher.zjiecode.com/api/send/message", message);
+                        }
+                        firstCome = false;
+                        num = StockNum;
+                    } else {
+                        //        getSku.httpGet("http://wxpusher.zjiecode.com/api/send/message/?appToken=AT_Q45yzpNW3dKPNaFF0SLXHZCfMjMcPFrJ&content="+title.trim()+"库存为"+jsonArray4.get("quantity")+"&uid=UID_yV8nb3gdc7I6eYSBRWY0IQP3bcgk","UTF-8",2);
+
+
                         String message =
                                 " { \"appToken\":\"AT_Q45yzpNW3dKPNaFF0SLXHZCfMjMcPFrJ\"," +
-                                        "  \"content\":\"商品名称：" + itemName + " 当前库存状态为 " + StockNum + " \"," +
-                                        "  \"summary\":\"开启抖音监控商品 " + itemName + " 成功 当前库存状态为 " + StockNum + "  \"," +
+                                        "  \"content\":\"商品名称：" + itemName + " 库存变化为 " + num + " -> " + StockNum + " \"," +
+                                        "  \"summary\":\"库存提醒 抖音商品名称：" + itemName + " 库存变化为 " + num + " -> " + StockNum + " \"," +
                                         "  \"topicIds\":[ \n" +
                                         "      1205\n" +
                                         "  ]," +
@@ -131,109 +155,90 @@ public static void main(String args[]){
                                         ",  \"UID_N5AytME3daIlngtVm6Yt71xx7nrA\", \"UID_EXA4w2hi8PSinrndA9dK4ux8y5yw\" " +
                                         "  ]}";
                         getSku.post("http://wxpusher.zjiecode.com/api/send/message", message);
+
+
+                        if (itemId.equals("3453521734500751426")) {//mate40
+                            sendMessageDy(dyBuyHuawei.post(itemId, "1422354648"), itemName);
+                            sendMessageDy(dyBuyHuawei.post(itemId, "1422354655"), itemName);
+                            sendMessageDy(dyBuyHuawei.post(itemId, "1422354649"), itemName);
+                            sendMessageDy(dyBuyHuawei.post(itemId, "1422354657"), itemName);
+                            sendMessageDy(dyBuyHuawei.post(itemId, "1422354650"), itemName);
+                            sendMessageDy(dyBuyHuawei.post(itemId, "1422354659"), itemName);
+                            sendMessageDy(dyBuyHuawei.post(itemId, "1422354651"), itemName);
+                            sendMessageDy(dyBuyHuawei.post(itemId, "1422354661"), itemName);
+                            sendMessageDy(dyBuyHuawei.post(itemId, "1422354653"), itemName);
+                            sendMessageDy(dyBuyHuawei.post(itemId, "1422354662"), itemName);
+                        } else if (itemId.equals("3452440959718151364")) { //mate40p
+                            sendMessageDy(dyBuyHuawei.post(itemId, "1394047553"), itemName);
+                            sendMessageDy(dyBuyHuawei.post(itemId, "1394047554"), itemName);
+                            sendMessageDy(dyBuyHuawei.post(itemId, "1394047555"), itemName);
+                            sendMessageDy(dyBuyHuawei.post(itemId, "1394047556"), itemName);
+                            sendMessageDy(dyBuyHuawei.post(itemId, "1394047557"), itemName);
+                            sendMessageDy(dyBuyHuawei.post(itemId, "1394047558"), itemName);
+                            sendMessageDy(dyBuyHuawei.post(itemId, "1394047559"), itemName);
+                            sendMessageDy(dyBuyHuawei.post(itemId, "1394047560"), itemName);
+                            sendMessageDy(dyBuyHuawei.post(itemId, "1394047561"), itemName);
+                            sendMessageDy(dyBuyHuawei.post(itemId, "1394047562"), itemName);
+                            sendMessageDy(dyBuyHuawei.post(itemId, "1394047563"), itemName);
+                            sendMessageDy(dyBuyHuawei.post(itemId, "1394047564"), itemName);
+                            sendMessageDy(dyBuyHuawei.post(itemId, "1394047565"), itemName);
+                            sendMessageDy(dyBuyHuawei.post(itemId, "1394047566"), itemName);
+                            sendMessageDy(dyBuyHuawei.post(itemId, "1394047567"), itemName);
+                        } else if (itemId.equals("3454856842449155193")) { //nova8 3454856842449155193
+                            sendMessageDy(dyBuyHuawei.post(itemId, "1458560510"), itemName);
+                            sendMessageDy(dyBuyHuawei.post(itemId, "1458560514"), itemName);
+                            sendMessageDy(dyBuyHuawei.post(itemId, "1458560511"), itemName);
+                            sendMessageDy(dyBuyHuawei.post(itemId, "1458560515"), itemName);
+                            sendMessageDy(dyBuyHuawei.post(itemId, "1458560512"), itemName);
+                            sendMessageDy(dyBuyHuawei.post(itemId, "1458560517"), itemName);
+                            sendMessageDy(dyBuyHuawei.post(itemId, "1458560513"), itemName);
+                            sendMessageDy(dyBuyHuawei.post(itemId, "1458560518"), itemName);
+                        } else if (itemId.equals("3449855221851887670")) { //保时捷 3449855221851887670
+                            sendMessageDy(dyBuyHuawei.post(itemId, "1313132626"), itemName);
+                            sendMessageDy(dyBuyHuawei.post(itemId, "1313132628"), itemName);
+                            sendMessageDy(dyBuyHuawei.post(itemId, "1313132627"), itemName);
+                            sendMessageDy(dyBuyHuawei.post(itemId, "1313132629"), itemName);
+                            sendMessageDy(dyBuyHuawei.post(itemId, "1313132630"), itemName);
+                            sendMessageDy(dyBuyHuawei.post(itemId, "1313132632"), itemName);
+                            sendMessageDy(dyBuyHuawei.post(itemId, "1313132631"), itemName);
+                            sendMessageDy(dyBuyHuawei.post(itemId, "1313132633"), itemName);
+                        } else if (itemId.equals("3454861367230727564")) { //nova8p 3454861367230727564
+                            sendMessageDy(dyBuyHuawei.post(itemId, "1458855405"), itemName);
+                            sendMessageDy(dyBuyHuawei.post(itemId, "1458855410"), itemName);
+                            sendMessageDy(dyBuyHuawei.post(itemId, "1458855406"), itemName);
+                            sendMessageDy(dyBuyHuawei.post(itemId, "1458855411"), itemName);
+                            sendMessageDy(dyBuyHuawei.post(itemId, "1458855408"), itemName);
+                            sendMessageDy(dyBuyHuawei.post(itemId, "1458855412"), itemName);
+                            sendMessageDy(dyBuyHuawei.post(itemId, "1458855409"), itemName);
+                            sendMessageDy(dyBuyHuawei.post(itemId, "1458855414"), itemName);
+                        }
+
+
+                        num = StockNum;
                     }
-                    firstCome=false;
-                    num=StockNum;
-                }else{
-                    //        getSku.httpGet("http://wxpusher.zjiecode.com/api/send/message/?appToken=AT_Q45yzpNW3dKPNaFF0SLXHZCfMjMcPFrJ&content="+title.trim()+"库存为"+jsonArray4.get("quantity")+"&uid=UID_yV8nb3gdc7I6eYSBRWY0IQP3bcgk","UTF-8",2);
-
-
-                        String message=
-                            " { \"appToken\":\"AT_Q45yzpNW3dKPNaFF0SLXHZCfMjMcPFrJ\"," +
-                                    "  \"content\":\"商品名称："+itemName+" 库存变化为 "+num+" -> "+StockNum+ " \"," +
-                                    "  \"summary\":\"库存提醒 抖音商品名称："+itemName+" 库存变化为 "+num+" -> "+StockNum+" \"," +
-                                    "  \"topicIds\":[ \n" +
-                                    "      1205\n" +
-                                    "  ]," +
-                                    "  \"contentType\":2, " +
-                                    "  \"uids\":[" +
-                                    "      \"UID_yV8nb3gdc7I6eYSBRWY0IQP3bcgk\""+
-                                    ",  \"UID_N5AytME3daIlngtVm6Yt71xx7nrA\", \"UID_EXA4w2hi8PSinrndA9dK4ux8y5yw\" " +
-                                    "  ]}" ;
-                    getSku.post("http://wxpusher.zjiecode.com/api/send/message",message);
-
-
-                    if(itemId.equals("3453521734500751426")){//mate40
-                        sendMessageDy( dyBuyHuawei.post( itemId, "1422354648"),itemName);
-                        sendMessageDy( dyBuyHuawei.post( itemId, "1422354655"),itemName);
-                        sendMessageDy( dyBuyHuawei.post( itemId, "1422354649"),itemName);
-                        sendMessageDy( dyBuyHuawei.post( itemId, "1422354657"),itemName);
-                        sendMessageDy( dyBuyHuawei.post( itemId, "1422354650"),itemName);
-                        sendMessageDy( dyBuyHuawei.post( itemId, "1422354659"),itemName);
-                        sendMessageDy( dyBuyHuawei.post( itemId, "1422354651"),itemName);
-                        sendMessageDy( dyBuyHuawei.post( itemId, "1422354661"),itemName);
-                        sendMessageDy( dyBuyHuawei.post( itemId, "1422354653"),itemName);
-                        sendMessageDy( dyBuyHuawei.post( itemId, "1422354662"),itemName);
-                    }else if(itemId.equals("3452440959718151364")){ //mate40p
-                        sendMessageDy( dyBuyHuawei.post( itemId, "1394047553"),itemName);
-                        sendMessageDy( dyBuyHuawei.post( itemId, "1394047554"),itemName);
-                        sendMessageDy( dyBuyHuawei.post( itemId, "1394047555"),itemName);
-                        sendMessageDy( dyBuyHuawei.post( itemId, "1394047556"),itemName);
-                        sendMessageDy( dyBuyHuawei.post( itemId, "1394047557"),itemName);
-                        sendMessageDy( dyBuyHuawei.post( itemId, "1394047558"),itemName);
-                        sendMessageDy( dyBuyHuawei.post( itemId, "1394047559"),itemName);
-                        sendMessageDy( dyBuyHuawei.post( itemId, "1394047560"),itemName);
-                        sendMessageDy( dyBuyHuawei.post( itemId, "1394047561"),itemName);
-                        sendMessageDy( dyBuyHuawei.post( itemId, "1394047562"),itemName);
-                        sendMessageDy( dyBuyHuawei.post( itemId, "1394047563"),itemName);
-                        sendMessageDy( dyBuyHuawei.post( itemId, "1394047564"),itemName);
-                        sendMessageDy( dyBuyHuawei.post( itemId, "1394047565"),itemName);
-                        sendMessageDy( dyBuyHuawei.post( itemId, "1394047566"),itemName);
-                        sendMessageDy( dyBuyHuawei.post( itemId, "1394047567"),itemName);
-                    }else if(itemId.equals("3454856842449155193")){ //nova8 3454856842449155193
-                        sendMessageDy( dyBuyHuawei.post( itemId, "1458560510"),itemName);
-                        sendMessageDy( dyBuyHuawei.post( itemId, "1458560514"),itemName);
-                        sendMessageDy( dyBuyHuawei.post( itemId, "1458560511"),itemName);
-                        sendMessageDy( dyBuyHuawei.post( itemId, "1458560515"),itemName);
-                        sendMessageDy( dyBuyHuawei.post( itemId, "1458560512"),itemName);
-                        sendMessageDy( dyBuyHuawei.post( itemId, "1458560517"),itemName);
-                        sendMessageDy( dyBuyHuawei.post( itemId, "1458560513"),itemName);
-                        sendMessageDy( dyBuyHuawei.post( itemId, "1458560518"),itemName);
-                    }else if(itemId.equals("3449855221851887670")) { //保时捷 3449855221851887670
-                        sendMessageDy( dyBuyHuawei.post( itemId, "1313132626"),itemName);
-                        sendMessageDy( dyBuyHuawei.post( itemId, "1313132628"),itemName);
-                        sendMessageDy( dyBuyHuawei.post( itemId, "1313132627"),itemName);
-                        sendMessageDy( dyBuyHuawei.post( itemId, "1313132629"),itemName);
-                        sendMessageDy( dyBuyHuawei.post( itemId, "1313132630"),itemName);
-                        sendMessageDy( dyBuyHuawei.post( itemId, "1313132632"),itemName);
-                        sendMessageDy( dyBuyHuawei.post( itemId, "1313132631"),itemName);
-                        sendMessageDy( dyBuyHuawei.post( itemId, "1313132633"),itemName);
-                    }else if(itemId.equals("3454861367230727564")) { //nova8p 3454861367230727564
-                        sendMessageDy( dyBuyHuawei.post( itemId, "1458855405"),itemName);
-                        sendMessageDy( dyBuyHuawei.post( itemId, "1458855410"),itemName);
-                        sendMessageDy( dyBuyHuawei.post( itemId, "1458855406"),itemName);
-                        sendMessageDy( dyBuyHuawei.post( itemId, "1458855411"),itemName);
-                        sendMessageDy( dyBuyHuawei.post( itemId, "1458855408"),itemName);
-                        sendMessageDy( dyBuyHuawei.post( itemId, "1458855412"),itemName);
-                        sendMessageDy( dyBuyHuawei.post( itemId, "1458855409"),itemName);
-                        sendMessageDy( dyBuyHuawei.post( itemId, "1458855414"),itemName);
+                } else {
+                    if (firstCome) {
+                        if (addStart) {
+                            String message =
+                                    " { \"appToken\":\"AT_Q45yzpNW3dKPNaFF0SLXHZCfMjMcPFrJ\"," +
+                                            "  \"content\":\"商品名称：" + itemName + " 当前库存状态为 " + StockNum + " \"," +
+                                            "  \"summary\":\"开启抖音监控商品 " + itemName + " 成功 当前库存状态为 " + StockNum + "  \"," +
+                                            "  \"topicIds\":[ \n" +
+                                            "      1205\n" +
+                                            "  ]," +
+                                            "  \"contentType\":2, " +
+                                            "  \"uids\":[" +
+                                            "      \"UID_yV8nb3gdc7I6eYSBRWY0IQP3bcgk\"" +
+                                            ",  \"UID_N5AytME3daIlngtVm6Yt71xx7nrA\", \"UID_EXA4w2hi8PSinrndA9dK4ux8y5yw\" " +
+                                            "  ]}";
+                            getSku.post("http://wxpusher.zjiecode.com/api/send/message", message);
+                        }
+                        firstCome = false;
                     }
-
-
-                    num=StockNum;
                 }
-            }else{
-                if(firstCome) {
-                    if(addStart) {
-                        String message =
-                                " { \"appToken\":\"AT_Q45yzpNW3dKPNaFF0SLXHZCfMjMcPFrJ\"," +
-                                        "  \"content\":\"商品名称：" + itemName + " 当前库存状态为 " + StockNum + " \"," +
-                                        "  \"summary\":\"开启抖音监控商品 " + itemName + " 成功 当前库存状态为 " + StockNum + "  \"," +
-                                        "  \"topicIds\":[ \n" +
-                                        "      1205\n" +
-                                        "  ]," +
-                                        "  \"contentType\":2, " +
-                                        "  \"uids\":[" +
-                                        "      \"UID_yV8nb3gdc7I6eYSBRWY0IQP3bcgk\"" +
-                                        ",  \"UID_N5AytME3daIlngtVm6Yt71xx7nrA\", \"UID_EXA4w2hi8PSinrndA9dK4ux8y5yw\" " +
-                                        "  ]}";
-                        getSku.post("http://wxpusher.zjiecode.com/api/send/message", message);
-                    }
-                    firstCome = false;
-                }
+            } catch (JSONException e) {
+                e.printStackTrace();
             }
-        } catch (JSONException e) {
-            e.printStackTrace();
         }
         return json;
     }
