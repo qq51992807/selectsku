@@ -71,7 +71,7 @@ public class JdSkuController {
             jditem2.setItemName(itemName);
             jditem2.setTime(time);
             jditem2.setStatus(1);
-            jditem2.setByUser(byUser);
+            jditem2.setByUser(2);
             jditemRepository.save(jditem2);
         }
         Jditem result=jditemRepository.save(jditem);

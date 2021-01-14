@@ -31,7 +31,8 @@ public class getJdSku implements Runnable{
     public String areaCode;
     public int send;
     public String itemName;
-    public  String  itemState="无货";
+    public String  itemState="无货";
+    public String skuState="上架";
     public boolean firstCome=true;
     public boolean addStart=true;
     public  getJdSku(String itemId,int time,String areaCode,int send,String itemName, boolean addStart){
@@ -68,20 +69,20 @@ public class getJdSku implements Runnable{
         }
     }
 
-//        public static void main(String[] args) {
-//        getJdSku getJdSku1=new getJdSku("100009808169",10,"19_1601_50259_51886",1,"mate40黑色");
+        public static void main(String[] args) {
+        getJdSku getJdSku1=new getJdSku("7629941",10,"19_1601_50259_51886",1,"施华洛世奇",true);
 //        getJdSku getJdSku2=new getJdSku("100006359561",10,"19_1601_50259_51886",1,"xs");
 //        getJdSku getJdSku3=new getJdSku("100017133254",10,"19_1601_50259_51886",1,"mate40银色");
 //        getJdSku getJdSku4=new getJdSku("100009808171",10,"19_1601_50259_51886",1,"mate40白色");
-//        Thread mThread1=new Thread(getJdSku1,"线程1");
+        Thread mThread1=new Thread(getJdSku1,"线程1");
 //        Thread mThread2=new Thread(getJdSku2,"线程2");
 //        Thread mThread3=new Thread(getJdSku3,"线程3");
 //        Thread mThread4=new Thread(getJdSku4,"线程4");
-//        mThread1.start();
+        mThread1.start();
 //        mThread2.start();
 //        mThread3.start();
 //        mThread4.start();
-//    }
+    }
 
 
     public  String httpGet(String url, String charset,String itemId,String sendIds,String itemName)
@@ -114,6 +115,12 @@ public class getJdSku implements Runnable{
 //                JSONObject jsonArray = new JSONObject(json);
                 JSONObject jsonArray = new JSONObject(json.substring(json.indexOf("{"),json.lastIndexOf("}")+1));
                 JSONObject item = new JSONObject(jsonArray.getString(itemId) + "");
+                int nowSkuState=item.getInt("skuState");
+                if(nowSkuState==1){
+                    skuState="上架";
+                }else{
+                    skuState="下架";
+                }
                 //sku
                 String StockStateName=item.getString("StockStateName");
                 if(firstCome)
@@ -125,8 +132,8 @@ public class getJdSku implements Runnable{
                         if(addStart) {
                             String message =
                                     " { \"appToken\":\"AT_Q45yzpNW3dKPNaFF0SLXHZCfMjMcPFrJ\"," +
-                                            "  \"content\":\"商品名称：" + itemName + " 当前库存状态为 " + StockStateName + " 直接链接为 <a href=' https://p.m.jd.com/norder/order.action?wareId=" + itemId + "&wareNum=1&enterOrder=true '>https://p.m.jd.com/norder/order.action?wareId=" + itemId + "&wareNum=1&enterOrder=true</a>  \"," +
-                                            "  \"summary\":\"开启JD监控商品 " + itemName + " 成功 当前库存状态为 " + StockStateName + "  \"," +
+                                            "  \"content\":\"商品名称：" + itemName + " 当前库存状态为 " + StockStateName +" "+skuState+ " 直接链接为 <a href=' https://p.m.jd.com/norder/order.action?wareId=" + itemId + "&wareNum=1&enterOrder=true '>https://p.m.jd.com/norder/order.action?wareId=" + itemId + "&wareNum=1&enterOrder=true</a>  \"," +
+                                            "  \"summary\":\"开启JD监控商品 " + itemName + " 成功 当前库存状态为 " + StockStateName +"（"+skuState+ "）\" ," +
                                             "  \"topicIds\":[ \n" +
                                             "      1205\n" +
                                             "  ]," +
@@ -140,11 +147,11 @@ public class getJdSku implements Runnable{
 
                     }else{
                         //        getSku.httpGet("http://wxpusher.zjiecode.com/api/send/message/?appToken=AT_Q45yzpNW3dKPNaFF0SLXHZCfMjMcPFrJ&content="+title.trim()+"库存为"+jsonArray4.get("quantity")+"&uid=UID_yV8nb3gdc7I6eYSBRWY0IQP3bcgk","UTF-8",2);
-                        if(!StockStateName.equals("无货")) {
+                        if(!StockStateName.equals("无货")&&skuState.equals("上架")) {
                             String message =
                                     " { \"appToken\":\"AT_Q45yzpNW3dKPNaFF0SLXHZCfMjMcPFrJ\"," +
                                             "  \"content\":\"商品名称：" + itemName + " 库存变化为 " + itemState + " -> " + StockStateName + " 直接链接为 <a href=' https://p.m.jd.com/norder/order.action?wareId=" + itemId + "&wareNum=1&enterOrder=true '>https://p.m.jd.com/norder/order.action?wareId=" + itemId + "&wareNum=1&enterOrder=true</a>  \"," +
-                                            "  \"summary\":\"库存提醒 JD商品名称：" + itemName + " 库存变化为 " + itemState + " -> " + StockStateName + " \"," +
+                                            "  \"summary\":\"库存提醒 JD商品名称：" + itemName + " 库存变化为 " + itemState + " -> " + StockStateName + "\" ," +
                                             "  \"topicIds\":[ \n" +
                                             "      1205\n" +
                                             "  ]," +
@@ -162,8 +169,8 @@ public class getJdSku implements Runnable{
                         if(addStart) {
                             String message =
                                     " { \"appToken\":\"AT_Q45yzpNW3dKPNaFF0SLXHZCfMjMcPFrJ\"," +
-                                            "  \"content\":\"商品名称：" + itemName + " 当前库存状态为 " + StockStateName + " 直接链接为 <a href=' https://p.m.jd.com/norder/order.action?wareId=" + itemId + "&wareNum=1&enterOrder=true '>https://p.m.jd.com/norder/order.action?wareId=" + itemId + "&wareNum=1&enterOrder=true</a>  \"," +
-                                            "  \"summary\":\"开启监控JD商品 " + itemName + " 成功 当前库存状态为 " + StockStateName + "  \"," +
+                                            "  \"content\":\"商品名称：" + itemName + " 当前库存状态为 " + StockStateName +" "+skuState+ " 直接链接为 <a href=' https://p.m.jd.com/norder/order.action?wareId=" + itemId + "&wareNum=1&enterOrder=true '>https://p.m.jd.com/norder/order.action?wareId=" + itemId + "&wareNum=1&enterOrder=true</a>  \"," +
+                                            "  \"summary\":\"开启JD监控商品 " + itemName + " 成功 当前库存状态为 " + StockStateName +" （"+skuState+  "）\" ," +
                                             "  \"topicIds\":[ \n" +
                                             "      1205\n" +
                                             "  ]," +
