@@ -57,25 +57,25 @@ public class getDySku implements Runnable{
         }
     }
 
-//    public static  void main(String args[]){
-//        getDySku getDySku=new getDySku("3452440959718151364","mate40p",3,true);
-//        Thread mThread1=new Thread(getDySku,"线程1");
-//        mThread1.start();
-//    }
-public static void main(String args[]){
-
-//    getDySku getDySku=new getDySku("3457878064195892911","老罗黄金",1,true);
-//    testDyBuy testDyBuy=new testDyBuy();
-//    testDyBuy2 testDyBuy2=new testDyBuy2();
-//    while(1==1) {
-//        getDySku.sendMessageDy(testDyBuy.post(getDySku.itemId, "1572967386"), "老罗黄金");
-//        getDySku.sendMessageDy(testDyBuy2.post(getDySku.itemId, "1572967386"), "老罗黄金");
-//    }
-    getDySku getDySku=new getDySku("3453521734500751426","mate40",1,false);
-    DyBuyHuawei dyBuyHuawei=new DyBuyHuawei();
-    getDySku.sendMessageDy(dyBuyHuawei.post(getDySku.itemId, "1422354648"), "mate40");
-
-}
+    public static  void main(String args[]){
+        getDySku getDySku=new getDySku("3452440959718151364","mate40p",3,true);
+        Thread mThread1=new Thread(getDySku,"线程1");
+        mThread1.start();
+    }
+//public static void main(String args[]){
+//
+////    getDySku getDySku=new getDySku("3457878064195892911","老罗黄金",1,true);
+////    testDyBuy testDyBuy=new testDyBuy();
+////    testDyBuy2 testDyBuy2=new testDyBuy2();
+////    while(1==1) {
+////        getDySku.sendMessageDy(testDyBuy.post(getDySku.itemId, "1572967386"), "老罗黄金");
+////        getDySku.sendMessageDy(testDyBuy2.post(getDySku.itemId, "1572967386"), "老罗黄金");
+////    }
+//    getDySku getDySku=new getDySku("3453521734500751426","mate40",1,false);
+//    DyBuyHuawei dyBuyHuawei=new DyBuyHuawei();
+//    getDySku.sendMessageDy(dyBuyHuawei.post(getDySku.itemId, "1422354648"), "mate40");
+//
+//}
 
 
     SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式

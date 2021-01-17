@@ -24,8 +24,8 @@ public class commonController {
         // 发送 GET 请求;
 
         //老罗黄金
-        DyBuyCom dyBuyCom2=new DyBuyCom(baiyeCookie,"6837435314240340236","4195355415549012","1572967386","3457878064195892911");
-        commitDy.sendMessageDy(dyBuyCom2.post(),"老罗黄金");
+//        DyBuyCom dyBuyCom2=new DyBuyCom(baiyeCookie,"6837435314240340236","4195355415549012","1572967386","3457878064195892911");
+//        commitDy.sendMessageDy(dyBuyCom2.post(),"老罗黄金");
     }
 
 
