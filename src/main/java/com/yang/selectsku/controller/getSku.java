@@ -108,7 +108,7 @@ public  String httpGet(String url, String charset,int method,String sendIds,Stri
         JSONObject jsonArray = new JSONObject(json);
         JSONObject item = new JSONObject(jsonArray.getString("item") + "");
         String title=item.getString("title");
-        System.out.println(title);
+//        System.out.println(title);
         //sku
         JSONObject jsonArray2 = new JSONObject(jsonArray.get("skuCore") + "");
 //        System.out.println(jsonArray2);
