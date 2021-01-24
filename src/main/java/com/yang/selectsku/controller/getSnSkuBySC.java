@@ -23,7 +23,7 @@ import java.net.URISyntaxException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class getSnSku implements Runnable{
+public class getSnSkuBySC implements Runnable{
 
 
     public  String  itemState="无货";
@@ -38,7 +38,7 @@ public class getSnSku implements Runnable{
     SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
 
 
-    public getSnSku(String firstItemId,String secondItemId,int time,String itemName, boolean addStart){
+    public getSnSkuBySC(String firstItemId, String secondItemId, int time, String itemName, boolean addStart){
         this.firstItemId=firstItemId;
         this.secondItemId=secondItemId;
         this.time=time;
@@ -51,7 +51,7 @@ public class getSnSku implements Runnable{
     public void run() {
         while (1==1) {
             try {
-                httpGet("https://pas.suning.com/nspcsale_0_" + secondItemId + "_" + secondItemId + "_" + firstItemId + "_190_020.html", "GBK", firstItemId, secondItemId, itemName);
+                httpGet("https://pas.suning.com/nspcsale_0_" + secondItemId + "_" + secondItemId + "_" + firstItemId + "_230_028.html", "GBK", firstItemId, secondItemId, itemName);
                 Thread.sleep(1000 * time);
             } catch (HttpException e) {
                 e.printStackTrace();
@@ -72,8 +72,8 @@ public class getSnSku implements Runnable{
 //        } catch (IOException e) {
 //            e.printStackTrace();
 //        }
-//        getSnSku getSnSku=new getSnSku("0000000000","11001203841",1,"茅台",true);
-        getSnSku getSnSku=new getSnSku("0000000000","12122946298",1,"Apple12",true);
+//        getSnSkuBySC getSnSku=new getSnSkuBySC("0000000000","12122946298",1,"Apple12",true);
+        getSnSkuBySC getSnSku=new getSnSkuBySC("0000000000","12193121809",1,"显卡",true);
         Thread myThread=new Thread(getSnSku,"sn监控");
         myThread.start();
 
@@ -105,10 +105,8 @@ public class getSnSku implements Runnable{
         } else {
 //            throw new HttpException("statusCode="+statusCode);
         }
-
         if(json!=null&&json.length()!=0) {
             try {
-
 //                JSONObject jsonArray = new JSONObject(json);
                 JSONObject jsonArray = new JSONObject(json.substring(json.indexOf("{"), json.lastIndexOf("}") + 1));
                 JSONObject data = new JSONObject(jsonArray.getString("data") + "");
@@ -138,9 +136,9 @@ public class getSnSku implements Runnable{
                             String message =
                                     " { \"appToken\":\"AT_Q45yzpNW3dKPNaFF0SLXHZCfMjMcPFrJ\"," +
                                             "  \"content\":\"商品名称：" + itemName + " 当前库存状态为 " + StockStateName + " 直接链接为 <a href=' https://m.suning.com/product/" + firstItemId + "/" + secondItemId + ".html'>点击跳转购买</a>  \"," +
-                                            "  \"summary\":\"开启(广东)苏宁监控商品 " + itemName + " 成功 当前库存状态为 " + StockStateName + "   \"," +
+                                            "  \"summary\":\"开启(四川)苏宁监控商品 " + itemName + " 成功 当前库存状态为 " + StockStateName + "   \"," +
                                             "  \"topicIds\":[ \n" +
-                                            "      1396\n" +
+                                            "      1432\n" +
                                             "  ]," +
                                             "  \"contentType\":2, " +
                                             "  \"uids\":[" +
@@ -155,9 +153,9 @@ public class getSnSku implements Runnable{
                             String message =
                                     " { \"appToken\":\"AT_Q45yzpNW3dKPNaFF0SLXHZCfMjMcPFrJ\"," +
                                             "  \"content\":\"商品名称：" + itemName + " 库存变化为 " + itemState + " -> " + StockStateName + " 直接链接为 <a href=' https://m.suning.com/product/" + firstItemId + "/" + secondItemId + ".html'>点击跳转购买</a>  \"," +
-                                            "  \"summary\":\"库存(广东)提醒 苏宁商品名称：" + itemName + " 库存变化为 " + itemState + " -> " + StockStateName + "   \"," +
+                                            "  \"summary\":\"库存(四川)提醒 苏宁商品名称：" + itemName + " 库存变化为 " + itemState + " -> " + StockStateName + "   \"," +
                                             "  \"topicIds\":[ \n" +
-                                            "      1396\n" +
+                                            "      1432\n" +
                                             "  ]," +
                                             "  \"contentType\":2, " +
                                             "  \"uids\":[" +
@@ -173,9 +171,9 @@ public class getSnSku implements Runnable{
                             String message =
                                     " { \"appToken\":\"AT_Q45yzpNW3dKPNaFF0SLXHZCfMjMcPFrJ\"," +
                                             "  \"content\":\"商品名称：" + itemName + " 当前库存状态为 " + StockStateName + " 直接链接为 <a href=' https://m.suning.com/product/" + firstItemId + "/" + secondItemId + ".html'>点击跳转购买</a>  \"," +
-                                            "  \"summary\":\"开启(广东)苏宁监控商品 " + itemName + " 成功 当前库存状态为 " + StockStateName + "   \"," +
+                                            "  \"summary\":\"开启(四川)苏宁监控商品 " + itemName + " 成功 当前库存状态为 " + StockStateName + "   \"," +
                                             "  \"topicIds\":[ \n" +
-                                            "      1396\n" +
+                                            "      1432\n" +
                                             "  ]," +
                                             "  \"contentType\":2, " +
                                             "  \"uids\":[" +

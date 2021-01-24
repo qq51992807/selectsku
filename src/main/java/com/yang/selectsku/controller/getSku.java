@@ -142,7 +142,7 @@ public  String httpGet(String url, String charset,int method,String sendIds,Stri
                String message =
                        " { \"appToken\":\"AT_Q45yzpNW3dKPNaFF0SLXHZCfMjMcPFrJ\"," +
                                "  \"content\":\" " + title + " 库存为" + newNum + "\"," +
-                               "  \"summary\":\"监控库存提醒 " + itemName + " 库存变化为" + num + " -> "+newNum+" \"," +
+                               "  \"summary\":\"监控淘宝提醒 " + itemName + " 库存变化为" + num + " -> "+newNum+" \"," +
                                "  \"topicIds\":[ \n" +
                                "      1205\n" +
                                "  ]," +
