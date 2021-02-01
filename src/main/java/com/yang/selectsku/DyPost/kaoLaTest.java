@@ -27,11 +27,16 @@ public class kaoLaTest {
             CloseableHttpResponse httpresponse = null;
             try {
                 httpclient = HttpClients.createDefault();
-                HttpPost httppost = new HttpPost("https://gw.kaola.com/gw/user/order/V387?version=1.0");
+                HttpPost httppost = new HttpPost("https://gw.kaola.com/gw/user/order/V387");
                 StringEntity stringentity = new StringEntity(data,
                         ContentType.create("application/json", "UTF-8"));
                 httppost.setEntity(stringentity);
                 httppost.setHeader("Cookie",cookie);
+                httppost.setHeader("aaid","2488B451-029E-AA66-DE4C-279E2140578E");
+                httppost.setHeader("klauserid","109999078399525227");
+                httppost.setHeader("wua","QnIk_OOIBPWPKsqUmg4OtybaZp%2Bo1M0uslnA0ThI7earXebynamuZxC7cHaQxKvawD1926BtEKRV2u58%2BHR9YldZ8GHAX3yWJLVbsfwrB4QQRtkdnqbsVb6MfW0UFc6xZQcT7YPZj74JVCcfvI%2F1JeIeIww7mlJIWNNg76X1CC41P2JdU1pEBIQNQ1i%2FrTpD6Yp5Gc%2BiN6geCNK%2BUvIJWIusPzOuYjeCMyshdDdGHMKNkEOnBFJnCYmdOJ%2BhPAYXkJdAL3NFubDpbpcmayOPUlZAit6inJzWFag8u9zw8jBZxooULxr9MaaKQusiClAUKW2MRKvz1Y5gEQ%2BRpUoyqEf7nK0na5t62fQi6%2FaailtUwowbYZJc8CWsjUIGUPkAlz9jRPUUTCN3drPEkIusN%2BGjS13p9r9ToaL7peGPWoecWyzs%3D");
+                httppost.setHeader("ursAuth","C111A6B55E89962C4A4103388E6826AF1D105FBC5959029F9438CAE73BBF7C784E4BAF59E2104055DFB807075A356377E71B72EF5A5033C7954385D03B8CD81C");
+                httppost.setHeader("kaola_user_key","3352fbaf-7ec3-4fdf-9d51-6cbf7632c9c5");
 
                 httpresponse = httpclient.execute(httppost);
                 response = EntityUtils
