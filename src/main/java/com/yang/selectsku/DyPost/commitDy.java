@@ -25,10 +25,6 @@ public class commitDy  implements Runnable {
     String[] comboIds={"1689478075627528"};
     String productId="3460046513886078993";
 
-
-
-
-
     public static  void main(String agrs[]){
         //开启线程提交
         for(int i=0;i<10;i++){
@@ -37,19 +33,6 @@ public class commitDy  implements Runnable {
         }
     }
 
-
-
-
-//        String lyhItemName="mate 40";
-//        String lyhAuthorId="88742122835";
-//        String lyhComboId="1460415030";
-//        String lyhComboId2="1460415031";
-//        String lyhComboId3="1460415034";
-//        String lyhComboId4="1460415036";
-//        String lyhComboId5="1460415037";
-//        String lyhComboId6="1460415038";
-//        String lyhComboId7="1460415039";
-//        String lyhProductId="3454882272933738579";
 
         //第一个号 mon
         String mCookie="passport_csrf_token=2c7ac9e5c6c75160cf6f7fffdf887e74; passport_csrf_token_default=2c7ac9e5c6c75160cf6f7fffdf887e74; tt_webid=e254ddac709bbb535ef049fd9e024c3e; install_id=4186594606323176; ttreq=1$ef5a5fe81d8f80f9dc9dffed8dce17b2f748cfbd; d_ticket=5c7f3a125890f2ac968418aa5a7291a61edd1; multi_sids=756116130366872%3A9c33ff8919fab8cce524363feafdb2eb; odin_tt=3437f512b40b7d4155a955b406411d24faaec563744ac1285f710fd6e444b943d20404bf999558370f4fe07468372a97e09b032c5125c383dccffddac265d153; n_mh=D7xgIq_o9qQ0h91TFc4cI-fBXrdBKjUlpxVoR4skJCs; sid_guard=9c33ff8919fab8cce524363feafdb2eb%7C1611415950%7C5184000%7CWed%2C+24-Mar-2021+15%3A32%3A30+GMT; uid_tt=83f74ed0dd4f9f172ac6a1f1cc0a0893; uid_tt_ss=83f74ed0dd4f9f172ac6a1f1cc0a0893; sid_tt=9c33ff8919fab8cce524363feafdb2eb; sessionid=9c33ff8919fab8cce524363feafdb2eb; sessionid_ss=9c33ff8919fab8cce524363feafdb2eb";

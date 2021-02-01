@@ -136,13 +136,15 @@ public class getSnSkuBySC implements Runnable{
                             String message =
                                     " { \"appToken\":\"AT_Q45yzpNW3dKPNaFF0SLXHZCfMjMcPFrJ\"," +
                                             "  \"content\":\"商品名称：" + itemName + " 当前库存状态为 " + StockStateName + " 直接链接为 <a href=' https://m.suning.com/product/" + firstItemId + "/" + secondItemId + ".html'>点击跳转购买</a>  \"," +
-                                            "  \"summary\":\"开启(四川)苏宁监控商品 " + itemName + " 成功 当前库存状态为 " + StockStateName + "   \"," +
+                                            "  \"summary\":\"开启【苏宁-四川】 " + itemName + " 监控<br>当前库存状态为 " + StockStateName + " <br><br>"+df.format(new Date())+"  \"," +
                                             "  \"topicIds\":[ \n" +
                                             "      1432\n" +
                                             "  ]," +
                                             "  \"contentType\":2, " +
                                             "  \"uids\":[" +
-                                            "  ]}";
+                                            "  ]," +
+                                            "  \"url\":\"https://m.suning.com/product/" + firstItemId + "/" + secondItemId + ".html \" "+
+                                            "}";
                             getSku.post("http://wxpusher.zjiecode.com/api/send/message", message);
                         }
                         firstCome = false;
@@ -153,13 +155,15 @@ public class getSnSkuBySC implements Runnable{
                             String message =
                                     " { \"appToken\":\"AT_Q45yzpNW3dKPNaFF0SLXHZCfMjMcPFrJ\"," +
                                             "  \"content\":\"商品名称：" + itemName + " 库存变化为 " + itemState + " -> " + StockStateName + " 直接链接为 <a href=' https://m.suning.com/product/" + firstItemId + "/" + secondItemId + ".html'>点击跳转购买</a>  \"," +
-                                            "  \"summary\":\"库存(四川)提醒 苏宁商品名称：" + itemName + " 库存变化为 " + itemState + " -> " + StockStateName + "   \"," +
+                                            "  \"summary\":\"【苏宁-四川】" + itemName + "<br>库存变化为 " + itemState + " -> " + StockStateName + "<br><br>"+df.format(new Date())+"   \"," +
                                             "  \"topicIds\":[ \n" +
                                             "      1432\n" +
                                             "  ]," +
                                             "  \"contentType\":2, " +
                                             "  \"uids\":[" +
-                                            "  ]}";
+                                            "  ]," +
+                                            "  \"url\":\"https://m.suning.com/product/" + firstItemId + "/" + secondItemId + ".html \" "+
+                                            "}";
                             getSku.post("http://wxpusher.zjiecode.com/api/send/message", message);
                         }
                     }
@@ -171,13 +175,15 @@ public class getSnSkuBySC implements Runnable{
                             String message =
                                     " { \"appToken\":\"AT_Q45yzpNW3dKPNaFF0SLXHZCfMjMcPFrJ\"," +
                                             "  \"content\":\"商品名称：" + itemName + " 当前库存状态为 " + StockStateName + " 直接链接为 <a href=' https://m.suning.com/product/" + firstItemId + "/" + secondItemId + ".html'>点击跳转购买</a>  \"," +
-                                            "  \"summary\":\"开启(四川)苏宁监控商品 " + itemName + " 成功 当前库存状态为 " + StockStateName + "   \"," +
+                                            "  \"summary\":\"开启【苏宁-四川】 " + itemName + " 监控<br>当前库存状态为 " + StockStateName + " <br><br>"+df.format(new Date())+"  \"," +
                                             "  \"topicIds\":[ \n" +
                                             "      1432\n" +
                                             "  ]," +
                                             "  \"contentType\":2, " +
                                             "  \"uids\":[" +
-                                            "  ]}";
+                                            "  ]," +
+                                            "  \"url\":\"https://m.suning.com/product/" + firstItemId + "/" + secondItemId + ".html \" "+
+                                            "}";
                             getSku.post("http://wxpusher.zjiecode.com/api/send/message", message);
                         }
                         firstCome = false;

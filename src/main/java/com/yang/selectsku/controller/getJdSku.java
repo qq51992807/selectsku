@@ -35,6 +35,7 @@ public class getJdSku implements Runnable{
     public String skuState="上架";
     public boolean firstCome=true;
     public boolean addStart=true;
+    public String areaName=null;
     public  getJdSku(String itemId,int time,String areaCode,int send,String itemName, boolean addStart){
         this.itemId=itemId;
         this.time=time;
@@ -46,12 +47,20 @@ public class getJdSku implements Runnable{
 
     SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
     public void run() {
-        //判断发送的对象 1为白夜 2为群霸
+        //判断发送的对象
         String sendIds;
         if(send==1){
-            sendIds=  "      \"UID_yV8nb3gdc7I6eYSBRWY0IQP3bcgk\"";
+            sendIds=   "      1484\n" ;
+            areaName="广东";
+        }else if(send==2){
+            sendIds= "      1485\n" ;
+            areaName="四川";
+        }else if (send==3){
+            sendIds= "      1486\n" ;
+            areaName="北京";
         }else{
-            sendIds="        \"UID_N5AytME3daIlngtVm6Yt71xx7nrA\", \"UID_EXA4w2hi8PSinrndA9dK4ux8y5yw\"";
+            sendIds= "      1487\n" ;
+            areaName="江苏";
         }
         while(1==1) {
             try {//100006359561  //apple 100016034400
@@ -132,15 +141,17 @@ public class getJdSku implements Runnable{
                         if(addStart) {
                             String message =
                                     " { \"appToken\":\"AT_Q45yzpNW3dKPNaFF0SLXHZCfMjMcPFrJ\"," +
-                                            "  \"content\":\"商品名称：" + itemName + " 当前库存状态为 " + StockStateName +" "+skuState+ " 直接链接为 <a href=' https://p.m.jd.com/norder/order.action?wareId=" + itemId + "&wareNum=1&enterOrder=true '>https://p.m.jd.com/norder/order.action?wareId=" + itemId + "&wareNum=1&enterOrder=true</a>  \"," +
-                                            "  \"summary\":\"开启JD监控商品 " + itemName + " 成功 当前库存状态为 " + StockStateName +"（"+skuState+ "）\" ," +
+//                                            "  \"content\":\"商品名称：" + itemName + " 当前库存状态为 " + StockStateName +" "+skuState+ " 直接链接为 <a href=' https://p.m.jd.com/norder/order.action?wareId=" + itemId + "&wareNum=1&enterOrder=true '>https://p.m.jd.com/norder/order.action?wareId=" + itemId + "&wareNum=1&enterOrder=true</a>  \"," +
+                                            "  \"content\":\" <a href='https://item.m.jd.com/product/"+itemId+".html'>https://item.m.jd.com/product/"+itemId+".html</a>  \","+
+                                            "  \"summary\":\"开启【京东-"+areaName+"】" + itemName + "监控 <br><br>当前库存状态为 " + StockStateName +"【"+skuState+ "】<br><br>"+df.format(new Date())+"  \"," +
                                             "  \"topicIds\":[ \n" +
-                                            "      1205\n" +
+                                            sendIds +
                                             "  ]," +
                                             "  \"contentType\":2, " +
                                             "  \"uids\":[" +
-                                            sendIds +
-                                            "  ]}";
+                                            "  ], " +
+                                            "  \"url\":\"https://item.m.jd.com/product/"+itemId+".html \" "+
+                                            "}";
                             getSku.post("http://wxpusher.zjiecode.com/api/send/message", message);
                         }
                         firstCome=false;
@@ -150,15 +161,16 @@ public class getJdSku implements Runnable{
                         if(!StockStateName.equals("无货")&&skuState.equals("上架")) {
                             String message =
                                     " { \"appToken\":\"AT_Q45yzpNW3dKPNaFF0SLXHZCfMjMcPFrJ\"," +
-                                            "  \"content\":\"商品名称：" + itemName + " 库存变化为 " + itemState + " -> " + StockStateName + " 直接链接为 <a href=' https://p.m.jd.com/norder/order.action?wareId=" + itemId + "&wareNum=1&enterOrder=true '>https://p.m.jd.com/norder/order.action?wareId=" + itemId + "&wareNum=1&enterOrder=true</a>  \"," +
-                                            "  \"summary\":\"库存提醒 JD商品名称：" + itemName + " 库存变化为 " + itemState + " -> " + StockStateName + "\" ," +
+                                            "  \"content\":\" <a href='https://item.m.jd.com/product/"+itemId+".html'>https://item.m.jd.com/product/"+itemId+".html</a>  \","+
+                                            "  \"summary\":\"【京东-"+areaName+"】" + itemName + "<br>库存变化为 " + itemState + " -> " + StockStateName + "<br><br>"+df.format(new Date())+" \" ," +
                                             "  \"topicIds\":[ \n" +
-                                            "      1205\n" +
+                                            sendIds+
                                             "  ]," +
                                             "  \"contentType\":2, " +
                                             "  \"uids\":[" +
-                                            sendIds +
-                                            "  ]}";
+                                            "  ]," +
+                                            "  \"url\":\"https://item.m.jd.com/product/"+itemId+".html \" "+
+                                            "}";
                             getSku.post("http://wxpusher.zjiecode.com/api/send/message", message);
                         }
                     }
@@ -169,15 +181,16 @@ public class getJdSku implements Runnable{
                         if(addStart) {
                             String message =
                                     " { \"appToken\":\"AT_Q45yzpNW3dKPNaFF0SLXHZCfMjMcPFrJ\"," +
-                                            "  \"content\":\"商品名称：" + itemName + " 当前库存状态为 " + StockStateName +" "+skuState+ " 直接链接为 <a href=' https://p.m.jd.com/norder/order.action?wareId=" + itemId + "&wareNum=1&enterOrder=true '>https://p.m.jd.com/norder/order.action?wareId=" + itemId + "&wareNum=1&enterOrder=true</a>  \"," +
-                                            "  \"summary\":\"开启JD监控商品 " + itemName + " 成功 当前库存状态为 " + StockStateName +" （"+skuState+  "）\" ," +
+                                            "  \"content\":\" <a href='https://item.m.jd.com/product/"+itemId+".html'>https://item.m.jd.com/product/"+itemId+".html</a>  \","+
+                                            "  \"summary\":\"开启【京东-"+areaName+"】" + itemName + "监控 <br><br>当前库存状态为 " + StockStateName +"【"+skuState+ "】<br><br>"+df.format(new Date())+"  \"," +
                                             "  \"topicIds\":[ \n" +
-                                            "      1205\n" +
+                                                sendIds +
                                             "  ]," +
                                             "  \"contentType\":2, " +
                                             "  \"uids\":[" +
-                                            sendIds +
-                                            "  ]}";
+                                            "  ]," +
+                                            "  \"url\":\"https://item.m.jd.com/product/"+itemId+".html \" "+
+                                            "}";
                             getSku.post("http://wxpusher.zjiecode.com/api/send/message", message);
                         }
                         firstCome = false;
