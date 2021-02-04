@@ -1,6 +1,7 @@
 package com.yang.selectsku.DyPost;
 
 import com.yang.selectsku.controller.getSku;
+import com.yang.selectsku.utils.dyGetCombIdsUtils;
 import org.codehaus.jettison.json.JSONException;
 import org.codehaus.jettison.json.JSONObject;
 
@@ -22,8 +23,9 @@ public class commitDy  implements Runnable {
 
     String itemName="显卡";
     String authorId="4195355415549012";
-    String[] comboIds={"1689478075627528"};
     String productId="3460046513886078993";
+    String[] comboIds= dyGetCombIdsUtils.getCombIds(productId);
+//    String[] comboIds={"1689478075627528"};
 
     public static  void main(String agrs[]){
         //开启线程提交
