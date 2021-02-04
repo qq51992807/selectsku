@@ -2,6 +2,7 @@ package com.yang.selectsku.controller;
 
 import com.alibaba.fastjson.JSON;
 import com.yang.selectsku.utils.RecodeUtil;
+import com.yang.selectsku.utils.jdTransaction;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpException;
 import org.apache.http.HttpResponse;
@@ -142,11 +143,12 @@ public class getJdSku implements Runnable{
                 if(!itemState.equals(StockStateName)){
                     if(firstCome){
                         if(addStart) {
-                            String qrCode = RecodeUtil.creatRrCode("https://item.m.jd.com/product/"+itemId+".html", 500,500);
+                            String itemLink= jdTransaction.jdTransactionItem("https://item.m.jd.com/product/"+itemId+".html");
+                            String qrCode = RecodeUtil.creatRrCode(itemLink, 500,500);
                             String message =
                                     " { \"appToken\":\"AT_Q45yzpNW3dKPNaFF0SLXHZCfMjMcPFrJ\"," +
 //                                            "  \"content\":\"商品名称：" + itemName + " 当前库存状态为 " + StockStateName +" "+skuState+ " 直接链接为 <a href=' https://p.m.jd.com/norder/order.action?wareId=" + itemId + "&wareNum=1&enterOrder=true '>https://p.m.jd.com/norder/order.action?wareId=" + itemId + "&wareNum=1&enterOrder=true</a>  \"," +
-                                            "  \"content\":\" <a href='https://item.m.jd.com/product/"+itemId+".html'>https://item.m.jd.com/product/"+itemId+".html</a>  <br> 直达二维码 <br> <img width='300' height='300' src='data:image/png;base64,"+ qrCode+"'/>  \","+
+                                            "  \"content\":\" <a href='"+itemLink+"'>"+itemLink+"</a>  <br> 直达二维码 <br> <img width='300' height='300' src='data:image/png;base64,"+ qrCode+"'/>  \","+
                                             "  \"summary\":\"开启【京东-"+areaName+"】" + itemName + "监控 <br><br>当前库存状态为 " + StockStateName +"【"+skuState+ "】<br><br>"+df.format(new Date())+"  \"," +
                                             "  \"topicIds\":[ \n" +
                                             sendIds +
@@ -154,7 +156,7 @@ public class getJdSku implements Runnable{
                                             "  \"contentType\":2, " +
                                             "  \"uids\":[" +
                                             "  ], " +
-                                            "  \"url\":\"https://item.m.jd.com/product/"+itemId+".html \" "+
+                                            "  \"url\":\""+itemLink+" \" "+
                                             "}";
                             getSku.post("http://wxpusher.zjiecode.com/api/send/message", message);
                         }
@@ -163,10 +165,11 @@ public class getJdSku implements Runnable{
                     }else{
                         //        getSku.httpGet("http://wxpusher.zjiecode.com/api/send/message/?appToken=AT_Q45yzpNW3dKPNaFF0SLXHZCfMjMcPFrJ&content="+title.trim()+"库存为"+jsonArray4.get("quantity")+"&uid=UID_yV8nb3gdc7I6eYSBRWY0IQP3bcgk","UTF-8",2);
                         if(!StockStateName.equals("无货")&&skuState.equals("上架")) {
+                            String itemLink= jdTransaction.jdTransactionItem("https://item.m.jd.com/product/"+itemId+".html");
                             String qrCode = RecodeUtil.creatRrCode("https://item.m.jd.com/product/"+itemId+".html", 500,500);
                             String message =
                                     " { \"appToken\":\"AT_Q45yzpNW3dKPNaFF0SLXHZCfMjMcPFrJ\"," +
-                                            "  \"content\":\" <a href='https://item.m.jd.com/product/"+itemId+".html'>https://item.m.jd.com/product/"+itemId+".html</a>  <br> 直达二维码 <br> <img width='300' height='300' src='data:image/png;base64,"+ qrCode+"'/>  \","+
+                                            "  \"content\":\" <a href='"+itemLink+"'>"+itemLink+"</a>  <br> 直达二维码 <br> <img width='300' height='300' src='data:image/png;base64,"+ qrCode+"'/>  \","+
                                             "  \"summary\":\"【京东-"+areaName+"】" + itemName + "<br>库存变化为 " + itemState + " -> " + StockStateName + "<br><br>"+df.format(new Date())+" \" ," +
                                             "  \"topicIds\":[ \n" +
                                             sendIds+
@@ -174,7 +177,7 @@ public class getJdSku implements Runnable{
                                             "  \"contentType\":2, " +
                                             "  \"uids\":[" +
                                             "  ]," +
-                                            "  \"url\":\"https://item.m.jd.com/product/"+itemId+".html \" "+
+                                            "  \"url\":\""+itemLink+" \" "+
                                             "}";
                             getSku.post("http://wxpusher.zjiecode.com/api/send/message", message);
                         }
@@ -184,10 +187,11 @@ public class getJdSku implements Runnable{
                 }else{
                     if(firstCome) {
                         if(addStart) {
+                            String itemLink= jdTransaction.jdTransactionItem("https://item.m.jd.com/product/"+itemId+".html");
                             String qrCode = RecodeUtil.creatRrCode("https://item.m.jd.com/product/"+itemId+".html", 500,500);
                             String message =
                                     " { \"appToken\":\"AT_Q45yzpNW3dKPNaFF0SLXHZCfMjMcPFrJ\"," +
-                                            "  \"content\":\" <a href='https://item.m.jd.com/product/"+itemId+".html'>https://item.m.jd.com/product/"+itemId+".html</a>  <br> 直达二维码 <br> <img width='300' height='300' src='data:image/png;base64,"+ qrCode+"'/>  \","+
+                                            "  \"content\":\" <a href='"+itemLink+"'>"+itemLink+"</a>  <br> 直达二维码 <br> <img width='300' height='300' src='data:image/png;base64,"+ qrCode+"'/>  \","+
                                             "  \"summary\":\"开启【京东-"+areaName+"】" + itemName + "监控 <br><br>当前库存状态为 " + StockStateName +"【"+skuState+ "】<br><br>"+df.format(new Date())+"  \"," +
                                             "  \"topicIds\":[ \n" +
                                                 sendIds +
@@ -195,7 +199,7 @@ public class getJdSku implements Runnable{
                                             "  \"contentType\":2, " +
                                             "  \"uids\":[" +
                                             "  ]," +
-                                            "  \"url\":\"https://item.m.jd.com/product/"+itemId+".html \" "+
+                                            "  \"url\":\""+itemLink+" \" "+
                                             "}";
                             getSku.post("http://wxpusher.zjiecode.com/api/send/message", message);
                         }

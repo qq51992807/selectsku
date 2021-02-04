@@ -2,6 +2,7 @@ package com.yang.selectsku.DyPost;
 
 import com.yang.selectsku.controller.getSku;
 import com.yang.selectsku.utils.dyGetCombIdsUtils;
+import com.yang.selectsku.utils.dyProductSearchUtils;
 import org.codehaus.jettison.json.JSONException;
 import org.codehaus.jettison.json.JSONObject;
 
@@ -21,17 +22,29 @@ public class commitDy  implements Runnable {
 //    String[] comboIds={"1460415030","1460415031","1460415034","1460415036","1460415037","1460415038","1460415039"};
 //    String productId="3454882272933738579";
 
-    String itemName="显卡";
-    String authorId="4195355415549012";
-    String productId="3460046513886078993";
-    String[] comboIds= dyGetCombIdsUtils.getCombIds(productId);
-//    String[] comboIds={"1689478075627528"};
+    String itemName;
+    String authorId;
+    String productId;
+    String[] comboIds;
+
+    public commitDy(String itemName,String authorId,String productId,String[] comboIds){
+        this.itemName=itemName;
+        this.authorId=authorId;
+        this.productId= productId;
+        this.comboIds=comboIds;
+    }
+
+
 
     public static  void main(String agrs[]){
+        String itemName="显卡";
+        String authorId="";
+        String productId="3460046513886078993";
+        String[] comboIds=dyGetCombIdsUtils.getCombIds(productId);
         //开启线程提交
         for(int i=0;i<10;i++){
             int num=i+1;
-            new Thread(new commitDy(),"抢购线程"+num).start();
+            new Thread(new commitDy(itemName,authorId,productId,comboIds),"抢购线程"+num).start();
         }
     }
 
@@ -44,8 +57,8 @@ public class commitDy  implements Runnable {
         //第二个号 father
         String fCookie="install_id=1249458498576615; ttreq=1$caca2f3a236cfb840b6e81e0adacd87c8b154da1; passport_csrf_token=a487cfbe93a489edd8e2fdc41f1ba082; passport_csrf_token_default=a487cfbe93a489edd8e2fdc41f1ba082; n_mh=e7zrLh1hc595q6UZf4MiMRkxIBd-K2qBrejNnmwEzS0; sid_guard=7af8fcba9a0bfe54d8820837045bcce1%7C1610850503%7C5183999%7CThu%2C+18-Mar-2021+02%3A28%3A22+GMT; uid_tt=ac9059d19c970797b6394df953ffbaab; uid_tt_ss=ac9059d19c970797b6394df953ffbaab; sid_tt=7af8fcba9a0bfe54d8820837045bcce1; sessionid=7af8fcba9a0bfe54d8820837045bcce1; sessionid_ss=7af8fcba9a0bfe54d8820837045bcce1; odin_tt=a27d43e1c3640d0a8897c2cd25e02705bb84ad758325e18ee998b4422359980a5f6b557674f0249840c86a5eb9ba78e59c107f2a1fb0ff716050328aa1dc8f9644197d27ad970ab93940235a126b773b; d_ticket=49dd63d5e183cf27d39cf9e18e5d0ff41edd1";
         String fAddress="6918559175584858371";
-//        String[] fAddressList=new String[]{"杨建辉","135****0619","440000","广东省","440500","汕头市","440513","潮阳区","南关永安园c区4栋601"};
-        String[] fAddressList=new String[]{"杨建辉","135****0619","440000","广东省","440100","广州市","440106","天河区","前进街道红太阳幼儿园旁边菜鸟驿站"};
+        String[] fAddressList=new String[]{"杨建辉","135****0619","440000","广东省","440500","汕头市","440513","潮阳区","南关永安园c区4栋601"};
+//        String[] fAddressList=new String[]{"杨建辉","135****0619","440000","广东省","440100","广州市","440106","天河区","前进街道红太阳幼儿园旁边菜鸟驿站"};
 //        DyBuyCom fDyBuyCom3 = new DyBuyCom(fCookie, fAddress, authorId, lyhComboId, productId,fAddressList);//显卡
 
         //第三个号7074
@@ -79,22 +92,22 @@ public class commitDy  implements Runnable {
 
         public void run() {
             List<DyBuyCom> dList=commitDy.newitems(baiyeCookie, baiyeAddress, authorId, comboIds, productId,baiyeAddressList);
-            List<DyBuyCom> mList=commitDy.newitems(mCookie, mAddress, authorId, comboIds, productId,mAddressList);
+//            List<DyBuyCom> mList=commitDy.newitems(mCookie, mAddress, authorId, comboIds, productId,mAddressList);
             List<DyBuyCom> fList=commitDy.newitems(fCookie, fAddress, authorId, comboIds, productId,fAddressList);
             List<DyBuyCom> xList=commitDy.newitems(xCookie, xAddress, authorId, comboIds, productId,xAddressList);
             List<DyBuyCom> s1List=commitDy.newitems(sCookie, sAddress, authorId, comboIds, productId,sAddressList);
-            List<DyBuyCom> s2List=commitDy.newitems(s2Cookie, s2Address, authorId, comboIds,productId,s2AddressList);
+//            List<DyBuyCom> s2List=commitDy.newitems(s2Cookie, s2Address, authorId, comboIds,productId,s2AddressList);
             List<DyBuyCom> c1List=commitDy.newitems(cCookie, cAddress, authorId, comboIds, productId,cAddressList);
             List<DyBuyCom> c2List=commitDy.newitems(c2Cookie, c2Address, authorId, comboIds, productId,c2AddressList);
             //需要遍历执行的方法
             while(1==1) {
                 for (int i=0;i<comboIds.length;i++){
                     commitDy.sendMessageDy(dList.get(i).post(),itemName,"大号");
-                    commitDy.sendMessageDy(mList.get(i).post(),itemName,"妈号");//掉线
+//                    commitDy.sendMessageDy(mList.get(i).post(),itemName,"妈号");//掉线  //
                     commitDy.sendMessageDy(fList.get(i).post(),itemName,"爸号");
                     commitDy.sendMessageDy(xList.get(i).post(),itemName,"小号");
-                    commitDy.sendMessageDy(s1List.get(i).post(),itemName,"姐1号");
-                    commitDy.sendMessageDy(s2List.get(i).post(),itemName,"姐2号");
+//                    commitDy.sendMessageDy(s1List.get(i).post(),itemName,"姐1号");
+//                    commitDy.sendMessageDy(s2List.get(i).post(),itemName,"姐2号"); //
                     commitDy.sendMessageDy(c1List.get(i).post(),itemName,"陈阳1号");
                     commitDy.sendMessageDy(c2List.get(i).post(),itemName,"陈阳2号");
                 }

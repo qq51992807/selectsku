@@ -34,7 +34,6 @@ public class dyGetCombIdsUtils {
         List list=new ArrayList();
         String[] combIds=null;
         String url="https://ec.snssdk.com/product/getstock?id="+productId;
-
         try {
             String json=httpGet(url,"UTF-8");
             if(json!=null){
