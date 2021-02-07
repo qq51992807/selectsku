@@ -32,6 +32,10 @@ public class commitDy  implements Runnable {
         this.authorId=authorId;
         this.productId= productId;
         this.comboIds=comboIds;
+        System.out.println(productId);
+        for(int i=0;i<comboIds.size();i++){
+            System.out.println(comboIds.get(i));
+        }
     }
 
 
@@ -103,21 +107,21 @@ public class commitDy  implements Runnable {
             List<DyBuyCom> c1List=commitDy.newitems(cCookie, cAddress, authorId, comboIds, productId,cAddressList);
             List<DyBuyCom> c2List=commitDy.newitems(c2Cookie, c2Address, authorId, comboIds, productId,c2AddressList);
             //需要遍历执行的方法
-            while(1==1) {
+//            while(1==1) {
                 for (int i=0;i<comboIds.size();i++){
                     commitDy.sendMessageDy(dList.get(i).post(),itemName,"大号");
 
 //                    commitDy.sendMessageDy(mList.get(i).post(),itemName,"妈号");//掉线  //
-
-                    commitDy.sendMessageDy(fList.get(i).post(),itemName,"爸号");
-                    commitDy.sendMessageDy(xList.get(i).post(),itemName,"小号");
-
-                    commitDy.sendMessageDy(s1List.get(i).post(),itemName,"姐1号");
 //                    commitDy.sendMessageDy(s2List.get(i).post(),itemName,"姐2号"); //
-
-                    commitDy.sendMessageDy(c1List.get(i).post(),itemName,"陈阳1号");
-                    commitDy.sendMessageDy(c2List.get(i).post(),itemName,"陈阳2号");
-                }
+//                    commitDy.sendMessageDy(fList.get(i).post(),itemName,"爸号");
+//                    commitDy.sendMessageDy(xList.get(i).post(),itemName,"小号");
+//
+//                    commitDy.sendMessageDy(s1List.get(i).post(),itemName,"姐1号");
+//
+//
+//                    commitDy.sendMessageDy(c1List.get(i).post(),itemName,"陈阳1号");
+//                    commitDy.sendMessageDy(c2List.get(i).post(),itemName,"陈阳2号");
+//                }
              }
 
     }
@@ -138,7 +142,6 @@ public class commitDy  implements Runnable {
    public static void sendMessageDy(String response,String itemName,String userName){
         if(response!=null&&response.length()!=0) {
             String response2 = TransationMessage(response,userName);
-            System.out.println(response2);
             if (response2.equals("")) {
                 String message =
                         " { \"appToken\":\"AT_Q45yzpNW3dKPNaFF0SLXHZCfMjMcPFrJ\"," +
@@ -159,7 +162,8 @@ public class commitDy  implements Runnable {
         String data=null;
         try {
             JSONObject jsonArray = new JSONObject(message);
-            data= Thread.currentThread().toString()+"-"+df.format(new Date())+"-"+userName+"-"+jsonArray.getString("msg");
+            System.out.println(Thread.currentThread().toString()+"-"+df.format(new Date())+"-"+userName+"-"+jsonArray.getString("msg"));
+            data=jsonArray.getString("msg") ;
 
         } catch (JSONException e) {
             e.printStackTrace();
