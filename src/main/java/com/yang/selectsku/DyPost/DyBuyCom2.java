@@ -12,15 +12,14 @@ public class DyBuyCom2 {
 //    public String cookie="passport_csrf_token=42832717a9f0f60f7f3868569c383319; passport_csrf_token_default=42832717a9f0f60f7f3868569c383319; d_ticket=fa7848f1f9d190dbf6442455837db915eb0cd; multi_sids=88742122835%3Ae73ef71f7034400eba58dccabb9af11c; n_mh=DxBWqrWtnZ3DN8crkqKQYzcoxJ-Y-BpdBRaxlOGtWvc; odin_tt=40e3b5563f4989145665b5ff815766daf9e3a622beb0c7d98f5e2fcf57c5343391d5733740c7e8764ae4fe901069c57c; sessionid=e73ef71f7034400eba58dccabb9af11c; sessionid_ss=e73ef71f7034400eba58dccabb9af11c; sid_guard=e73ef71f7034400eba58dccabb9af11c%7C1610330943%7C5184000%7CFri%2C+12-Mar-2021+02%3A09%3A03+GMT; sid_tt=e73ef71f7034400eba58dccabb9af11c; uid_tt=58766eacf7c338b92bc4decf7f61cc34; uid_tt_ss=58766eacf7c338b92bc4decf7f61cc34; install_id=2198675385226238; ttreq=1$a1e08746f12df0b34fd82ec109be91aeafb8b874";
 //    public String addressId="6837435314240340236";
 //    public String authorId="66916631931";
-
-    public  String cookie=null;
+public  String cookie=null;
     public String addressId=null;
     public String authorId=null;
     public String comboId=null;
     public String productId=null;
     public String[] addressList;
 
-    public DyBuyCom2(String cookie, String addressId, String authorId, String comboId, String productId, String[] addressList){
+    public DyBuyCom2(String cookie,String addressId,String authorId,String comboId,String productId,String[] addressList){
         this.cookie=cookie;
         this.addressId=addressId;
         this.authorId=authorId;
@@ -44,7 +43,7 @@ public class DyBuyCom2 {
                 postMethod = new PostMethod("https://ec.snssdk.com/order/newcreate") ;
                 postMethod.setRequestHeader("Content-Type", "application/x-www-form-urlencoded;charset=utf-8") ;
                 postMethod.setRequestHeader("User-Agent","Aweme 11.1.0 rv:141017 (iPhone; iOS 11.2; zh_CN) Cronet");
-               postMethod.setRequestHeader("Cookie",cookie);
+                postMethod.setRequestHeader("Cookie",cookie);
 
 
 //参数设置，需要注意的就是里边不能传NULL，要传空字符串
@@ -77,16 +76,18 @@ public class DyBuyCom2 {
 //                };
                 NameValuePair[] data2 = {
                         new NameValuePair("json_form"," {\"b_type\":2," +
-//                                "\"env_type\":\"1\",\"activity_id\":\"\"," +
-                                "\"origin_type\":\"2002170010\"," +
-                                "\"origin_id\":\"637346025580430_3457879367844258475\"," +
+//                                "\"env_type\":\"1\",\"activity_id\":\"\",\"origin_type\":\"3002002002\"," +
+//                                "\"origin_id\":\"3333330376333880_3457057351729847491\"," +
                                 "\"new_source_type\":\"product_detail\",\"new_source_id\":\"0\"," +
                                 "\"source_type\":\"0\",\"source_id\":\"0\",\"schema\":\"sslocal://\"," +
                                 "\"combo_id\":"+comboId+"," +
                                 "\"combo_num\":1," +
                                 "\"product_id\":"+productId+"," +
                                 "\"buyer_words\":\"\"," +
+                                "\"coupon_info\":{}," +
+                                "\"stock_info\":[{\"stock_type\":3,\"stock_num\":1,\"warehouse_id\":\"0\",\"sku_id\":\""+comboId+"\"}]," +
                                 "\"area_type\":\"169\"," +
+                                "\"warehouse_id\":0," +
 //                                "\"warehouse_id\":6882858266968343000," +
                                 "\"post_addr\":" +
                                 "{\"province\":{\"id\":\""+addressList[2]+"\",\"name\":\""+addressList[3]+"\"},\"city\":{\"id\":\""+addressList[4]+"\",\"name\":\""+addressList[5]+"\"}," +

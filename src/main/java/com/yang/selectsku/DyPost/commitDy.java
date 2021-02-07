@@ -26,16 +26,14 @@ public class commitDy  implements Runnable {
     String authorId;
     String productId;
     List   comboIds;
+    boolean twoMethod;
 
-    public commitDy(String itemName,String authorId,String productId,List comboIds){
+    public commitDy(String itemName,String authorId,String productId,List comboIds,boolean twoMethod){
         this.itemName=itemName;
         this.authorId=authorId;
         this.productId= productId;
         this.comboIds=comboIds;
-        System.out.println(productId);
-        for(int i=0;i<comboIds.size();i++){
-            System.out.println(comboIds.get(i));
-        }
+        this.twoMethod=twoMethod;
     }
 
 
@@ -48,7 +46,7 @@ public class commitDy  implements Runnable {
         //开启线程提交
         for(int i=0;i<10;i++){
             int num=i+1;
-            new Thread(new commitDy(itemName,authorId,productId,comboIds),"抢购线程"+num).start();
+            new Thread(new commitDy(itemName,authorId,productId,comboIds,false),"抢购线程"+num).start();
         }
     }
 
@@ -106,22 +104,44 @@ public class commitDy  implements Runnable {
 //            List<DyBuyCom> s2List=commitDy.newitems(s2Cookie, s2Address, authorId, comboIds,productId,s2AddressList);
             List<DyBuyCom> c1List=commitDy.newitems(cCookie, cAddress, authorId, comboIds, productId,cAddressList);
             List<DyBuyCom> c2List=commitDy.newitems(c2Cookie, c2Address, authorId, comboIds, productId,c2AddressList);
+//            if(twoMethod){
+                List<DyBuyCom2> dList2=commitDy.newitems2(baiyeCookie, baiyeAddress, authorId, comboIds, productId,baiyeAddressList);
+//            List<DyBuyCom> mList=commitDy.newitems(mCookie, mAddress, authorId, comboIds, productId,mAddressList);
+                List<DyBuyCom2> fList2=commitDy.newitems2(fCookie, fAddress, authorId, comboIds, productId,fAddressList);
+                List<DyBuyCom2> xList2=commitDy.newitems2(xCookie, xAddress, authorId, comboIds, productId,xAddressList);
+                List<DyBuyCom2> s1List2=commitDy.newitems2(sCookie, sAddress, authorId, comboIds, productId,sAddressList);
+//            List<DyBuyCom> s2List=commitDy.newitems(s2Cookie, s2Address, authorId, comboIds,productId,s2AddressList);
+                List<DyBuyCom2> c1List2=commitDy.newitems2(cCookie, cAddress, authorId, comboIds, productId,cAddressList);
+                List<DyBuyCom2> c2List2=commitDy.newitems2(c2Cookie, c2Address, authorId, comboIds, productId,c2AddressList);
+//            }
             //需要遍历执行的方法
-//            while(1==1) {
+            while(1==1) {
                 for (int i=0;i<comboIds.size();i++){
                     commitDy.sendMessageDy(dList.get(i).post(),itemName,"大号");
-
+                    if(twoMethod)
+                        commitDy.sendMessageDy(dList2.get(i).post(),itemName,"大号(two)");
 //                    commitDy.sendMessageDy(mList.get(i).post(),itemName,"妈号");//掉线  //
+
 //                    commitDy.sendMessageDy(s2List.get(i).post(),itemName,"姐2号"); //
-//                    commitDy.sendMessageDy(fList.get(i).post(),itemName,"爸号");
-//                    commitDy.sendMessageDy(xList.get(i).post(),itemName,"小号");
+                    commitDy.sendMessageDy(fList.get(i).post(),itemName,"爸号");
+                    if(twoMethod)
+                        commitDy.sendMessageDy(fList2.get(i).post(),itemName,"爸号(two)");
+                    commitDy.sendMessageDy(xList.get(i).post(),itemName,"小号");
+                    if(twoMethod)
+                        commitDy.sendMessageDy(xList2.get(i).post(),itemName,"小号(two)");
 //
-//                    commitDy.sendMessageDy(s1List.get(i).post(),itemName,"姐1号");
-//
-//
-//                    commitDy.sendMessageDy(c1List.get(i).post(),itemName,"陈阳1号");
-//                    commitDy.sendMessageDy(c2List.get(i).post(),itemName,"陈阳2号");
-//                }
+                    commitDy.sendMessageDy(s1List.get(i).post(),itemName,"姐1号");
+                    if(twoMethod)
+                         commitDy.sendMessageDy(s1List2.get(i).post(),itemName,"姐1号(two)");
+                    commitDy.sendMessageDy(c1List.get(i).post(),itemName,"陈阳1号");
+                    if(twoMethod)
+                        commitDy.sendMessageDy(c1List2.get(i).post(),itemName,"陈阳1号(two)");
+                    commitDy.sendMessageDy(c2List.get(i).post(),itemName,"陈阳2号");
+                    if(twoMethod)
+                        commitDy.sendMessageDy(c2List2.get(i).post(),itemName,"陈阳2号(two)");
+
+
+                }
              }
 
     }
@@ -135,6 +155,16 @@ public class commitDy  implements Runnable {
             }
 
     return list;
+
+    }
+    public static List<DyBuyCom2> newitems2(String cookie,String address,String authorId,List comboIds,String productId,String[] addressList){
+        List<DyBuyCom2> list=new ArrayList<>();
+        for(int i=0;i<comboIds.size();i++){
+            DyBuyCom2 dyBuyCom=new DyBuyCom2(cookie,address,authorId,comboIds.get(i)+"",productId,addressList);
+            list.add(dyBuyCom);
+        }
+
+        return list;
 
     }
 
