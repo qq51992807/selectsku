@@ -10,7 +10,7 @@ import java.io.IOException;
 public class dyProductSearchUtils {
     public static void main(String args[]){
         dyProductSearchUtils.searchProduct("70204787595","耐克");
-    }
+    } //70204787595 胜道 //68208641192 c
 
     public static String searchProduct(String authorId,String keyWord){//70204787595
         String productId=null;
@@ -21,6 +21,7 @@ public class dyProductSearchUtils {
             for(int i=0;i<jsonArray.length();i++){
                 JSONObject product = new JSONObject(jsonArray.get(i) + "");
                 String productName = product.getString("title");
+//                System.out.println(productName);
                 if(productName.contains(keyWord)){
                     productId = product.getString("product_id");
                     System.out.println(productName);
