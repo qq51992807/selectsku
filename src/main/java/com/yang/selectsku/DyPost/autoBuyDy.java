@@ -5,6 +5,7 @@ import com.yang.selectsku.utils.dyProductSearchUtils;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 public class autoBuyDy implements Runnable{
 
@@ -37,9 +38,9 @@ public class autoBuyDy implements Runnable{
         while (flag){
             String productId= dyProductSearchUtils.searchProduct(authorId,keyWord);
             if(productId!=null){
-                String[] combIds= dyGetCombIdsUtils.getCombIds(productId);
+                List combIds= dyGetCombIdsUtils.getCombIds(productId);
                 if(flag) {
-                    for (int i = 0; i < 30; i++) {
+                    for (int i = 0; i < 20; i++) {
                         int num = i + 1;
                         new Thread(new commitDy(itemName, authorId, productId,combIds), "抢购线程" + num).start();
                     }

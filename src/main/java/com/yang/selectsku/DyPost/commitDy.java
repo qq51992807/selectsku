@@ -25,9 +25,9 @@ public class commitDy  implements Runnable {
     String itemName;
     String authorId;
     String productId;
-    String[] comboIds;
+    List   comboIds;
 
-    public commitDy(String itemName,String authorId,String productId,String[] comboIds){
+    public commitDy(String itemName,String authorId,String productId,List comboIds){
         this.itemName=itemName;
         this.authorId=authorId;
         this.productId= productId;
@@ -40,7 +40,7 @@ public class commitDy  implements Runnable {
         String itemName="显卡";
         String authorId="";
         String productId="3460046513886078993";
-        String[] comboIds=dyGetCombIdsUtils.getCombIds(productId);
+        List comboIds=dyGetCombIdsUtils.getCombIds(productId);
         //开启线程提交
         for(int i=0;i<10;i++){
             int num=i+1;
@@ -104,7 +104,7 @@ public class commitDy  implements Runnable {
             List<DyBuyCom> c2List=commitDy.newitems(c2Cookie, c2Address, authorId, comboIds, productId,c2AddressList);
             //需要遍历执行的方法
             while(1==1) {
-                for (int i=0;i<comboIds.length;i++){
+                for (int i=0;i<comboIds.size();i++){
                     commitDy.sendMessageDy(dList.get(i).post(),itemName,"大号");
 
 //                    commitDy.sendMessageDy(mList.get(i).post(),itemName,"妈号");//掉线  //
@@ -123,10 +123,10 @@ public class commitDy  implements Runnable {
     }
 
 
-    public static List<DyBuyCom> newitems(String cookie,String address,String authorId,String[] comboIds,String productId,String[] addressList){
+    public static List<DyBuyCom> newitems(String cookie,String address,String authorId,List comboIds,String productId,String[] addressList){
         List<DyBuyCom> list=new ArrayList<>();
-            for(int i=0;i<comboIds.length;i++){
-                DyBuyCom dyBuyCom=new DyBuyCom(cookie,address,authorId,comboIds[i],productId,addressList);
+            for(int i=0;i<comboIds.size();i++){
+                DyBuyCom dyBuyCom=new DyBuyCom(cookie,address,authorId,comboIds.get(i)+"",productId,addressList);
                 list.add(dyBuyCom);
             }
 

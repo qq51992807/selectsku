@@ -30,7 +30,7 @@ public class dyGetCombIdsUtils {
 
     }
 
-    public static String[] getCombIds(String productId){
+    public static List getCombIds(String productId){
         List list=new ArrayList();
         String[] combIds=null;
         String url="https://ec.snssdk.com/product/getstock?id="+productId;
@@ -47,10 +47,10 @@ public class dyGetCombIdsUtils {
                     String combId=value.getString("id");
                     list.add(combId);
                 }
-                combIds=new String[list.size()];
-                for(int i=0;i<list.size();i++){
-                    combIds[i]=list.get(i)+"";
-                }
+//                combIds=new String[list.size()];
+//                for(int i=0;i<list.size();i++){
+//                    combIds[i]=list.get(i)+"";
+//                }
             }
         } catch (HttpException e) {
             e.printStackTrace();
@@ -59,7 +59,7 @@ public class dyGetCombIdsUtils {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        return combIds;
+        return list;
 
     }
 
