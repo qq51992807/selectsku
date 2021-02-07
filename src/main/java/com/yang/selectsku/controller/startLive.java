@@ -30,15 +30,15 @@ public class startLive implements Runnable {
     String authorId;
     String authorName;
     int time;
-    boolean firstCome=true;
-    boolean addStart=true;
-    String liveStatus="下播";
+    boolean firstCome = true;
+    boolean addStart = true;
+    String liveStatus = "下播";
 
-    public startLive(String authorId,String authorName,int time,boolean addStart){
-        this.authorId=authorId;
-        this.authorName=authorName;
-        this.time=time;
-        this.addStart=addStart;
+    public startLive(String authorId, String authorName, int time, boolean addStart) {
+        this.authorId = authorId;
+        this.authorName = authorName;
+        this.time = time;
+        this.addStart = addStart;
     }
 
     SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
@@ -46,10 +46,11 @@ public class startLive implements Runnable {
 
     @Override
     public void run() {
-        while (1==1){
+        while (1 == 1) {
             try {
-                httpGet("https://api3-core-lite-act-hl.amemv.com/aweme/v1/user/profile/other/?user_id="+authorId, "UTF-8");
-                Thread.sleep(1000*time);
+//                httpGet("https://api3-core-lite-act-hl.amemv.com/aweme/v1/user/profile/other/?user_id="+authorId, "UTF-8");
+                httpGet("https://webcast3-normal-c-lq.huoshan.com/webcast/room/info_by_user/?aid=1112&user_id=" + authorId, "UTF-8");
+                Thread.sleep(1000 * time);
             } catch (HttpException e) {
                 e.printStackTrace();
             } catch (IOException e) {
@@ -63,12 +64,12 @@ public class startLive implements Runnable {
 
     }
 
-    public static  void main(String args[]){
+    public static void main(String args[]) {
 
     }
 
 
-    public  String httpGet(String url, String charset)
+    public String httpGet(String url, String charset)
             throws HttpException, IOException {
         String json = null;
         HttpGet httpGet = new HttpGet();
@@ -95,43 +96,35 @@ public class startLive implements Runnable {
             throw new HttpException("statusCode=" + statusCode);
         }
 //
-        if(json==null||json.equals("")){
+        if (json == null || json.equals("")) {
 
-        }else {
+        } else {
             try {
                 JSONObject jsonArray = new JSONObject(json);
-                String user=jsonArray.getString("user");
-                if (user!=null||!user.equals("")) {
-                    JSONObject userObject = new JSONObject(jsonArray.getString("user"));
-                    String roomId = userObject.getString("room_id");
-                    if(!roomId.equals("0")){
-                        liveStatus="开播啦";
+                JSONObject data = new JSONObject(jsonArray.getString("data"));
+//                System.out.println(df.format(new Date()) + "--" + data);
+                String nowLiveStatus=null;
+                if(data.has("id")){
+                    String id = data.getString("id");
+                    if (!id.equals("0")) {
+                        nowLiveStatus = "开播啦";
                     }
+                }else {
+                    nowLiveStatus = "下播";
+                }
+
+
                     if (firstCome)
-                        System.out.println(df.format(new Date()) + " 主播id：" + authorId + " 主播名称：" + authorName + " 当前直播状态为 " + liveStatus);
-                    // skuMessage="商品编号："+itemId+" 当前库存为:"+StockStateName;
+                    System.out.println(df.format(new Date()) + " 主播id：" + authorId + " 主播名称：" + authorName + " 当前直播状态为 " + liveStatus);
+                // skuMessage="商品编号："+itemId+" 当前库存为:"+StockStateName;
 
-                    if (!roomId.equals("0")) {
-                        if (firstCome) {
-                            if (addStart) {
-                                String message =
-                                        " { \"appToken\":\"AT_Q45yzpNW3dKPNaFF0SLXHZCfMjMcPFrJ\"," +
-                                                "  \"content\":\"主播名称：" + authorName + " 当前状态为 " + liveStatus + " \"," +
-                                                "  \"topicIds\":[ \n" +
-                                                "      1528\n" +
-                                                "  ]," +
-                                                "  \"contentType\":2 " +
-                                                "}";
-                                getSku.post("http://wxpusher.zjiecode.com/api/send/message", message);
-                            }
-                            firstCome = false;
-                        } else {
-                            //        getSku.httpGet("http://wxpusher.zjiecode.com/api/send/message/?appToken=AT_Q45yzpNW3dKPNaFF0SLXHZCfMjMcPFrJ&content="+title.trim()+"库存为"+jsonArray4.get("quantity")+"&uid=UID_yV8nb3gdc7I6eYSBRWY0IQP3bcgk","UTF-8",2);
-
-
+                if (!liveStatus.equals(nowLiveStatus)) {
+                    if (firstCome) {
+                        if (addStart) {
                             String message =
                                     " { \"appToken\":\"AT_Q45yzpNW3dKPNaFF0SLXHZCfMjMcPFrJ\"," +
-                                            "  \"content\":\"主播名称：" + authorName + "---" + liveStatus + " \"," +
+                                            "  \"content\":\"主播名称：" + authorName + " 当前状态为 " + nowLiveStatus + " \"," +
+                                            "  \"summary\":\"抖音主播名称：" + authorName + " 当前状态为 " + nowLiveStatus + " \"," +
                                             "  \"topicIds\":[ \n" +
                                             "      1528\n" +
                                             "  ]," +
@@ -139,23 +132,42 @@ public class startLive implements Runnable {
                                             "}";
                             getSku.post("http://wxpusher.zjiecode.com/api/send/message", message);
                         }
+                        firstCome = false;
                     } else {
-                        if (firstCome) {
-                            if (addStart) {
-                                String message =
-                                        " { \"appToken\":\"AT_Q45yzpNW3dKPNaFF0SLXHZCfMjMcPFrJ\"," +
-                                                "  \"content\":\"主播名称：" + authorName + " 当前状态为 " + liveStatus + " \"," +
-                                                "  \"topicIds\":[ \n" +
-                                                "      1528\n" +
-                                                "  ]," +
-                                                "  \"contentType\":2 " +
-                                                "}";
-                                getSku.post("http://wxpusher.zjiecode.com/api/send/message", message);
-                            }
-                            firstCome = false;
-                        }
+                        //        getSku.httpGet("http://wxpusher.zjiecode.com/api/send/message/?appToken=AT_Q45yzpNW3dKPNaFF0SLXHZCfMjMcPFrJ&content="+title.trim()+"库存为"+jsonArray4.get("quantity")+"&uid=UID_yV8nb3gdc7I6eYSBRWY0IQP3bcgk","UTF-8",2);
+
+
+                        String message =
+                                " { \"appToken\":\"AT_Q45yzpNW3dKPNaFF0SLXHZCfMjMcPFrJ\"," +
+                                        "  \"content\":\"主播名称：" + authorName + "---" + nowLiveStatus + " \"," +
+                                        "  \"summary\":\"抖音主播名称：" + authorName + "---" + nowLiveStatus + "  \"," +
+                                        "  \"topicIds\":[ \n" +
+                                        "      1528\n" +
+                                        "  ]," +
+                                        "  \"contentType\":2 " +
+                                        "}";
+                        getSku.post("http://wxpusher.zjiecode.com/api/send/message", message);
                     }
+                    liveStatus=nowLiveStatus;
+                } else {
+                    if (firstCome) {
+                        if (addStart) {
+                            String message =
+                                    " { \"appToken\":\"AT_Q45yzpNW3dKPNaFF0SLXHZCfMjMcPFrJ\"," +
+                                            "  \"content\":\"主播名称：" + authorName + " 当前状态为 " + nowLiveStatus + " \"," +
+                                            "  \"summary\":\"抖音主播名称：" + authorName + " 当前状态为 " + nowLiveStatus + " \"," +
+                                            "  \"topicIds\":[ \n" +
+                                            "      1528\n" +
+                                            "  ]," +
+                                            "  \"contentType\":2 " +
+                                            "}";
+                            getSku.post("http://wxpusher.zjiecode.com/api/send/message", message);
+                        }
+                        firstCome = false;
+                    }
+                    liveStatus=nowLiveStatus;
                 }
+
             } catch (JSONException e) {
                 e.printStackTrace();
             }
@@ -166,8 +178,7 @@ public class startLive implements Runnable {
     }
 
 
-
-    public  String post(String url,String data) {
+    public String post(String url, String data) {
 
         String response = null;
 

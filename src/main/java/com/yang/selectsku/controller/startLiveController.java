@@ -49,7 +49,7 @@ public class startLiveController {
 
     @RequestMapping("/removeDyLive")
     @ResponseBody
-    public String removeDyLive(Long itemId){
+    public String removeDyLive(Long id){
 
         ThreadGroup currentGroup =Thread.currentThread().getThreadGroup();
 
@@ -60,11 +60,11 @@ public class startLiveController {
         currentGroup.enumerate(lstThreads);
 
         for (int i = 0; i < noThreads; i++) {
-            if (lstThreads[i].getName().equals("dyLive"+itemId)){
+            if (lstThreads[i].getName().equals("dyLive"+id)){
                 lstThreads[i].stop();
             }
         }
-        startLiveRepository.deleteById(itemId);
+        startLiveRepository.deleteById(id);
         return "success";
     }
 
@@ -85,12 +85,12 @@ public class startLiveController {
             boolean flag=true;
             liveEntity liveEntity=list.get(i);
             for (int j = 0; j < noThreads; j++) {
-                if (lstThreads[j].getName().equals("dyList"+liveEntity.getId())){
+                if (lstThreads[j].getName().equals("dyLive"+liveEntity.getId())){
                     flag=false;
                 }
             }
             if(flag) {
-                new Thread(new startLive(liveEntity.getAuthorId(),liveEntity.getAuthorName(),liveEntity.getTime(),false), "dyList" + liveEntity.getId()).start();
+                new Thread(new startLive(liveEntity.getAuthorId(),liveEntity.getAuthorName(),liveEntity.getTime(),false), "dyLive" + liveEntity.getId()).start();
             }
         }
         return "success";
@@ -111,7 +111,7 @@ public class startLiveController {
 
         for(int i=0;i<list.size();i++){
             for (int j = 0; j < noThreads; j++) {
-                if (lstThreads[j].getName().equals("dyList"+list.get(i).getId())){
+                if (lstThreads[j].getName().equals("dyLive"+list.get(i).getId())){
                     lstThreads[j].stop();
                 }
             }

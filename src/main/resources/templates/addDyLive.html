@@ -74,7 +74,7 @@
                     //发异步，把数据提交给php
                     $.ajax({
                         url:"addDyAuthorLive",
-                        data:{"itemId":data.field.itemId,"itemName":data.field.itemName,"time":data.field.time},
+                        data:{"authorId":data.field.itemId,"authorName":data.field.itemName,"time":data.field.time},
                         type: "post",
                         async : true,
                         success : function(data) {
