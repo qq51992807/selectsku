@@ -1,5 +1,6 @@
 package com.yang.selectsku.controller;
 
+import com.yang.selectsku.DyPost.autoBuyDy;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -20,21 +21,24 @@ public class selectSkuController {
     public Thread KlThread;
 
 
-//    @RequestMapping("/startSelect")
-//    public void startSelect(String itemId, int time) {
-//        getSku = new getSku(itemId, time);//634411655593
-//        mThread1 = new Thread(getSku, "线程1");
-//        mThread1.start();
-//
-//    }
-//
-//    @RequestMapping("/stopSelect")
-//    public void stopSelect() {
-//
-//        System.out.println("淘宝停止监控");
-//        mThread1.stop();
-//
-//    }
+    @RequestMapping("/startSelect")
+    public void startSelect(String authorId, String keyWord) {
+        autoBuyDy autoBuyDy= new autoBuyDy("服务器提交关键词"+keyWord,authorId,keyWord);
+
+        mThread1 = new Thread(autoBuyDy, "服务器dy关键词");
+        mThread1.start();
+        System.out.println("开始执行dy关键词轮询抢");
+
+    }
+
+    @RequestMapping("/stopSelect")
+    public void stopSelect() {
+
+        mThread1.stop();
+        System.out.println("停止dy关键词轮询抢");
+
+
+    }
 
 
 //    @RequestMapping("/startSelectJd1")
