@@ -107,6 +107,7 @@ public  String cookie=null;
                 postMethod.setRequestBody(data2);
 
                 org.apache.commons.httpclient.HttpClient httpClient = new org.apache.commons.httpclient.HttpClient();
+
                 int response2 = httpClient.executeMethod(postMethod); // 执行POST方法
                 String result = postMethod.getResponseBodyAsString() ;
 

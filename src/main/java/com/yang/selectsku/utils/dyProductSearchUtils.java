@@ -9,7 +9,13 @@ import java.io.IOException;
 
 public class dyProductSearchUtils {
     public static void main(String args[]){
-        dyProductSearchUtils.searchProduct("70204787595","耐克");
+//        dyProductSearchUtils.searchProduct("70204787595","耐克");
+        dyProductSearchUtils.searchProduct("75317185876","");//英伟达
+//        dyProductSearchUtils.searchProduct("4195355415549012","");//罗永浩
+//        dyProductSearchUtils.searchProduct("66916631931","");//罗永浩
+//        dyProductSearchUtils.searchProduct("110496027780","");//京东数码
+
+
     } //70204787595 胜道 //68208641192 c
 
     public static String searchProduct(String authorId,String keyWord){//70204787595
@@ -22,7 +28,9 @@ public class dyProductSearchUtils {
                 JSONObject product = new JSONObject(jsonArray.get(i) + "");
                 String productName = product.getString("title");
 //                System.out.println(productName);
-                if(productName.contains(keyWord)){
+                if(keyWord.equals("")){
+                    System.out.println(productName+"   "+product.getString("product_id"));
+                }else if(productName.contains(keyWord)){
                     productId = product.getString("product_id");
                     System.out.println(productName);
                     return productId;

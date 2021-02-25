@@ -6,6 +6,9 @@ import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class DyBuyCom {
 
 
@@ -19,6 +22,8 @@ public class DyBuyCom {
     public String comboId=null;
     public String productId=null;
     public String[] addressList;
+    SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss:SSS");//设置日期格式
+
 
     public DyBuyCom(String cookie,String addressId,String authorId,String comboId,String productId,String[] addressList){
         this.cookie=cookie;
@@ -105,7 +110,9 @@ public class DyBuyCom {
                 postMethod.setRequestBody(data2);
 
                 org.apache.commons.httpclient.HttpClient httpClient = new org.apache.commons.httpclient.HttpClient();
-                int response2 = httpClient.executeMethod(postMethod); // 执行POST方法
+                if(df.format(new Date()).compareTo("2021-02-25 10:07:58:200")>0) {
+                    int response2 = httpClient.executeMethod(postMethod); // 执行POST方法
+                }
                 String result = postMethod.getResponseBodyAsString() ;
 
                 return result;
