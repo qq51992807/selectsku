@@ -24,35 +24,39 @@ public class autoBuyDy implements Runnable{
     }
 
     SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
+//    String itemName="Mate X2";
+    //        String authorId="66916631931";//99514375927
+//        String productId="3466033593078445180";
+    // List comboIds=dyGetCombIdsUtils.getCombIds("3466425772766549575");
     public static void main(String args[]){
 //        autoBuyDy autoBuyDy=new autoBuyDy("鞋子","70204787595","AQ1316003");
 //        autoBuyDy autoBuyDy=new autoBuyDy("黄金","2726434986791752","吉祥如意圆形足金");//黄金
 //        new Thread(autoBuyDy,"auto").start();
         //罗永浩 4195355415549012
-//        String itemName="Mate X2";
-//        String authorId="66916631931";//99514375927
-//        String productId="3466033593078445180";
-        // List comboIds=dyGetCombIdsUtils.getCombIds("3466425772766549575");
-        String itemName="罗永浩";
+        String itemName="显卡";
         String authorId="110496027780";
         //开启线程提交
-        for(int i=0;i<4;i++){
-            int num=i+1;
-            List comboIds=new ArrayList();
-            comboIds.add("1692590708115456");
-            List comboIds2=new ArrayList();
-            comboIds2.add("1692590856729651");
-            List comboIds3=new ArrayList();
-            comboIds3.add("1692590468696087");
-//            new Thread(new commitDy(itemName,authorId,"3466425772766549575",comboIds,false),"抢购线程"+num).start();
-//            new Thread(new commitDy(itemName,authorId,"3466426092884198838",comboIds2,false),"抢购线程"+num).start();
-            new Thread(new commitDy(itemName,authorId,"3466425291780526529",dyGetCombIdsUtils.getCombIds("3466425291780526529"),false),"抢购线程"+num).start();
+        for(int i=0;i<12 ;i++){   int num=i+1;
+           //MSI/微星RTX 3060显卡万图师吃鸡电竞游戏台式电脑独立显卡   3467663333451248359 价格9999 已售0
+//            new Thread(new commitDy(itemName,authorId,"3467663333451248359",dyGetCombIdsUtils.getCombIds("3467663333451248359"),false),"抢购线程"+num).start();
 
-//  new Thread(new commitDy(itemName,authorId,"3465251996892838297",dyGetCombIdsUtils.getCombIds("3465251996892838297"),false),"抢购线程"+num).start();
-        }
-//        for(int i=0;i<2;i++){
+            List<String> list=new ArrayList<>();
+            List<String> list2=new ArrayList<>();
+            list.add("1693113852524589");
+            list2.add("1693112477830184");
+
+            new Thread(new commitDy(itemName,authorId,"3467319130267485079",dyGetCombIdsUtils.getCombIds("3467319130267485079"),false),"抢购线程"+num).start();
+            new Thread(new commitDy(itemName,authorId,"3467318784547791906",dyGetCombIdsUtils.getCombIds("3467318784547791906"),false),"抢购线程"+num).start();
+//            new Thread(new commitDy(itemName,authorId,"3467318460462273917",dyGetCombIdsUtils.getCombIds("3467318460462273917"),false),"抢购线程"+num).start();
+
+
+            //测试用
+//          new Thread(new commitDy(itemName,authorId,"3466425291780526529",dyGetCombIdsUtils.getCombIds("3466425291780526529"),false),"抢购线程"+num).start();
+       }
+//        for(int i=0;i<1;i++){
 //            new Thread(new autoBuyDy("冰淇淋","70204787595","CW7104"),"auto").start();
-//            new Thread(new autoBuyDy("冰淇淋","99514375927","CW7104"),"auto").start();
+//            new Thread(new autoBuyDy("魔龙","4441647751118387","魔龙"),"auto").start();
+//            new Thread(new autoBuyDy("万图师","4441647751118387","万图师"),"auto").start();
 //        }
     }
 

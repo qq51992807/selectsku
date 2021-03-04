@@ -52,12 +52,12 @@ public class commitDy  implements Runnable {
 
 
         //第一个号 mon
-        String mCookie="passport_csrf_token=42832717a9f0f60f7f3868569c383319; passport_csrf_token_default=42832717a9f0f60f7f3868569c383319; d_ticket=9b3cfe8633ad7a23ff3f3a436c48c197eb0cd; install_id=3606819300717640; ttreq=1$badf703a7fca8ea3d0e028d4fa4f486ecb8099ce; multi_sids=88742122835%3A25b3fa0b3ab384dde7d9e0a51288964d%7C1472985216323047%3A227833776af8cbcc6b03b2354eb13c30%7C105355465580%3A7cbee9771b6cb13a168f6c2d518181d1%7C3737940135263357%3A1b9594bff220657ba60fe275f009f732%7C756116130366872%3A86b7d27c000c5cbe61ff914b17a931e1; odin_tt=12d39aeb098ce286f1dc50ae2a8a92e5d6d4d814bbb4db30d1a8c947a502f329091234db0cfbe8bb74ed4b4d4e95415e5da77e34d31cd37ccc70f94806e61ddf; n_mh=D7xgIq_o9qQ0h91TFc4cI-fBXrdBKjUlpxVoR4skJCs; sid_guard=86b7d27c000c5cbe61ff914b17a931e1%7C1614255936%7C5184000%7CMon%2C+26-Apr-2021+12%3A25%3A36+GMT; uid_tt=7cef00910390ee2290eb618a5c671a55; uid_tt_ss=7cef00910390ee2290eb618a5c671a55; sid_tt=86b7d27c000c5cbe61ff914b17a931e1; sessionid=86b7d27c000c5cbe61ff914b17a931e1; sessionid_ss=86b7d27c000c5cbe61ff914b17a931e1";
+        String mCookie="passport_csrf_token=2c7ac9e5c6c75160cf6f7fffdf887e74; passport_csrf_token_default=2c7ac9e5c6c75160cf6f7fffdf887e74; tt_webid=e254ddac709bbb535ef049fd9e024c3e; d_ticket=0fded85b73da0401c3d23c26db55f19e1edd1; multi_sids=1261852034861415%3A38d0b5c63014f656b57440fb84fc2f70%7C2704415701336907%3A40aad9b8036149cf70ea4652e3704892%7C111074284681%3Ac7f27f510d238cae4cbd691efa9c846e%7C83195091752253%3A6b00b372db8e0677d29698f6d6ac066e%7C756116130366872%3A92f7a548a492b4e9f3aa9de7850b1191; n_mh=D7xgIq_o9qQ0h91TFc4cI-fBXrdBKjUlpxVoR4skJCs; odin_tt=3de8f0601a91f18310c3d3465fd5d3f1ce47fe36e288a6e62fea119acaa8423a0889c0ce000f6db313909b24707ce5f278f6105267e97ef6b526896d142a6adc; sessionid=92f7a548a492b4e9f3aa9de7850b1191; sessionid_ss=92f7a548a492b4e9f3aa9de7850b1191; sid_guard=92f7a548a492b4e9f3aa9de7850b1191%7C1614345485%7C5184000%7CTue%2C+27-Apr-2021+13%3A18%3A05+GMT; sid_tt=92f7a548a492b4e9f3aa9de7850b1191; uid_tt=e034f84f17a94e15414b72de1d9e93ab; uid_tt_ss=e034f84f17a94e15414b72de1d9e93ab; install_id=1917970565572591; ttreq=1$9274b59c5a494c468c35ea22435b0591d889ccb4";
         String mAddress="6918549752523047181";
-        String[] mAddressList=new String[]{"梁振宇","135****7074","440000","广东省","440100","广州市","440106","天河区","前进街道石溪红太阳幼儿园旁边"};
+        String[] mAddressList=new String[]{"许教锐","135****7074","440000","广东省","440100","广州市","440106","天河区","前进街道石溪红太阳幼儿园新街一巷"};
 
         //第二个号 father
-        String fCookie="install_id=1249458498576615; ttreq=1$caca2f3a236cfb840b6e81e0adacd87c8b154da1; passport_csrf_token=a487cfbe93a489edd8e2fdc41f1ba082; passport_csrf_token_default=a487cfbe93a489edd8e2fdc41f1ba082; n_mh=e7zrLh1hc595q6UZf4MiMRkxIBd-K2qBrejNnmwEzS0; sid_guard=7af8fcba9a0bfe54d8820837045bcce1%7C1610850503%7C5183999%7CThu%2C+18-Mar-2021+02%3A28%3A22+GMT; uid_tt=ac9059d19c970797b6394df953ffbaab; uid_tt_ss=ac9059d19c970797b6394df953ffbaab; sid_tt=7af8fcba9a0bfe54d8820837045bcce1; sessionid=7af8fcba9a0bfe54d8820837045bcce1; sessionid_ss=7af8fcba9a0bfe54d8820837045bcce1; odin_tt=a27d43e1c3640d0a8897c2cd25e02705bb84ad758325e18ee998b4422359980a5f6b557674f0249840c86a5eb9ba78e59c107f2a1fb0ff716050328aa1dc8f9644197d27ad970ab93940235a126b773b; d_ticket=49dd63d5e183cf27d39cf9e18e5d0ff41edd1";
+        String fCookie="passport_csrf_token=9ca99ffdad1abbe901df514515e6779b; passport_csrf_token_default=9ca99ffdad1abbe901df514515e6779b; install_id=3237384126992995; ttreq=1$5339498c4c1bc6c31982d7628b01134327e66179; d_ticket=29f4cb107313e2066dee97c9f6374adb86961; multi_sids=1472985216323047%3A50702332d2773a492a29154fffe9c1e7%7C3737940135263357%3Ad0267a40ce65f85489d14a4bbd1bd1c8; odin_tt=0bea8d0d17c0f85e13435118599e24b3102611d051622984838df183be8f57fb4bd4c75ca4041714bfe6eaf00689752c180226c7d0ecc8af6c7f8fb74d402dce; n_mh=e7zrLh1hc595q6UZf4MiMRkxIBd-K2qBrejNnmwEzS0; sid_guard=d0267a40ce65f85489d14a4bbd1bd1c8%7C1614346908%7C5184000%7CTue%2C+27-Apr-2021+13%3A41%3A48+GMT; uid_tt=a632cc09dc7dd37c4e01539a725d475d; uid_tt_ss=a632cc09dc7dd37c4e01539a725d475d; sid_tt=d0267a40ce65f85489d14a4bbd1bd1c8; sessionid=d0267a40ce65f85489d14a4bbd1bd1c8; sessionid_ss=d0267a40ce65f85489d14a4bbd1bd1c8";
         String fAddress="6918559175584858371";
 //        String[] fAddressList=new String[]{"杨建辉","135****0619","440000","广东省","440500","汕头市","440513","潮阳区","棉城南中路永安园c区4栋601"};
         String[] fAddressList=new String[]{"杨建辉","135****0619","440000","广东省","440100","广州市","440106","天河区","前进街道红太阳幼儿园旁边菜鸟驿站"};
@@ -71,9 +71,9 @@ public class commitDy  implements Runnable {
 //        String[] xAddressList=new String[]{"梁振宇","135****7074","440000","广东省","440500","汕头市","440513","潮阳区","棉城镇小哈佛幼儿园旁边"};
 
         //sister
-        String sCookie="install_id=2850347468465390; ttreq=1$1268bb261c792ee2103532213555ca1fa99f0c92; passport_csrf_token=263fd20d3a4329a7ffe3034b6cdc880c; passport_csrf_token_default=263fd20d3a4329a7ffe3034b6cdc880c; d_ticket=a018a4c5790c902315a17227270e022eeb0cd; multi_sids=3307744305625069%3A2e0f196e2ec8afbe1d4956c53f0e02f8; odin_tt=cbb6a66071c4d89c2fdf8a22e702fb001ac1830686eb9c58e52271aec1b3e0a2e1e7cd8c1fc57eb3884d4c3b4c90606769d1e113b1269e743733ac892a6c2668; n_mh=tiWJmiHDDSZkF2jPg-96KomjLPtt576IpcNIeEm_AOo; sid_guard=2e0f196e2ec8afbe1d4956c53f0e02f8%7C1610860039%7C5184000%7CThu%2C+18-Mar-2021+05%3A07%3A19+GMT; uid_tt=cbce34d1b849aec58886828295ac353b; uid_tt_ss=cbce34d1b849aec58886828295ac353b; sid_tt=2e0f196e2ec8afbe1d4956c53f0e02f8; sessionid=2e0f196e2ec8afbe1d4956c53f0e02f8; sessionid_ss=2e0f196e2ec8afbe1d4956c53f0e02f8";
+        String sCookie="passport_csrf_token=6e68c297546a71fd4815a8e60ccb3b14; passport_csrf_token_default=6e68c297546a71fd4815a8e60ccb3b14; d_ticket=4f767eff2e5ba8c5bdd2e7c24315a9b686961; multi_sids=3307744305625069%3A5ec312aeaf762303ca7eb9627799044e; n_mh=tiWJmiHDDSZkF2jPg-96KomjLPtt576IpcNIeEm_AOo; odin_tt=31e18ceda221e150fbcf70dd8070c46e76f45b9d023f348bb0989f088ee7aa6466a3695decd3b9618939c95123eeffa1b1984fe7b3d29056d14ccbc829fb6f63; sessionid=5ec312aeaf762303ca7eb9627799044e; sessionid_ss=5ec312aeaf762303ca7eb9627799044e; sid_guard=5ec312aeaf762303ca7eb9627799044e%7C1614347836%7C5184000%7CTue%2C+27-Apr-2021+13%3A57%3A16+GMT; sid_tt=5ec312aeaf762303ca7eb9627799044e; uid_tt=c2ebb22b53ee89e53685e2f2a9430a78; uid_tt_ss=c2ebb22b53ee89e53685e2f2a9430a78; install_id=1953160264683320; ttreq=1$40b78edabf045f7e266425e3bbd6ceb3878234b4";
         String sAddress="6918589482463740172";
-        String[] sAddressList=new String[]{"陈雅晴","137****5219","440000","广东省","440100","广州市","440106","天河区","前进街道石溪村桥头东街四巷幼儿园旁"};
+        String[] sAddressList=new String[]{"陈雅晴","135****0143","440000","广东省","440100","广州市","440106","天河区","前进街道石溪村桥头东街四巷幼儿园旁"};
 //        String[] sAddressList=new String[]{"陈雅晴","137****5219","440000","广东省","440500","汕头市","440513","潮阳区","城南街道五响仙岛肠粉店附近"};
 
         //jiaorui
@@ -110,7 +110,7 @@ public class commitDy  implements Runnable {
 
 
     //sister2
-        String s2Cookie="passport_csrf_token=791790d70c659b9986f271fd949cfed0; passport_csrf_token_default=791790d70c659b9986f271fd949cfed0; install_id=3026269286957454; ttreq=1$f22519f9f705a39308ab8196772d91cd7289bf6d; d_ticket=ca2d055fefc4943417a5d6781c5c8184eb0cd; odin_tt=210499e6d6a5884e017e4fe42ff408fceff36f96994f6aeb7064bca30fd5aed73c74f355d1dc06d2a1d8c77e0b6cb668a81dcad8be09ee5d6f4d5c69d4249505; n_mh=SHOETCR3w2Ik0FhySpqbIvNm7RD_W6I8fpCDQxuMU4k; sid_guard=4c0fa911dcc6a1cc9db35c72d8dccb90%7C1610875858%7C5183999%7CThu%2C+18-Mar-2021+09%3A30%3A57+GMT; uid_tt=c199f4fad291270e87df9f8760d05c67; uid_tt_ss=c199f4fad291270e87df9f8760d05c67; sid_tt=4c0fa911dcc6a1cc9db35c72d8dccb90; sessionid=4c0fa911dcc6a1cc9db35c72d8dccb90; sessionid_ss=4c0fa911dcc6a1cc9db35c72d8dccb90";
+        String s2Cookie="passport_csrf_token=2c7ac9e5c6c75160cf6f7fffdf887e74; passport_csrf_token_default=2c7ac9e5c6c75160cf6f7fffdf887e74; tt_webid=e254ddac709bbb535ef049fd9e024c3e; install_id=1917970565572591; ttreq=1$9274b59c5a494c468c35ea22435b0591d889ccb4; d_ticket=cfb1880c6bb762e173a6f515d8e68b9f1edd1; multi_sids=1261852034861415%3A38d0b5c63014f656b57440fb84fc2f70%7C2704415701336907%3A40aad9b8036149cf70ea4652e3704892%7C111074284681%3Ac7f27f510d238cae4cbd691efa9c846e%7C756116130366872%3A92f7a548a492b4e9f3aa9de7850b1191%7C105355465580%3A8ed43e8dd47b6c603330cdb6c7859882; odin_tt=e502009d34e418db7119e4634e5a50bb4ed2753c02bfa560abb6a583a016cf1f97dffd6ae8bff98e69f4d873ebbdb7887f7b805deccd18b971f30609fa58b43b; n_mh=SHOETCR3w2Ik0FhySpqbIvNm7RD_W6I8fpCDQxuMU4k; sid_guard=8ed43e8dd47b6c603330cdb6c7859882%7C1614345714%7C5184000%7CTue%2C+27-Apr-2021+13%3A21%3A54+GMT; uid_tt=ed036b6908ea659b1af4f5dbc0df2d79; uid_tt_ss=ed036b6908ea659b1af4f5dbc0df2d79; sid_tt=8ed43e8dd47b6c603330cdb6c7859882; sessionid=8ed43e8dd47b6c603330cdb6c7859882; sessionid_ss=8ed43e8dd47b6c603330cdb6c7859882";
         String s2Address="6918658514772640013";
         String[] s2AddressList=new String[]{"杨梓博","135****0143","440000","广东省","440100","广州市","440106","天河区","前进街道石溪村新街1巷金康药房旁边"};
 
@@ -147,19 +147,22 @@ public class commitDy  implements Runnable {
                 for (int i=0;i<comboIds.size();i++){
 //
 //                    if(twoMethod)
-//                        commitDy.sendMessageDy(dList2.get(i).post(),itemName,"大号(two)");
+//                        commitDy.sendMessageDy(dList.get(i).post(),itemName,"大号(two)");
 
 
                     //
-                    commitDy.sendMessageDy(s1List.get(i).post(),itemName,"姐1号");
-                    commitDy.sendMessageDy(c5List.get(i).post(),itemName,"陈阳5号（4230）");
-                    commitDy.sendMessageDy(mList.get(i).post(),itemName,"妈号");
-                    commitDy.sendMessageDy(s2List.get(i).post(),itemName,"姐2号");
                     commitDy.sendMessageDy(xList.get(i).post(),itemName,"小号");
                     commitDy.sendMessageDy(fList.get(i).post(),itemName,"爸号");
-                    commitDy.sendMessageDy(c1List.get(i).post(),itemName,"陈阳1号（5078）");
-                    commitDy.sendMessageDy(c3List.get(i).post(),itemName,"陈阳3号（8229）");
+                    commitDy.sendMessageDy(s1List.get(i).post(),itemName,"姐1号");
+//                    commitDy.sendMessageDy(s2List.get(i).post(),itemName,"姐2号");
+                    commitDy.sendMessageDy(c5List.get(i).post(),itemName,"陈阳5号（4230）");
+//                    commitDy.sendMessageDy(mList.get(i).post(),itemName,"妈号");
+//                    commitDy.sendMessageDy(c1List.get(i).post(),itemName,"陈阳1号（5078）");
 //                    commitDy.sendMessageDy(c2List.get(i).post(),itemName,"陈阳2号（）");
+
+
+
+//                    commitDy.sendMessageDy(c3List.get(i).post(),itemName,"陈阳3号（8229）");
 
 //                    commitDy.sendMessageDy(dList.get(i).post(),itemName,"大号");
 ////                    if(twoMethod)
