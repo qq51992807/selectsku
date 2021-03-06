@@ -33,6 +33,9 @@ public class getSku implements Runnable  {
     public boolean firstCome=true;
     public String itemName;
     public boolean addStart=true;
+    public boolean errorSend=true;
+    public String areaName="广东";
+    public String areaId="440106020";
     public  getSku(String itemId,int time,int send ,String itemName,boolean addStart){
         this.itemId=itemId;
         this.time=time;
@@ -45,14 +48,16 @@ public class getSku implements Runnable  {
         //判断发送的对象 1为白夜 2为群霸
         String sendIds;
         if(send==1){
-            sendIds=  "      \"UID_yV8nb3gdc7I6eYSBRWY0IQP3bcgk\"";
+            sendIds="      \"UID_yV8nb3gdc7I6eYSBRWY0IQP3bcgk\",  \"UID_N5AytME3daIlngtVm6Yt71xx7nrA\", \"UID_EXA4w2hi8PSinrndA9dK4ux8y5yw\" ";
         }else{
 //            sendIds=  "      \"UID_yV8nb3gdc7I6eYSBRWY0IQP3bcgk\"";
             sendIds="      \"UID_yV8nb3gdc7I6eYSBRWY0IQP3bcgk\",  \"UID_N5AytME3daIlngtVm6Yt71xx7nrA\", \"UID_EXA4w2hi8PSinrndA9dK4ux8y5yw\" ";
+            areaName="四川";
+            areaId="510122";
         }
         while(1==1) {
             try {
-                httpGet("https://mdskip.taobao.com/mobile/queryH5Detail.htm?decision=sku&itemId="+itemId+"&areaId=440106020", "GBK", 1,sendIds,itemName);
+                httpGet("https://mdskip.taobao.com/mobile/queryH5Detail.htm?decision=sku&itemId="+itemId+"&areaId="+areaId, "GBK", 1,sendIds,itemName);
                 Thread.sleep(1000*time);
             } catch (HttpException e) {
                 e.printStackTrace();
@@ -126,7 +131,7 @@ public  String httpGet(String url, String charset,int method,String sendIds,Stri
                    String message =
                            " { \"appToken\":\"AT_Q45yzpNW3dKPNaFF0SLXHZCfMjMcPFrJ\"," +
                                    "  \"content\":\" " + title + " 库存为" + newNum + "\"," +
-                                   "  \"summary\":\"开启Tb商品监控库存提醒 " + itemName + " 库存现在为 " + newNum + " \"," +
+                                   "  \"summary\":\"开启【淘宝-"+areaName+"】商品监控库存提醒 " + itemName + " 现在数量为 " + newNum + "<br>"+df.format(new Date())+" \"," +
                                    "  \"topicIds\":[ \n" +
                                    "      1205\n" +
                                    "  ]," +
@@ -142,7 +147,7 @@ public  String httpGet(String url, String charset,int method,String sendIds,Stri
                String message =
                        " { \"appToken\":\"AT_Q45yzpNW3dKPNaFF0SLXHZCfMjMcPFrJ\"," +
                                "  \"content\":\" " + title + " 库存为" + newNum + "\"," +
-                               "  \"summary\":\"监控淘宝提醒 " + itemName + " 库存变化为" + num + " -> "+newNum+" \"," +
+                               "  \"summary\":\"【淘宝-"+areaName+"】" + itemName + "库存变化 " + num + " -> "+newNum+"<br>"+df.format(new Date())+" \"," +
                                "  \"topicIds\":[ \n" +
                                "      1205\n" +
                                "  ]," +
@@ -159,7 +164,7 @@ public  String httpGet(String url, String charset,int method,String sendIds,Stri
                     String message =
                             " { \"appToken\":\"AT_Q45yzpNW3dKPNaFF0SLXHZCfMjMcPFrJ\"," +
                                     "  \"content\":\" " + title + "库存为" + newNum + "\"," +
-                                    "  \"summary\":\"开启Tb商品监控库存提醒 " + itemName + " 库存现在为 " + newNum + " \"," +
+                                    "  \"summary\":\"开启【淘宝-"+areaName+"】商品监控库存 " + itemName + " 现在数量为 " + newNum + "<br>"+df.format(new Date())+" \"," +
                                     "  \"topicIds\":[ \n" +
                                     "      1205\n" +
                                     "  ]," +
@@ -173,8 +178,29 @@ public  String httpGet(String url, String charset,int method,String sendIds,Stri
             }
         }
     } catch (JSONException e) {
-        e.printStackTrace();
+//        e.printStackTrace();
+        if(errorSend){
+            if(e.getMessage().contains("JSONObject[\"item\"] not found")){
+                String message =
+                        " { \"appToken\":\"AT_Q45yzpNW3dKPNaFF0SLXHZCfMjMcPFrJ\"," +
+                                "  \"content\":\" 商品id设置错误  \"," +
+                                "  \"summary\":\"【淘宝-"+areaName+"】商品 " + itemName + " id设置错误，请检查 <br>"+df.format(new Date())+" \"," +
+                                "  \"topicIds\":[ \n" +
+                                "      1205\n" +
+                                "  ]," +
+                                "  \"contentType\":2, " +
+                                "  \"uids\":[" +
+                                sendIds +
+                                "  ]}";
+                getSku.post("http://wxpusher.zjiecode.com/api/send/message", message);
+            }else{
+                System.out.println(e.getMessage());
+            }
+            errorSend=false;
+        }
+
     }
+
 
 
         return json;

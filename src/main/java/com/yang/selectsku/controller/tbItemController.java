@@ -20,12 +20,19 @@ public class tbItemController {
     @Autowired
     private tbItemRepository tbItemRepository;
 
-    @RequestMapping("/tbList")
-    public String tbList(Model model){
+    @RequestMapping("/tbList1")
+    public String tbList1(Model model){
         List<tbItem> list = new ArrayList<tbItem>();
-        list = tbItemRepository.findAll();
+        list = tbItemRepository.findByUserId(1);
         model.addAttribute("tbList",list);
         return "tbList";
+    }
+    @RequestMapping("/tbList2")
+    public String tbList2(Model model){
+        List<tbItem> list = new ArrayList<tbItem>();
+        list = tbItemRepository.findByUserId(2);
+        model.addAttribute("tbList",list);
+        return "tbList2";
     }
 
 
@@ -34,9 +41,15 @@ public class tbItemController {
         return "itemAddTb";
     }
 
+    @RequestMapping("/itemAddTb2")
+    public String itemAddTb2(){
+        return "itemAddTb2";
+    }
+
     @RequestMapping("/addTbItem")
     @ResponseBody
     public String addTbItem(String itemId,String itemName ,int time,int byUser){
+        System.out.println(byUser);
         tbItem tbItem=new tbItem();
         tbItem.setItemId(itemId);
         tbItem.setItemName(itemName);
@@ -80,7 +93,7 @@ public class tbItemController {
     @ResponseBody
     public String startMonitor(int byUser){
 //        List<Jditem> list=tbItemRepository.findByUserId(byUser);
-        List<tbItem> list=tbItemRepository.findAll();
+        List<tbItem> list=tbItemRepository.findByUserId(byUser);
         ThreadGroup currentGroup =Thread.currentThread().getThreadGroup();
 
         int noThreads = currentGroup.activeCount();
@@ -111,7 +124,7 @@ public class tbItemController {
     @RequestMapping("/stopTbMonitor")
     @ResponseBody
     public String stopMonitor(int byUser){
-        List<tbItem> list=tbItemRepository.findAll();
+        List<tbItem> list=tbItemRepository.findByUserId(byUser);
         ThreadGroup currentGroup =Thread.currentThread().getThreadGroup();
 
         int noThreads = currentGroup.activeCount();

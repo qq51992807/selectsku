@@ -36,7 +36,7 @@ public class autoBuyDy implements Runnable{
         String itemName="显卡";
         String authorId="110496027780";
         //开启线程提交
-        for(int i=0;i<12 ;i++){   int num=i+1;
+        for(int i=0;i<20 ;i++){   int num=i+1;
            //MSI/微星RTX 3060显卡万图师吃鸡电竞游戏台式电脑独立显卡   3467663333451248359 价格9999 已售0
 //            new Thread(new commitDy(itemName,authorId,"3467663333451248359",dyGetCombIdsUtils.getCombIds("3467663333451248359"),false),"抢购线程"+num).start();
 
@@ -45,8 +45,8 @@ public class autoBuyDy implements Runnable{
             list.add("1693113852524589");
             list2.add("1693112477830184");
 
-            new Thread(new commitDy(itemName,authorId,"3467319130267485079",dyGetCombIdsUtils.getCombIds("3467319130267485079"),false),"抢购线程"+num).start();
-            new Thread(new commitDy(itemName,authorId,"3467318784547791906",dyGetCombIdsUtils.getCombIds("3467318784547791906"),false),"抢购线程"+num).start();
+            new Thread(new commitDy(itemName,authorId,"3457099090356261642",dyGetCombIdsUtils.getCombIds("3457099090356261642"),false),"抢购线程"+num).start();
+//            new Thread(new commitDy(itemName,authorId,"3467318784547791906",dyGetCombIdsUtils.getCombIds("3467318784547791906"),false),"抢购线程"+num).start();
 //            new Thread(new commitDy(itemName,authorId,"3467318460462273917",dyGetCombIdsUtils.getCombIds("3467318460462273917"),false),"抢购线程"+num).start();
 
 

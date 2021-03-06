@@ -91,7 +91,7 @@ public class commitDy  implements Runnable {
         //chenyang2
         String c2Cookie="passport_csrf_token=2c7ac9e5c6c75160cf6f7fffdf887e74; passport_csrf_token_default=2c7ac9e5c6c75160cf6f7fffdf887e74; tt_webid=e254ddac709bbb535ef049fd9e024c3e; install_id=4186594606323176; ttreq=1$ef5a5fe81d8f80f9dc9dffed8dce17b2f748cfbd; d_ticket=15a03a2c9b17dce61e052aecc6686bd31edd1; multi_sids=1261852034861415%3A38d0b5c63014f656b57440fb84fc2f70%7C2704415701336907%3A40aad9b8036149cf70ea4652e3704892%7C111074284681%3Ac7f27f510d238cae4cbd691efa9c846e; odin_tt=dbee6f028b7d87e614a4ad62959e315e1bbfbc21034d0a59c8afd838d4d70285949f40d3fb3b03eda1cf7f2191ff456a2a728d265b64529cbce22cd2edff8d2c; n_mh=RWNI4MgyTOAsnGQEgN_-AQ_lNSNzhBCJ-6FVS-aw8cE; sid_guard=c7f27f510d238cae4cbd691efa9c846e%7C1611843634%7C5184000%7CMon%2C+29-Mar-2021+14%3A20%3A34+GMT; uid_tt=3905739b7dd3ebd9f182c108b01708c0; uid_tt_ss=3905739b7dd3ebd9f182c108b01708c0; sid_tt=c7f27f510d238cae4cbd691efa9c846e; sessionid=c7f27f510d238cae4cbd691efa9c846e; sessionid_ss=c7f27f510d238cae4cbd691efa9c846e";
         String c2Address="6922815319501259022";
-        String[] c2AddressList=new String[]{"林涛","133****5078","510000","四川省","510100","成都市","510116","双流区","天府新区华阳街道四河路280号"};
+        String[] c2AddressList=new String[]{"林涛","133****5078","510000","四川省","510100","成都市","510116","双流区","华阳镇街道正北下街166号"};
 
         //chenyang3
         String c3Cookie="passport_csrf_token=2c7ac9e5c6c75160cf6f7fffdf887e74; passport_csrf_token_default=2c7ac9e5c6c75160cf6f7fffdf887e74; tt_webid=e254ddac709bbb535ef049fd9e024c3e; install_id=1917970565572591; ttreq=1$9274b59c5a494c468c35ea22435b0591d889ccb4; d_ticket=466ae907747c47537ec86d661c31ce7a1edd1; multi_sids=1261852034861415%3A38d0b5c63014f656b57440fb84fc2f70%7C2704415701336907%3A40aad9b8036149cf70ea4652e3704892%7C111074284681%3Ac7f27f510d238cae4cbd691efa9c846e%7C3483677160387581%3Ada8274ea98cfb040176f45282910da38%7C3765149701776035%3A8023f31286c432487216e8b6e9e90e1e; odin_tt=c021cf67dde2a7c520f1223b109cd27113fd9971ab2ef74d9f814b79311fadc2e300e2efea0872db49b72aa3dcd742d3510e4e89435866de0e841734a5c5bb35; n_mh=DsWlEgxNuxDuQ2aVYQ2XERSRuByvWgYIPF3grkR78Jo; sid_guard=da8274ea98cfb040176f45282910da38%7C1614180125%7C5184000%7CSun%2C+25-Apr-2021+15%3A22%3A05+GMT; uid_tt=25cbbf07cbdb4d8f40e236d43a6294d8; uid_tt_ss=25cbbf07cbdb4d8f40e236d43a6294d8; sid_tt=da8274ea98cfb040176f45282910da38; sessionid=da8274ea98cfb040176f45282910da38; sessionid_ss=da8274ea98cfb040176f45282910da38";
@@ -152,13 +152,13 @@ public class commitDy  implements Runnable {
 
                     //
                     commitDy.sendMessageDy(xList.get(i).post(),itemName,"小号");
-                    commitDy.sendMessageDy(fList.get(i).post(),itemName,"爸号");
-                    commitDy.sendMessageDy(s1List.get(i).post(),itemName,"姐1号");
-//                    commitDy.sendMessageDy(s2List.get(i).post(),itemName,"姐2号");
+//                    commitDy.sendMessageDy(fList.get(i).post(),itemName,"爸号");
+//                    commitDy.sendMessageDy(s1List.get(i).post(),itemName,"姐1号");
+                    commitDy.sendMessageDy(s2List.get(i).post(),itemName,"姐2号");
                     commitDy.sendMessageDy(c5List.get(i).post(),itemName,"陈阳5号（4230）");
 //                    commitDy.sendMessageDy(mList.get(i).post(),itemName,"妈号");
-//                    commitDy.sendMessageDy(c1List.get(i).post(),itemName,"陈阳1号（5078）");
-//                    commitDy.sendMessageDy(c2List.get(i).post(),itemName,"陈阳2号（）");
+                    commitDy.sendMessageDy(c1List.get(i).post(),itemName,"陈阳1号（5078）");
+                    commitDy.sendMessageDy(c2List.get(i).post(),itemName,"陈阳2号（）");
 
 
 

@@ -15,6 +15,7 @@ public class dyProductSearchUtils {
 //        dyProductSearchUtils.searchProduct("66916631931","");//罗永浩
 //        dyProductSearchUtils.searchProduct("110496027780","");//京东数码
 //        dyProductSearchUtils.searchProduct("81454786592","");//igame
+//        dyProductSearchUtils.getShopList("fNnZbhp","");//igame
 //        dyProductSearchUtils.searchProduct("94214864107","");//技嘉   tOSzVOeS
 //        dyProductSearchUtils.getShopList("tOSzVOeS","");//技嘉   tOSzVOeS
 //        dyProductSearchUtils.searchProduct("1816017615991816","");//耕升

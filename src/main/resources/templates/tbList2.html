@@ -3,7 +3,7 @@
     
     <head>
         <meta charset="UTF-8">
-        <title>广东淘宝库存</title>
+        <title>四川淘宝库存</title>
         <meta name="renderer" content="webkit">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
         <meta name="viewport" content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8,target-densitydpi=low-dpi" />
@@ -31,7 +31,7 @@
                         <div class="layui-card-header">
                             <!--<button class="layui-btn layui-btn-danger" onclick="delAll()">-->
                                 <!--<i class="layui-icon"></i>批量删除</button>-->
-                            <button class="layui-btn" onclick="xadmin.open('添加淘宝商品','itemAddTb',450,300)">
+                            <button class="layui-btn" onclick="xadmin.open('添加淘宝商品','itemAddTb2',450,300)">
                                 <i class="layui-icon"></i>添加</button>
                             <button class="layui-btn layui-btn-danger" onclick="startMonitor()">
                             <i class="layui-icon"></i>一键开启监控</button>
@@ -159,7 +159,7 @@
 
             $.ajax({
                 url:"startTbMonitor",
-                data:{"byUser":1},
+                data:{"byUser":2},
                 type: "post",
                 async : true,
                 success : function(data) {
@@ -176,7 +176,7 @@
 
             $.ajax({
                 url:"stopTbMonitor",
-                data:{"byUser":1},
+                data:{"byUser":2},
                 type: "post",
                 async : true,
                 success : function(data) {

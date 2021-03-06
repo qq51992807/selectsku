@@ -207,7 +207,7 @@ public class getJdSku implements Runnable{
                     }
                 }
             } catch (JSONException e) {
-                e.printStackTrace();
+//                e.printStackTrace();
             }
         return json;
     }
