@@ -19,20 +19,20 @@ public class autoSendMessageLive {
         autoSendMessageLive autoSendMessageLive=new autoSendMessageLive();
         Random random=new Random();
         while(1==1){
-            String s="我是小甜甜";
+            String s="666";
             StringBuffer stringBuffer=new StringBuffer();
             stringBuffer.append(s);
             int num=random.nextInt(autoSendMessageLive.buffer.length);
-            for(int i=0;i<num;i++){
-                stringBuffer.append(",");
-                stringBuffer.append(s);
-            }
+//            for(int i=0;i<num;i++){
+//                stringBuffer.append(",");
+//                stringBuffer.append(s);
+//            }
 //            stringBuffer.append(autoSendMessageLive.buffer[num]);
             System.out.println(stringBuffer.toString());
             System.out.println(autoSendMessageLive.post( stringBuffer.toString()));
-            System.out.println(autoSendMessageLive.post( "我是小甜甜。。。。。。"));
+//            System.out.println(autoSendMessageLive.post( "大学蓝"));
             try {
-                Thread.sleep(1000);
+                Thread.sleep(2000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
@@ -69,7 +69,7 @@ public class autoSendMessageLive {
                         new NameValuePair("content",s),
                         new NameValuePair("enter_source",""),
                         new NameValuePair("request_id",""),
-                        new NameValuePair("room_id","6926809686276688655")
+                        new NameValuePair("room_id","6936833377333037831")
                 };
                 postMethod.setRequestBody(data2);
 

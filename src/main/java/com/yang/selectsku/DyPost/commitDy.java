@@ -152,11 +152,11 @@ public class commitDy  implements Runnable {
 
                     //
                     commitDy.sendMessageDy(xList.get(i).post(),itemName,"小号");
-//                    commitDy.sendMessageDy(fList.get(i).post(),itemName,"爸号");
-//                    commitDy.sendMessageDy(s1List.get(i).post(),itemName,"姐1号");
+                    commitDy.sendMessageDy(fList.get(i).post(),itemName,"爸号");
+                    commitDy.sendMessageDy(s1List.get(i).post(),itemName,"姐1号");
                     commitDy.sendMessageDy(s2List.get(i).post(),itemName,"姐2号");
                     commitDy.sendMessageDy(c5List.get(i).post(),itemName,"陈阳5号（4230）");
-//                    commitDy.sendMessageDy(mList.get(i).post(),itemName,"妈号");
+                    commitDy.sendMessageDy(mList.get(i).post(),itemName,"妈号");
                     commitDy.sendMessageDy(c1List.get(i).post(),itemName,"陈阳1号（5078）");
                     commitDy.sendMessageDy(c2List.get(i).post(),itemName,"陈阳2号（）");
 

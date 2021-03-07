@@ -49,7 +49,6 @@ public class tbItemController {
     @RequestMapping("/addTbItem")
     @ResponseBody
     public String addTbItem(String itemId,String itemName ,int time,int byUser){
-        System.out.println(byUser);
         tbItem tbItem=new tbItem();
         tbItem.setItemId(itemId);
         tbItem.setItemName(itemName);

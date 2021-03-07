@@ -36,28 +36,19 @@ public class autoBuyDy implements Runnable{
         String itemName="显卡";
         String authorId="110496027780";
         //开启线程提交
-        for(int i=0;i<20 ;i++){   int num=i+1;
-           //MSI/微星RTX 3060显卡万图师吃鸡电竞游戏台式电脑独立显卡   3467663333451248359 价格9999 已售0
-//            new Thread(new commitDy(itemName,authorId,"3467663333451248359",dyGetCombIdsUtils.getCombIds("3467663333451248359"),false),"抢购线程"+num).start();
-
+        for(int i=0;i<5 ;i++){   int num=i+1;
             List<String> list=new ArrayList<>();
-            List<String> list2=new ArrayList<>();
             list.add("1693113852524589");
-            list2.add("1693112477830184");
-
-            new Thread(new commitDy(itemName,authorId,"3457099090356261642",dyGetCombIdsUtils.getCombIds("3457099090356261642"),false),"抢购线程"+num).start();
-//            new Thread(new commitDy(itemName,authorId,"3467318784547791906",dyGetCombIdsUtils.getCombIds("3467318784547791906"),false),"抢购线程"+num).start();
-//            new Thread(new commitDy(itemName,authorId,"3467318460462273917",dyGetCombIdsUtils.getCombIds("3467318460462273917"),false),"抢购线程"+num).start();
+            //NK女运动鞋生活系列DD1503102#HLJ   3466571539711943980 价格699 已售0
+            new Thread(new commitDy(itemName,authorId,"3466571539711943980",dyGetCombIdsUtils.getCombIds("3466571539711943980"),false),"抢购线程"+num).start();
 
 
             //测试用
 //          new Thread(new commitDy(itemName,authorId,"3466425291780526529",dyGetCombIdsUtils.getCombIds("3466425291780526529"),false),"抢购线程"+num).start();
        }
-//        for(int i=0;i<1;i++){
-//            new Thread(new autoBuyDy("冰淇淋","70204787595","CW7104"),"auto").start();
-//            new Thread(new autoBuyDy("魔龙","4441647751118387","魔龙"),"auto").start();
-//            new Thread(new autoBuyDy("万图师","4441647751118387","万图师"),"auto").start();
-//        }
+        for(int i=0;i<1;i++){
+            new Thread(new autoBuyDy("蓝","70204787595","蓝"),"auto").start();
+        }
     }
 
     @Override

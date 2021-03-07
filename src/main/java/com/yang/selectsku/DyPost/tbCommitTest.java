@@ -1,19 +1,22 @@
 package com.yang.selectsku.DyPost;
 
+import com.yang.selectsku.utils.userAgents;
 import org.apache.commons.httpclient.NameValuePair;
 import org.apache.commons.httpclient.methods.PostMethod;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 
+import java.util.Date;
+
 public class tbCommitTest {
 
-String cookie="isg=BCwseWliYPoEonTGsM3G-1B69w5e5dCPl5GiloZtOFd6kc2brvT2HY1ntd8pAgjn; tfstk=cAsFByMwrabNiuxvxHtrO2J2VPddaDKMADpB-aCap8DQrlYH3sjb2dN5dppnyuLh.; l=eBxOXPAPjObQ0JdYBO5Churza77TFIOGfkPzaNbMiInca1yd9FGvPNCINs2BWdtfwtCjQetrWmE6UdBUc3aOixDDBe2A8PAxfxJP.; x5sec=7b22627579323b32223a226139653938646234396331363037383963363763306161646163383261643532434d534e6c6f414745504f427a4b534d7a59364b55786f4d4d7a45784d6a4d304e5449794d6a7378227d; enc=FwD7kDulQ7yTyY%2Fw%2BDTUYj66a9xUPDfxKcL2pgf0JqJ1QoxZpf7ecxGAVeidCEmeX%2FR%2FHbvwf4kXcFvTggEE3Q%3D%3D; cna=jnSMGN6r+DYCAXBezCgMgxbW; linezing_session=nVp4s3A49XYEQf4mbYJ3IZ2g_16109748943548Rol_1; WAPFDFDTGFG=%2B4cMKKP%2B8PI%2BKJKVAPQCGCTX53SYtAW4pPwAssj4wg%3D%3D; _w_app_lg=0; _w_tb_nick=t_1487161445490_0570; ntm=1; ockeqeudmj=v0ahCeM%3D; _cc_=UtASsssmfA%3D%3D; _l_g_=Ug%3D%3D; _nk_=t_1487161445490_0570; _tb_token_=eef63e75e76a3; cookie1=B0fwLriXfQsRgjZQYnkcgzGCGkiakUgIq%2FBgzfVAU10%3D; cookie17=UNGXEA%2B5armigQ%3D%3D; cookie2=241e06d3f32b199ee9cb02842d0fc7a9; csg=8dfd869d; dnk=t_1487161445490_0570; lgc=t_1487161445490_0570; munb=3112345222; sg=02e; sgcookie=E100JcObus8rv7H%2BeHe7jDHN6ekop0FqGwDCQb8fY7oxGd8FS2m289eItN5rOllasJvqMs76Qe5n3AXorGrtDexvxg%3D%3D; skt=a600954e0190b438; t=1e2b615ab1a2a63a7d51e2aee95fc8f7; tracknick=t_1487161445490_0570; uc1=cookie15=Vq8l%2BKCLz3%2F65A%3D%3D&cookie14=Uoe1gqFOv%2FX%2B4w%3D%3D&cookie21=V32FPkk%2FgihF%2FS5nr3O5&existShop=false; uc3=id2=UNGXEA%2B5armigQ%3D%3D&nk2=F6k3HMo9tnzRGY%2BN5ipPv%2F%2BbbSI%3D&lg2=UIHiLt3xD8xYTw%3D%3D&vt3=F8dCuAFYjV0VP9fO7t4%3D; uc4=nk4=0%40FbMocpyN%2FiFF3KJibAtk2Qf1ZgOCJMOnh1LhmLjFCw%3D%3D&id4=0%40UgbvDiU4ByUEwIYpCNAkEcf4MuM5; unb=3112345222; _samesite_flag_=true; xlly_s=1; _m_h5_tk=bd1d10315280a44facbf432d63a805a0_1610983862885; _m_h5_tk_enc=c994a1123eab31a217d6a8fc31db3284";
+String cookie="isg=BEBAO5WcNEf6mshD4Tb90etGG8oSySSTg7U-UrrRGdvxNedfYtinIZQDSRv1ntxr; l=eBSecvz7jYQhK_yUBOfZourza77t_CduYuPzaNbMiOCP_Xf65pgVW6NJ618BCn1Rh6mDR3utDl9yBeYBmIxVqNHS7KOVHtMS-; tfstk=cPVRBnYi9KdEWU_jj8BDRgRpH-NdZWJtxEmD9aFMzC1pdvJdijmiby_VnqgxIZC..; xlly_s=1; _m_h5_tk=5796883afb5c9a5b1f50d57437f2169d_1615114377646; _m_h5_tk_enc=d4326f624cbb8bb94ac79b6eecdc839a; _l_g_=Ug%3D%3D; _nk_=t_1487161445490_0570; _tb_token_=ee50b6a7e3331; cookie1=B0fwLriXfQsRgjZQYnkcgzGCGkiakUgIq%2FBgzfVAU10%3D; cookie17=UNGXEA%2B5armigQ%3D%3D; cookie2=1408525905d4a923782986a35694dfb6; csg=b609befa; dnk=t_1487161445490_0570; lgc=t_1487161445490_0570; login=true; sg=02e; sgcookie=E100dLECTUOBTwx1nQ8G1MojuJOemVtTMV03yNLUViyrWlFf55UHFnZNZ34mIo6wZmhTgxx9KXh4UKaKv%2FsX4MlHzg%3D%3D; t=62edaba0b4161963cb8b98a48a6c6b7b; tracknick=t_1487161445490_0570; uc1=cookie15=WqG3DMC9VAQiUQ%3D%3D&existShop=false&cookie21=URm48syIYB3rzvI4Dim4&cookie14=Uoe1hxgYXVnNaw%3D%3D; uc3=nk2=F6k3HMo9tnzRGY%2BN5ipPv%2F%2BbbSI%3D&vt3=F8dCuAVlBrFVfFEEXHU%3D&id2=UNGXEA%2B5armigQ%3D%3D&lg2=U%2BGCWk%2F75gdr5Q%3D%3D; uc4=id4=0%40UgbvDiU4ByUEwIYpCNAhU7E0n3Z0&nk4=0%40FbMocpyN%2FiFF3KJibAtk2Qf1ZgOCJMOngrmPiWbTeQ%3D%3D; unb=3112345222; _slk_skip_tbpass_=true; cna=OuyaGOWKNHYCARsvBqMC5k/F";
 
 
     public static void main(String args[]){
         tbCommitTest tbCommitTest=new tbCommitTest();
-        tbCommitTest.post();
+        System.out.println(tbCommitTest.post());;
     }
 
 
@@ -27,11 +30,15 @@ String cookie="isg=BCwseWliYPoEonTGsM3G-1B69w5e5dCPl5GiloZtOFd6kc2brvT2HY1ntd8pA
             try {
                 httpclient = HttpClients.createDefault();
 //
-
+                Date d = new Date();
+                System.out.println(getTimestamp(d));
                 PostMethod postMethod = null;
-                postMethod = new PostMethod("https://h5api.m.taobao.com/h5/mtop.trade.order.create.h5/4.0/?jsv=2.6.1&appKey=12574478&t=1610974939933&sign=352d40333040f35bcb56d648d36ea605&v=4.0&post=1&type=originaljson&timeout=15000&dataType=json&isSec=1&ecode=1&api=mtop.trade.order.create.h5&ttid=%23t%23ip%23%23_h5_2019&H5Request=true&submitref=bd8551c86f094f81ddf42c02eedae195b397dd2d49c3fce056f0fef48777dca0") ;
+                postMethod = new PostMethod("https://h5api.m.taobao.com/h5/mtop.trade.order.create.h5/4.0/?jsv=2.6.1&appKey=12574478&t="+getTimestamp(d)+"&sign=352d40333040f35bcb56d648d36ea605&v=4.0&post=1&type=originaljson" +
+                        "&timeout=15000&dataType=json&isSec=1&ecode=1" +
+                        "&api=mtop.trade.order.create.h5&ttid=%23t%23ip%23%23_h5_2019" +
+                        "&H5Request=true") ;
                 postMethod.setRequestHeader("Content-Type", "application/x-www-form-urlencoded;charset=utf-8") ;
-//                postMethod.setRequestHeader("User-Agent","Aweme 11.1.0 rv:141017 (iPhone; iOS 11.2; zh_CN) Cronet");
+                postMethod.setRequestHeader("User-Agent", userAgents.generate());
                 postMethod.setRequestHeader("Cookie",cookie);
 
 
@@ -63,4 +70,15 @@ String cookie="isg=BCwseWliYPoEonTGsM3G-1B69w5e5dCPl5GiloZtOFd6kc2brvT2HY1ntd8pA
         }
         return response;
     }
+
+    public static Long getTimestamp(Date date){
+        if (null == date) {
+            return (long) 0;
+        }
+        String timestamp = String.valueOf(date.getTime());
+        return Long.valueOf(timestamp);
+    }
+
+
+
 }
