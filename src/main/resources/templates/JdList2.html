@@ -56,8 +56,10 @@
                                         <td th:text="${jdItem.itemId}"></td>
                                         <td th:text="${jdItem.itemName}"></td>
                                         <td th:text="${jdItem.time}"></td>
-<!--                                        <td th:text="${jdItem.status==1?'监控中':'未监控'}"></td>-->
+                                        <td  class="td-status" th:text="${jdItem.status==1?'监控中':'未监控'}"></td>
                                         <td class="td-manage">
+                                            <a title="暂停监控操作" style="margin-right: 20px;" th:onclick="'member_stop(this,'+${jdItem.id}+')'" href="javascript:;"  th:title="${jdItem.status==1?'暂停':'开启'}">
+                                                <i class="layui-icon">&#xe601;</i></a>
                                             <a title="删除监控商品" th:onclick="'member_del(this,'+${jdItem.id}+')'" href="javascript:;">
                                                 <i class="layui-icon">&#xe640;</i></a>
                                         </td>
@@ -96,6 +98,59 @@
             });
         });
 
+
+    /*用户-停用*/
+    function member_stop(obj, id) {
+        layer.confirm('确认要暂停或者开启监控吗？',
+            function(index) {
+
+                if ($(obj).attr('title') =="暂停") {
+
+                    //发异步把用户状态进行更改
+                    $(obj).attr('title', '开启');
+                    $(obj).find('i').html('&#xe62f;');
+
+                    $.ajax({
+                        url:"modifyStatusJdItem",
+                        data:{"id":id,"status":0,"byUser":2},
+                        type: "post",
+                        async : true,
+                        success : function(data) {
+                            if(data=="success"){
+                                $(obj).parents("tr").find(".td-status").html('未监控');
+                                layer.msg('已暂停!', {
+                                    icon: 5,
+                                    time: 1000
+                                });
+                            }
+                        }
+                    })
+
+
+
+                } else {
+                    $(obj).attr('title', '暂停');
+                    $(obj).find('i').html('&#xe601;');
+
+                    $.ajax({
+                        url:"modifyStatusJdItem",
+                        data:{"id":id,"status":1,"byUser":2},
+                        type: "post",
+                        async : true,
+                        success : function(data) {
+                            if(data=="success"){
+                                $(obj).parents("tr").find(".td-status").html('监控中');
+                                layer.msg('已启用!', {
+                                    icon: 5,
+                                    time: 1000
+                                });
+                            }
+                        }
+                    })
+                }
+
+            });
+    }
 
 
         /*用户-删除*/

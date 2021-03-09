@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 public class JdSkuController {
@@ -136,11 +137,39 @@ public class JdSkuController {
         return "success";
     }
 
+    @RequestMapping("/modifyStatusJdItem")
+    @ResponseBody
+    public String modifyStatusJdItem(Long id,int status,int byUser){
+        //传进来的status是要修改的状态  1监控中 0未监控
+        jditemRepository.modifyStatus(id,status);
+        if(status==1){//开启监控
+            Optional<Jditem> optional=jditemRepository.findById(id);
+            Jditem jditem=optional.get();
+            if (byUser==1) {
+                new Thread(new getJdSku(jditem.getItemId(), jditem.getTime(), "19_1601_50259_51886", 1, jditem.getItemName(),false), "jd" + jditem.getId()).start();
+            }else if(byUser==2){
+                new Thread(new getJdSku(jditem.getItemId(), jditem.getTime(), "22_1930_49324_49398", 2, jditem.getItemName(),false), "jd" + jditem.getId()).start();
+            }
+
+        }else {
+            ThreadGroup currentGroup =Thread.currentThread().getThreadGroup();
+            int noThreads = currentGroup.activeCount();
+            Thread[] lstThreads = new Thread[noThreads];
+            currentGroup.enumerate(lstThreads);
+            for (int i = 0; i < noThreads; i++) {
+                if (lstThreads[i].getName().equals("jd"+id)){
+                    lstThreads[i].stop();
+                }
+            }
+        }
+        return "success";
+    }
+
 
     @RequestMapping("/startMonitor")
     @ResponseBody
     public String startMonitor(int byUser){
-        List<Jditem> list=jditemRepository.findByUserId(byUser);
+        List<Jditem> list=jditemRepository.findByIdAndStatus(byUser);
         ThreadGroup currentGroup =Thread.currentThread().getThreadGroup();
 
         int noThreads = currentGroup.activeCount();
@@ -175,7 +204,7 @@ public class JdSkuController {
     @RequestMapping("/stopMonitor")
     @ResponseBody
     public String stopMonitor(int byUser){
-        List<Jditem> list=jditemRepository.findByUserId(byUser);
+        List<Jditem> list=jditemRepository.findByIdAndStatus(byUser);
         ThreadGroup currentGroup =Thread.currentThread().getThreadGroup();
 
         int noThreads = currentGroup.activeCount();

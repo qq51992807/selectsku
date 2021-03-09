@@ -179,26 +179,27 @@ public  String httpGet(String url, String charset,int method,String sendIds,Stri
         }
     } catch (JSONException e) {
 //        e.printStackTrace();
-        if(errorSend){
-            if(e.getMessage().contains("JSONObject[\"item\"] not found")){
-                String message =
-                        " { \"appToken\":\"AT_Q45yzpNW3dKPNaFF0SLXHZCfMjMcPFrJ\"," +
-                                "  \"content\":\" 商品id设置错误  \"," +
-                                "  \"summary\":\"【淘宝-"+areaName+"】商品 " + itemName + " id设置错误，请检查 <br>"+df.format(new Date())+" \"," +
-                                "  \"topicIds\":[ \n" +
-                                "      1205\n" +
-                                "  ]," +
-                                "  \"contentType\":2, " +
-                                "  \"uids\":[" +
-                                sendIds +
-                                "  ]}";
-                getSku.post("http://wxpusher.zjiecode.com/api/send/message", message);
-            }else{
-                System.out.println(e.getMessage());
+        if(addStart) {
+            if (errorSend) {
+                if (e.getMessage().contains("JSONObject[\"item\"] not found")) {
+                    String message =
+                            " { \"appToken\":\"AT_Q45yzpNW3dKPNaFF0SLXHZCfMjMcPFrJ\"," +
+                                    "  \"content\":\" 商品id设置错误  \"," +
+                                    "  \"summary\":\"【淘宝-" + areaName + "】商品 " + itemName + " id设置错误，请检查 <br>" + df.format(new Date()) + " \"," +
+                                    "  \"topicIds\":[ \n" +
+                                    "      1205\n" +
+                                    "  ]," +
+                                    "  \"contentType\":2, " +
+                                    "  \"uids\":[" +
+                                    sendIds +
+                                    "  ]}";
+                    getSku.post("http://wxpusher.zjiecode.com/api/send/message", message);
+                } else {
+                    System.out.println(e.getMessage());
+                }
+                errorSend = false;
             }
-            errorSend=false;
         }
-
     }
 
 
