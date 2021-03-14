@@ -59,7 +59,7 @@ public class getDySkuAndCommit implements Runnable{
         while (1==1) {
             try {
                 httpGet("https://ec.snssdk.com/product/getstock?id=" + itemId,itemId,combId, itemName);
-                Thread.sleep(50 * time);
+                Thread.sleep(200 * time);
             } catch (HttpException e) {
                 e.printStackTrace();
             } catch (IOException e) {
@@ -71,10 +71,16 @@ public class getDySkuAndCommit implements Runnable{
     }
 
     public static  void main(String args[]){
-        getDySkuAndCommit getDySkuAndCommit=new getDySkuAndCommit("3467328892761730995","1693219764071485","k40",1,false);
-//        getDySkuAndCommit getDySkuAndCommit=new getDySkuAndCommit("3467323393014160584","1693220832193598","k40",1,false);
+//        getDySkuAndCommit getDySkuAndCommit=new getDySkuAndCommit("3467328892761730995","1693219764071485","k40",1,false);
+        getDySkuAndCommit getDySkuAndCommit=new getDySkuAndCommit("3453521734500751426","1422354648","mate40黑色128g",1,false);
+//        getDySkuAndCommit getDySkuAndCommit2=new getDySkuAndCommit("3453521734500751426","1422354655","mate40黑色256g",1,false);
+//        getDySkuAndCommit getDySkuAndCommit3=new getDySkuAndCommit("3453521734500751426","1422354657","mate40白色256g",1,false);
         Thread mThread1=new Thread(getDySkuAndCommit,"线程1");
+//        Thread mThread2=new Thread(getDySkuAndCommit2,"线程2");
+//        Thread mThread3=new Thread(getDySkuAndCommit3,"线程3");
         mThread1.start();
+//        mThread2.start();
+//        mThread3.start();
     }
 //public static void main(String args[]){
 //
@@ -120,7 +126,7 @@ public class getDySkuAndCommit implements Runnable{
         } else {
             throw new HttpException("statusCode="+statusCode);
         }
-        if(json==null||json.equals("")){
+        if(json==null||json.equals("")||json.equals("[]")){
 
         }else {
             try {

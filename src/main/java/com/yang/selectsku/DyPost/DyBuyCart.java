@@ -33,7 +33,12 @@ public class DyBuyCart implements Runnable{
     }
 
     public  static void main(String[] args){
+        String baiyeCookie = "passport_csrf_token=42832717a9f0f60f7f3868569c383319; passport_csrf_token_default=42832717a9f0f60f7f3868569c383319; install_id=2198675385226238; ttreq=1$a1e08746f12df0b34fd82ec109be91aeafb8b874; d_ticket=fa7848f1f9d190dbf6442455837db915eb0cd; multi_sids=88742122835%3A25b3fa0b3ab384dde7d9e0a51288964d; odin_tt=bbc3e39c267b90287f1305f5e19b4823d8563b406d630e05b1058d14637fdba011ea86960a8559182aee8f3ce950e9c1; n_mh=DxBWqrWtnZ3DN8crkqKQYzcoxJ-Y-BpdBRaxlOGtWvc; sid_guard=25b3fa0b3ab384dde7d9e0a51288964d%7C1611414189%7C5184000%7CWed%2C+24-Mar-2021+15%3A03%3A09+GMT; uid_tt=008f0ed3a8635c0a1e860ec533379df8; uid_tt_ss=008f0ed3a8635c0a1e860ec533379df8; sid_tt=25b3fa0b3ab384dde7d9e0a51288964d; sessionid=25b3fa0b3ab384dde7d9e0a51288964d; sessionid_ss=25b3fa0b3ab384dde7d9e0a51288964d";
+        String baiyeAddress="6837435314240340236";
+        String[] baiyeAddressList=new String[]{"杨梓博","135****0143","440000","广东省","440100","广州市","440106","天河区","前进街道石溪村桥头新街一巷一号"};
 
+        DyBuyCart   dyBuyCart=new DyBuyCart(baiyeCookie, baiyeAddress,"3453521734500751426","1422354655",baiyeAddressList);
+        System.out.println(dyBuyCart.post());
 //        for(int i=0;i<1;i++){
 //            DyBuyCart dyBuyCart=new DyBuyCart();
 //           new Thread(dyBuyCart,""+i).start();
@@ -72,7 +77,7 @@ public class DyBuyCart implements Runnable{
                 PostMethod postMethod = null;
                 postMethod = new PostMethod("https://ec.snssdk.com/order/batchCreate") ;
                 postMethod.setRequestHeader("Content-Type", "application/x-www-form-urlencoded;charset=utf-8") ;
-                postMethod.setRequestHeader("User-Agent", "Aweme 11.1.0 rv:141017 (iPhone; iOS 11.2; zh_CN) Cronet");
+                postMethod.setRequestHeader("User-Agent", userAgents.generate());
                 postMethod.setRequestHeader("Cookie",cookie);
 
 
