@@ -36,11 +36,22 @@ public class autoBuyDy implements Runnable{
         String itemName="显卡";
         String authorId="110496027780";
         //开启线程提交
-        for(int i=0;i<5 ;i++){   int num=i+1;
-            List<String> list=new ArrayList<>();
-            list.add("1693113852524589");
-//            new Thread(new commitDy(itemName,authorId,"3457480459737508175",dyGetCombIdsUtils.getCombIds("3457480459737508175"),false),"抢购线程"+num).start();
-//            new Thread(new commitDy(itemName,authorId,"3466571539711943980",dyGetCombIdsUtils.getCombIds("3466571539711943980"),false),"抢购线程"+num).start();
+        for(int i=0;i<10;i++){
+            int num=i+1;
+//            List<String> list=new ArrayList<>();
+//            list.add("1693828710441007");
+        //  七彩虹-战斧 GeForce RTX 3060 12G显卡   3467483857337616211 价格3299 已售8
+//         new Thread(new commitDy(itemName,authorId,"3467483857337616211",dyGetCombIdsUtils.getCombIds("3467483857337616211"),false),"抢购线程"+num).start();
+         //七彩虹（Colorful）iGame GeForce RTX 3070系列显卡   3444054060511146592 价格6199 已售300+
+//         new Thread(new commitDy(itemName,authorId,"3444054060511146592",dyGetCombIdsUtils.getCombIds("3444054060511146592"),false),"抢购线程"+num).start();
+         //iGame GeForce GTX 1660 SUPER 显卡   3413121160215417450 价格2399 已售47
+//         new Thread(new commitDy(itemName,authorId,"3413121160215417450",dyGetCombIdsUtils.getCombIds("3413121160215417450"),false),"抢购线程"+num).start();
+
+         //k40
+         new Thread(new commitDy(itemName,authorId,"3467328892761730995",dyGetCombIdsUtils.getCombIds("3467328892761730995"),false),"抢购线程"+num).start();
+
+
+
 
             //测试用
 //          new Thread(new commitDy(itemName,authorId,"3466425291780526529",dyGetCombIdsUtils.getCombIds("3466425291780526529"),false),"抢购线程"+num).start();
