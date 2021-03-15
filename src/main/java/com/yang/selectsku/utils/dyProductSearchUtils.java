@@ -27,10 +27,11 @@ public class dyProductSearchUtils {
 //        dyProductSearchUtils.searchProduct("94507208961","");//心跳百货
 //        dyProductSearchUtils.searchProduct("272306652324237","");//微型  4441647751118387  恰自来   272306652324237
 //        dyProductSearchUtils.getShopList("HInDTtqO","");//微型
-        dyProductSearchUtils.getShopList("sHXbwMK","");//胜道sHXbwMK
+//        dyProductSearchUtils.getShopList("sHXbwMK","");//胜道sHXbwMK
 //        dyProductSearchUtils.getShopList("RROoNoaL","");//工蜂研机社
 //        dyProductSearchUtils.getShopList("svzTOXE","");//铭瑄官方
 //        dyProductSearchUtils.getShopList("CiTMufNE","");//rog国度
+        dyProductSearchUtils.getShopList("VQWcPkS","");//小米
 
     } //70204787595 胜道 //68208641192 c
 
