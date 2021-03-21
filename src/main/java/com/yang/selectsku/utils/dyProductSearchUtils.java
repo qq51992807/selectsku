@@ -14,7 +14,7 @@ public class dyProductSearchUtils {
 //        dyProductSearchUtils.searchProduct("4195355415549012","");//罗永浩
 //        dyProductSearchUtils.searchProduct("66916631931","");//罗永浩
 //        dyProductSearchUtils.searchProduct("110496027780","");//京东数码
-//        dyProductSearchUtils.searchProduct("81454786592","");//igame
+        dyProductSearchUtils.searchProduct("81454786592","");//igame
 //        dyProductSearchUtils.getShopList("fNnZbhp","");//igame
 //        dyProductSearchUtils.searchProduct("94214864107","");//技嘉   tOSzVOeS
 //        dyProductSearchUtils.getShopList("tOSzVOeS","");//技嘉   tOSzVOeS
@@ -31,7 +31,7 @@ public class dyProductSearchUtils {
 //        dyProductSearchUtils.getShopList("RROoNoaL","");//工蜂研机社
 //        dyProductSearchUtils.getShopList("svzTOXE","");//铭瑄官方
 //        dyProductSearchUtils.getShopList("CiTMufNE","");//rog国度
-        dyProductSearchUtils.getShopList("VQWcPkS","");//小米
+//        dyProductSearchUtils.getShopList("VQWcPkS","");//小米
 
     } //70204787595 胜道 //68208641192 c
 
