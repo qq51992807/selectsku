@@ -10,6 +10,7 @@ public class jdTransaction {
 
     public static void main(String args[]){
         System.out.println(jdTransaction.jdTransactionItem("https://item.m.jd.com/product/100006359561.html"));;
+        System.out.println(jdTransaction.jdTransactionItem("https://item.m.jd.com/product/100006359561.html"));;
     }
 
 
