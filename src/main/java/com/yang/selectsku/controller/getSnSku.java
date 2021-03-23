@@ -1,5 +1,7 @@
 package com.yang.selectsku.controller;
 
+import com.yang.selectsku.utils.RecodeUtil;
+import com.yang.selectsku.utils.snTransaction;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpException;
 import org.apache.http.HttpResponse;
@@ -135,9 +137,11 @@ public class getSnSku implements Runnable{
                 if (!itemState.equals(StockStateName)) {
                     if (firstCome) {
                         if (addStart) {
+                            String itemLink= snTransaction.snTransactionItem("https://m.suning.com/product/" + firstItemId + "/" + secondItemId + ".html");
+                            String qrCode = RecodeUtil.creatRrCode(itemLink, 500,500);
                             String message =
                                     " { \"appToken\":\"AT_Q45yzpNW3dKPNaFF0SLXHZCfMjMcPFrJ\"," +
-                                            "  \"content\":\"商品名称：" + itemName + " 当前库存状态为 " + StockStateName + " 直接链接为 <a href=' https://m.suning.com/product/" + firstItemId + "/" + secondItemId + ".html'>点击跳转购买</a>  \"," +
+                                            "  \"content\":\" <a href='"+itemLink+"'>"+itemLink+"</a>  <br> 直达二维码 <br> <img width='300' height='300' src='data:image/png;base64,"+ qrCode+"'/>  \","+
                                             "  \"summary\":\"开启【苏宁-广东】 " + itemName + " 监控<br>当前库存状态为 " + StockStateName + " <br><br>"+df.format(new Date())+"  \"," +
                                             "  \"topicIds\":[ \n" +
                                             "      1396\n" +
@@ -145,7 +149,7 @@ public class getSnSku implements Runnable{
                                             "  \"contentType\":2, " +
                                             "  \"uids\":[" +
                                             "  ]," +
-                                            "  \"url\":\"https://m.suning.com/product/" + firstItemId + "/" + secondItemId + ".html \" "+
+                                            "  \"url\":\""+itemLink+" \" "+
                                             "}";
                             getSku.post("http://wxpusher.zjiecode.com/api/send/message", message);
                         }
@@ -154,9 +158,11 @@ public class getSnSku implements Runnable{
                     } else {
                         //        getSku.httpGet("http://wxpusher.zjiecode.com/api/send/message/?appToken=AT_Q45yzpNW3dKPNaFF0SLXHZCfMjMcPFrJ&content="+title.trim()+"库存为"+jsonArray4.get("quantity")+"&uid=UID_yV8nb3gdc7I6eYSBRWY0IQP3bcgk","UTF-8",2);
                         if (!StockStateName.equals("无货") && !StockStateName.equals("下架")) {
+                            String itemLink= snTransaction.snTransactionItem("https://m.suning.com/product/" + firstItemId + "/" + secondItemId + ".html");
+                            String qrCode = RecodeUtil.creatRrCode(itemLink, 500,500);
                             String message =
                                     " { \"appToken\":\"AT_Q45yzpNW3dKPNaFF0SLXHZCfMjMcPFrJ\"," +
-                                            "  \"content\":\"商品名称：" + itemName + " 库存变化为 " + itemState + " -> " + StockStateName + " 直接链接为 <a href=' https://m.suning.com/product/" + firstItemId + "/" + secondItemId + ".html'>点击跳转购买</a>  \"," +
+                                            "  \"content\":\" <a href='"+itemLink+"'>"+itemLink+"</a>  <br> 直达二维码 <br> <img width='300' height='300' src='data:image/png;base64,"+ qrCode+"'/>  \","+
                                             "  \"summary\":\"【苏宁-广东】" + itemName + "<br>库存变化为 " + itemState + " -> " + StockStateName + "<br><br>"+df.format(new Date())+"   \"," +
                                             "  \"topicIds\":[ \n" +
                                             "      1396\n" +
@@ -164,7 +170,7 @@ public class getSnSku implements Runnable{
                                             "  \"contentType\":2, " +
                                             "  \"uids\":[" +
                                             "  ]," +
-                                            "  \"url\":\"https://m.suning.com/product/" + firstItemId + "/" + secondItemId + ".html \" "+
+                                            "  \"url\":\""+itemLink+" \" "+
                                             "}";
                             getSku.post("http://wxpusher.zjiecode.com/api/send/message", message);
                         }
@@ -174,9 +180,11 @@ public class getSnSku implements Runnable{
                 } else {
                     if (firstCome) {
                         if (addStart) {
+                            String itemLink= snTransaction.snTransactionItem("https://m.suning.com/product/" + firstItemId + "/" + secondItemId + ".html");
+                            String qrCode = RecodeUtil.creatRrCode(itemLink, 500,500);
                             String message =
                                     " { \"appToken\":\"AT_Q45yzpNW3dKPNaFF0SLXHZCfMjMcPFrJ\"," +
-                                            "  \"content\":\"商品名称：" + itemName + " 当前库存状态为 " + StockStateName + " 直接链接为 <a href=' https://m.suning.com/product/" + firstItemId + "/" + secondItemId + ".html'>点击跳转购买</a>  \"," +
+                                            "  \"content\":\" <a href='"+itemLink+"'>"+itemLink+"</a>  <br> 直达二维码 <br> <img width='300' height='300' src='data:image/png;base64,"+ qrCode+"'/>  \","+
                                             "  \"summary\":\"开启【苏宁-广东】 " + itemName + " 监控<br>当前库存状态为 " + StockStateName + " <br><br>"+df.format(new Date())+"  \"," +
                                             "  \"topicIds\":[ \n" +
                                             "      1396\n" +
@@ -184,7 +192,7 @@ public class getSnSku implements Runnable{
                                             "  \"contentType\":2, " +
                                             "  \"uids\":[" +
                                             "  ]," +
-                                            "  \"url\":\"https://m.suning.com/product/" + firstItemId + "/" + secondItemId + ".html \" "+
+                                            "  \"url\":\""+itemLink+" \" "+
                                             "}";
                             getSku.post("http://wxpusher.zjiecode.com/api/send/message", message);
                         }

@@ -179,7 +179,7 @@ public  String httpGet(String url, String charset,int method,String sendIds,Stri
         }
     } catch (JSONException e) {
 //        e.printStackTrace();
-        if(addStart) {
+        if(firstCome) {
             if (errorSend) {
                 if (e.getMessage().contains("JSONObject[\"item\"] not found")) {
                     String message =
