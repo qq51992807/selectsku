@@ -1,11 +1,9 @@
 package com.yang.selectsku.utils;
 
 import net.sf.json.JSONArray;
-import org.apache.http.HttpEntity;
-import org.apache.http.HttpException;
-import org.apache.http.HttpResponse;
-import org.apache.http.StatusLine;
+import org.apache.http.*;
 import org.apache.http.client.HttpClient;
+import org.apache.http.client.config.RequestConfig;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
@@ -40,6 +38,10 @@ public class postUtils {
             try {
                 httpclient = HttpClients.createDefault();
                 HttpPost httppost = new HttpPost(url);
+                String proxyHost = "110.81.249.129";
+                Integer proxyPort = 8080;
+//                HttpHost proxy = new HttpHost(proxyHost, proxyPort, "http");
+
 //                System.getProperties().setProperty("http.proxyHost", "124.112.4.119");//random.nextInt(255)+"."+random.nextInt(255)+"."+random.nextInt(255)+"."+random.nextInt(255));
 //                System.getProperties().setProperty("http.proxyPort", "4278");
 //                httppost.addHeader("x-forwarded-for","127.0."+random.nextInt(255)+"."+random.nextInt(255));
@@ -47,10 +49,17 @@ public class postUtils {
                     httppost.setHeader("Cookie", cookie);
                     httppost.setHeader("User-Agent","Aweme 11.1.0 rv:141017 (iPhone; iOS 11.2; zh_CN) Cronet");//userAgents.generate());
 //                    httppost.setHeader("Connection","close");
+//                    httppost.setHeader("Authorization","sign=2020629280831809D14650xxxxxxx&orderno=ZF2017230111xxxxxxx&timestamp=1487753521");
                 }
                 StringEntity stringentity = new StringEntity(data,
                         ContentType.create("application/json", "UTF-8"));
                 httppost.setEntity(stringentity);
+                RequestConfig reqConfig = RequestConfig.custom().setConnectionRequestTimeout(5000).setConnectTimeout(10000) // 设置连接超时时间
+                        .setSocketTimeout(10000) // 设置读取超时时间
+                        .setExpectContinueEnabled(false).setProxy(new HttpHost(proxyHost, proxyPort))
+                        .setCircularRedirectsAllowed(true) // 允许多次重定向
+                        .build();
+                httppost.setConfig(reqConfig);
                 httpresponse = httpclient.execute(httppost);
                 response = EntityUtils
                         .toString(httpresponse.getEntity());
