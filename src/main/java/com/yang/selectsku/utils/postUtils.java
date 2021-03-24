@@ -7,6 +7,8 @@ import org.apache.http.client.config.RequestConfig;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
+import org.apache.http.conn.ssl.NoopHostnameVerifier;
+import org.apache.http.conn.ssl.SSLConnectionSocketFactory;
 import org.apache.http.entity.ContentType;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.CloseableHttpClient;
@@ -16,9 +18,14 @@ import org.apache.http.util.EntityUtils;
 import org.codehaus.jettison.json.JSONException;
 import org.codehaus.jettison.json.JSONObject;
 
+import javax.net.ssl.SSLContext;
+import javax.net.ssl.TrustManager;
+import javax.net.ssl.X509TrustManager;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.security.cert.CertificateException;
+import java.security.cert.X509Certificate;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -37,9 +44,10 @@ public class postUtils {
             CloseableHttpResponse httpresponse = null;
             try {
                 httpclient = HttpClients.createDefault();
+                httpclient = (CloseableHttpClient)wrapClient(httpclient);
                 HttpPost httppost = new HttpPost(url);
-                String proxyHost = "110.81.249.129";
-                Integer proxyPort = 8080;
+                String proxyHost = "forward.xdaili.cn";
+                Integer proxyPort = 80;
 //                HttpHost proxy = new HttpHost(proxyHost, proxyPort, "http");
 
 //                System.getProperties().setProperty("http.proxyHost", "124.112.4.119");//random.nextInt(255)+"."+random.nextInt(255)+"."+random.nextInt(255)+"."+random.nextInt(255));
@@ -49,7 +57,8 @@ public class postUtils {
                     httppost.setHeader("Cookie", cookie);
                     httppost.setHeader("User-Agent","Aweme 11.1.0 rv:141017 (iPhone; iOS 11.2; zh_CN) Cronet");//userAgents.generate());
 //                    httppost.setHeader("Connection","close");
-//                    httppost.setHeader("Authorization","sign=2020629280831809D14650xxxxxxx&orderno=ZF2017230111xxxxxxx&timestamp=1487753521");
+                    int timestamp = (int) (new Date().getTime()/1000);
+                    httppost.setHeader("Authorization","sign=2020629280831809D14650xxxxxxx&orderno=ZF2017230111xxxxxxx&timestamp="+timestamp);
                 }
                 StringEntity stringentity = new StringEntity(data,
                         ContentType.create("application/json", "UTF-8"));
@@ -122,6 +131,39 @@ public class postUtils {
             e.printStackTrace();
         }
         return message;
+    }
+
+
+    /**
+     * 避免HttpClient的”SSLPeerUnverifiedException: peer not authenticated”异常
+     * 不用导入SSL证书
+     * @param base
+     * @return
+     */
+    public static HttpClient wrapClient(HttpClient base) {
+        try {
+            SSLContext ctx = SSLContext.getInstance("TLS");
+            X509TrustManager tm = new X509TrustManager() {
+                public X509Certificate[] getAcceptedIssuers() {
+                    return null;
+                }
+
+                public void checkClientTrusted(X509Certificate[] arg0,
+                                               String arg1) throws CertificateException {
+                }
+
+                public void checkServerTrusted(X509Certificate[] arg0,
+                                               String arg1) throws CertificateException {
+                }
+            };
+            ctx.init(null, new TrustManager[] { tm }, null);
+            SSLConnectionSocketFactory ssf = new SSLConnectionSocketFactory(ctx, NoopHostnameVerifier.INSTANCE);
+            CloseableHttpClient httpclient = HttpClients.custom().setSSLSocketFactory(ssf).build();
+            return httpclient;
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            return HttpClients.createDefault();
+        }
     }
 
 }
