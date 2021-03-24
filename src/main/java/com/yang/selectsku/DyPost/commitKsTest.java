@@ -72,15 +72,16 @@ public class commitKsTest implements Runnable {
 
 
         public static void main(String args[]) {
-//        for (int i=0;i<1;i++){
-//            new Thread(new commitKsTest(),"ks"+i).start();
-//            try {
-//                Thread.sleep(20);
-//            } catch (InterruptedException e) {
-//                e.printStackTrace();
-//            }
-//        }
-            System.out.println( commitKsTest.commit());
+        for (int i=0;i<3;i++){
+            new Thread(new commitKsTest(),"ks"+i).start();
+            try {
+                Thread.sleep(20);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+//            while (1==1)
+//            System.out.println( commitKsTest.commit());
         }
 
 

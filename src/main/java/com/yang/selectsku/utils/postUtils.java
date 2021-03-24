@@ -44,10 +44,10 @@ public class postUtils {
             CloseableHttpResponse httpresponse = null;
             try {
                 httpclient = HttpClients.createDefault();
-                httpclient = (CloseableHttpClient)wrapClient(httpclient);
+//                httpclient = (CloseableHttpClient)wrapClient(httpclient);
                 HttpPost httppost = new HttpPost(url);
-                String proxyHost = "forward.xdaili.cn";
-                Integer proxyPort = 80;
+//                String proxyHost = "forward.xdaili.cn";
+//                Integer proxyPort = 80;
 //                HttpHost proxy = new HttpHost(proxyHost, proxyPort, "http");
 
 //                System.getProperties().setProperty("http.proxyHost", "124.112.4.119");//random.nextInt(255)+"."+random.nextInt(255)+"."+random.nextInt(255)+"."+random.nextInt(255));
@@ -57,18 +57,20 @@ public class postUtils {
                     httppost.setHeader("Cookie", cookie);
                     httppost.setHeader("User-Agent","Aweme 11.1.0 rv:141017 (iPhone; iOS 11.2; zh_CN) Cronet");//userAgents.generate());
 //                    httppost.setHeader("Connection","close");
-                    int timestamp = (int) (new Date().getTime()/1000);
-                    httppost.setHeader("Authorization","sign=2020629280831809D14650xxxxxxx&orderno=ZF2017230111xxxxxxx&timestamp="+timestamp);
+//                    int timestamp = (int) (new Date().getTime()/1000);
+//                    String planText="orderno=ZF20213240774wo0eeV,secret=916ea1da1ed840389618a033d9a81570,timestamp="+timestamp;
+//                    String sign=org.apache.commons.codec.digest.DigestUtils.md5Hex(planText).toUpperCase();
+//                    httppost.setHeader("Authorization","sign="+sign+"&orderno=ZF20213240774wo0eeV&timestamp="+timestamp);
                 }
                 StringEntity stringentity = new StringEntity(data,
                         ContentType.create("application/json", "UTF-8"));
                 httppost.setEntity(stringentity);
-                RequestConfig reqConfig = RequestConfig.custom().setConnectionRequestTimeout(5000).setConnectTimeout(10000) // 设置连接超时时间
-                        .setSocketTimeout(10000) // 设置读取超时时间
-                        .setExpectContinueEnabled(false).setProxy(new HttpHost(proxyHost, proxyPort))
-                        .setCircularRedirectsAllowed(true) // 允许多次重定向
-                        .build();
-                httppost.setConfig(reqConfig);
+//                RequestConfig reqConfig = RequestConfig.custom().setConnectionRequestTimeout(5000).setConnectTimeout(10000) // 设置连接超时时间
+//                        .setSocketTimeout(10000) // 设置读取超时时间
+//                        .setExpectContinueEnabled(false).setProxy(new HttpHost(proxyHost, proxyPort))
+//                        .setCircularRedirectsAllowed(true) // 允许多次重定向
+//                        .build();
+//                httppost.setConfig(reqConfig);
                 httpresponse = httpclient.execute(httppost);
                 response = EntityUtils
                         .toString(httpresponse.getEntity());
@@ -81,7 +83,7 @@ public class postUtils {
                 }
             }
         } catch (Exception e) {
-            e.printStackTrace();
+//            e.printStackTrace();
         }
         return response;
     }
