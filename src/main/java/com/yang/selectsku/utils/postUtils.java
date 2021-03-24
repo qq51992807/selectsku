@@ -118,23 +118,38 @@ public class postUtils {
     }
 
 
-    public static String getSkuState(String json){
-        String message=null;
-        try {
-            JSONObject jsonArray = new JSONObject(json);
-           JSONObject productDetail=new JSONObject(jsonArray.getString("productDetail"));
-//           List<String> skuInfoList=productDetail.getString("skuInfoList");
-            JSONArray skuInfoListArray = JSONArray.fromObject(productDetail.get("skuInfoList") + "");
-            String skuStock=new JSONObject(skuInfoListArray.get(0)+"").getString("skuStock");
+//    public static String getSkuState(String json){
+//        String message=null;
+//        try {
+//            JSONObject jsonArray = new JSONObject(json);
+//           JSONObject productDetail=new JSONObject(jsonArray.getString("productDetail"));
+////           List<String> skuInfoList=productDetail.getString("skuInfoList");
+//            JSONArray skuInfoListArray = JSONArray.fromObject(productDetail.get("skuInfoList") + "");
+//            String skuStock=new JSONObject(skuInfoListArray.get(0)+"").getString("skuStock");
+////            JSONObject skuInfoList=new JSONObject(productDetail.getString("skuInfoList"));
+//            message=skuStock;
+//
+//        } catch (JSONException e) {
+//            e.printStackTrace();
+//        }
+//        return message;
+//    }
+public static String getSkuState(String json){
+    String message=null;
+    try {
+        JSONObject jsonArray = new JSONObject(json);
+//        JSONObject productDetail=new JSONObject(jsonArray.getString("productDetail"));
+////           List<String> skuInfoList=productDetail.getString("skuInfoList");
+//        JSONArray skuInfoListArray = JSONArray.fromObject(productDetail.get("skuInfoList") + "");
+//        String skuStock=new JSONObject(skuInfoListArray.get(0)+"").getString("skuStock");
 //            JSONObject skuInfoList=new JSONObject(productDetail.getString("skuInfoList"));
-            message=skuStock;
+        message=jsonArray.getString("skuStock");
 
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-        return message;
+    } catch (JSONException e) {
+        e.printStackTrace();
     }
-
+    return message;
+}
 
     /**
      * 避免HttpClient的”SSLPeerUnverifiedException: peer not authenticated”异常
