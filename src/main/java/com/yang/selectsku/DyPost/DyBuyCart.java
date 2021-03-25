@@ -45,13 +45,17 @@ public class DyBuyCart implements Runnable{
         String mAddress="6941586830970143013";
         String[] mAddressList=new String[]{"洪启扬","135****7074","440000","广东省","440100","广州市","440106","天河区","育西路191号中石化大厦4楼海底捞火锅"};
 
+        String cookie="tt_webid=f8197919392e0d221919204567d7062f; passport_csrf_token=971e61e5ebff4411db99fb1b9a04d13b; passport_csrf_token_default=971e61e5ebff4411db99fb1b9a04d13b; install_id=3606819300717640; ttreq=1$badf703a7fca8ea3d0e028d4fa4f486ecb8099ce; odin_tt=b8c3c3ca3e012152020563f000b37026e9217e433b41191eca01f960e2201b1a2302f56793133411506717250a42ccdd69a1031e74886e28e057e24444b577d8; n_mh=QUECUHe-NIZU7W_CpbsPkdHMuPtEwiQNvQozhrliKAQ; d_ticket=ab37e866c17393172b025b272924e9edeb0cd; sid_guard=1b44ac3ad03d5a784d94ad723211ea94|1616665420|5184000|Mon,+24-May-2021+09:43:40+GMT; uid_tt=0091511ea16d81ef06ae13b21f49cba6; uid_tt_ss=0091511ea16d81ef06ae13b21f49cba6; sid_tt=1b44ac3ad03d5a784d94ad723211ea94; sessionid=1b44ac3ad03d5a784d94ad723211ea94; sessionid_ss=1b44ac3ad03d5a784d94ad723211ea94; multi_sids=88742122835:25b3fa0b3ab384dde7d9e0a51288964d|3737940135263357:1b9594bff220657ba60fe275f009f732|756116130366872:86b7d27c000c5cbe61ff914b17a931e1|2752825819145204:e07e80e84e13c42fb655def213f75955|104560386685:6bb98eede0c8c63ebcb71aba734b45bb|2779157997825406:1b44ac3ad03d5a784d94ad723211ea94";
+        String addressId="6943523905256669473";
+        String[] AddressList=new String[]{"杨梓博","135****0143","510000","四川省","510100","成都市","510116","双流区","正北下街168号御景台"};
 
 
-        DyBuyCart   dyBuyCart=new DyBuyCart(baiyeCookie, baiyeAddress,"3467328892761730995","1693219764071485",baiyeAddressList);
+//        DyBuyCart   dyBuyCart=new DyBuyCart(cookie, addressId,"3469911916158283919","1694292913360935",AddressList);
+        DyBuyCart   dyBuyCart=new DyBuyCart(cookie, addressId,"3469913342095789983","1694293620671533",AddressList);
 //        DyBuyCart   dyBuyCart2=new DyBuyCart(mCookie, mAddress,"3467328892761730995","1693219764071485",mAddressList);
         DyBuyCart   dyBuyCart2=new DyBuyCart(mCookie, mAddress,"3465956964427812126","1692361797380139",mAddressList);
-        while (1==1)
-           System.out.println(dyBuyCart2.post());
+//        while (1==1)
+           System.out.println(dyBuyCart.post());
 //        for(int i=0;i<1;i++){
 //            DyBuyCart dyBuyCart=new DyBuyCart();
 //           new Thread(dyBuyCart,""+i).start();

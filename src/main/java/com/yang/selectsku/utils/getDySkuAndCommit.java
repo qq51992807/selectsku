@@ -66,6 +66,9 @@ String s2Cookie="passport_csrf_token=2c7ac9e5c6c75160cf6f7fffdf887e74; passport_
     String mAddress="6918549752523047181";
     String[] mAddressList=new String[]{"洪启扬","135****7074","440000","广东省","440100","广州市","440106","天河区","前进街道河溪串串旁边东街四巷菜鸟驿站"};
 
+    String cookie="tt_webid=f8197919392e0d221919204567d7062f; passport_csrf_token=971e61e5ebff4411db99fb1b9a04d13b; passport_csrf_token_default=971e61e5ebff4411db99fb1b9a04d13b; install_id=3606819300717640; ttreq=1$badf703a7fca8ea3d0e028d4fa4f486ecb8099ce; odin_tt=b8c3c3ca3e012152020563f000b37026e9217e433b41191eca01f960e2201b1a2302f56793133411506717250a42ccdd69a1031e74886e28e057e24444b577d8; n_mh=QUECUHe-NIZU7W_CpbsPkdHMuPtEwiQNvQozhrliKAQ; d_ticket=ab37e866c17393172b025b272924e9edeb0cd; sid_guard=1b44ac3ad03d5a784d94ad723211ea94|1616665420|5184000|Mon,+24-May-2021+09:43:40+GMT; uid_tt=0091511ea16d81ef06ae13b21f49cba6; uid_tt_ss=0091511ea16d81ef06ae13b21f49cba6; sid_tt=1b44ac3ad03d5a784d94ad723211ea94; sessionid=1b44ac3ad03d5a784d94ad723211ea94; sessionid_ss=1b44ac3ad03d5a784d94ad723211ea94; multi_sids=88742122835:25b3fa0b3ab384dde7d9e0a51288964d|3737940135263357:1b9594bff220657ba60fe275f009f732|756116130366872:86b7d27c000c5cbe61ff914b17a931e1|2752825819145204:e07e80e84e13c42fb655def213f75955|104560386685:6bb98eede0c8c63ebcb71aba734b45bb|2779157997825406:1b44ac3ad03d5a784d94ad723211ea94";
+    String addressId="6943523905256669473";
+    String[] AddressList=new String[]{"杨梓博","135****0143","510000","四川省","510100","成都市","510116","双流区","正北下街168号御景台"};
 
 
     DyBuyCart dyBuyCart;
@@ -83,11 +86,11 @@ String s2Cookie="passport_csrf_token=2c7ac9e5c6c75160cf6f7fffdf887e74; passport_
 //        dyBuyCart=new DyBuyCart(baiyeCookie, baiyeAddress,itemId,combId,baiyeAddressList);
 //        dyBuyCart2=new DyBuyCart(xCookie,xAddress,itemId,combId,xAddressList);
 //        dyBuyCart3=new DyBuyCart(sCookie,sAddress,itemId,combId,sAddressList);
-        dyBuyCart3=new DyBuyCart(cCookie,cAddress,itemId,combId,cAddressList);
-        dyBuyCart4=new DyBuyCart(c5Cookie,c5Address,itemId,combId,c5AddressList);
-        dyBuyCart5=new DyBuyCart(mCookie,mAddress,itemId,combId,mAddressList);
-        dyBuyCart=new DyBuyCart(s2Cookie, s2Address,itemId,combId,s2AddressList);
-        dyBuyCart2=new DyBuyCart(fCookie,fAddress,itemId,combId,fAddressList);
+//        dyBuyCart3=new DyBuyCart(cCookie,cAddress,itemId,combId,cAddressList);
+//        dyBuyCart4=new DyBuyCart(c5Cookie,c5Address,itemId,combId,c5AddressList);
+//        dyBuyCart5=new DyBuyCart(mCookie,mAddress,itemId,combId,mAddressList);
+        dyBuyCart=new DyBuyCart(cookie, addressId,itemId,combId,AddressList);
+//        dyBuyCart2=new DyBuyCart(fCookie,fAddress,itemId,combId,fAddressList);
     }
 
     public void run(){
@@ -106,28 +109,29 @@ String s2Cookie="passport_csrf_token=2c7ac9e5c6c75160cf6f7fffdf887e74; passport_
     }
 
     public static  void main(String args[]){
-        for(int i=1;i<4;i++) {
-            getDySkuAndCommit getDySkuAndCommit = new getDySkuAndCommit("3467328892761730995", "1693219764071485", "k40幻境", 1, false);
-            getDySkuAndCommit getDySkuAndCommit2 = new getDySkuAndCommit("3467328892761730995", "1693219764071437", "k40 256", 1, false);
-            getDySkuAndCommit getDySkuAndCommit3 = new getDySkuAndCommit("3467328892761730995", "1693219766630446", "k40 256", 1, false);
-            getDySkuAndCommit getDySkuAndCommit4 = new getDySkuAndCommit("3467328892761730995", "1693219766630462", "k40 128", 1, false);
-            getDySkuAndCommit getDySkuAndCommit5 = new getDySkuAndCommit("3467328892761730995", "1693219766630414", "k40 128", 1, false);
-            getDySkuAndCommit getDySkuAndCommit6 = new getDySkuAndCommit("3467328892761730995", "1693219764071453", "k40 128", 1, false);
+        for(int i=1;i<3;i++) {
+            getDySkuAndCommit getDySkuAndCommit = new getDySkuAndCommit("3469911916158283919", "1694292913360935", "8499", 1, false);
+            getDySkuAndCommit getDySkuAndCommit2 = new getDySkuAndCommit("3469913342095789983", "1694293620671533", "9399", 1, false);
+//            getDySkuAndCommit getDySkuAndCommit2 = new getDySkuAndCommit("3467328892761730995", "1693219764071437", "k40 256", 1, false);
+//            getDySkuAndCommit getDySkuAndCommit3 = new getDySkuAndCommit("3467328892761730995", "1693219766630446", "k40 256", 1, false);
+//            getDySkuAndCommit getDySkuAndCommit4 = new getDySkuAndCommit("3467328892761730995", "1693219766630462", "k40 128", 1, false);
+//            getDySkuAndCommit getDySkuAndCommit5 = new getDySkuAndCommit("3467328892761730995", "1693219766630414", "k40 128", 1, false);
+//            getDySkuAndCommit getDySkuAndCommit6 = new getDySkuAndCommit("3467328892761730995", "1693219764071453", "k40 128", 1, false);
 //        getDySkuAndCommit getDySkuAndCommit=new getDySkuAndCommit("3453521734500751426","1422354648","mate40黑色128g",1,false);
 //        getDySkuAndCommit getDySkuAndCommit2=new getDySkuAndCommit("3453521734500751426","1422354655","mate40黑色256g",1,false);
 //        getDySkuAndCommit getDySkuAndCommit3=new getDySkuAndCommit("3453521734500751426","1422354657","mate40白色256g",1,false);
             Thread mThread1 = new Thread(getDySkuAndCommit, "线程a"+i);
             Thread mThread2 = new Thread(getDySkuAndCommit2, "线程b"+i);
-            Thread mThread3 = new Thread(getDySkuAndCommit3, "线程c"+i);
-            Thread mThread4 = new Thread(getDySkuAndCommit4, "线程d"+i);
-            Thread mThread5 = new Thread(getDySkuAndCommit5, "线程e"+i);
-            Thread mThread6 = new Thread(getDySkuAndCommit6, "线程f"+i);
+//            Thread mThread3 = new Thread(getDySkuAndCommit3, "线程c"+i);
+//            Thread mThread4 = new Thread(getDySkuAndCommit4, "线程d"+i);
+//            Thread mThread5 = new Thread(getDySkuAndCommit5, "线程e"+i);
+//            Thread mThread6 = new Thread(getDySkuAndCommit6, "线程f"+i);
             mThread1.start();
             mThread2.start();
-            mThread3.start();
-            mThread4.start();
-            mThread5.start();
-            mThread6.start();
+//            mThread3.start();
+//            mThread4.start();
+//            mThread5.start();
+//            mThread6.start();
         }
     }
 //public static void main(String args[]){
@@ -224,10 +228,10 @@ String s2Cookie="passport_csrf_token=2c7ac9e5c6c75160cf6f7fffdf887e74; passport_
                     } else {
                         //        getSku.httpGet("http://wxpusher.zjiecode.com/api/send/message/?appToken=AT_Q45yzpNW3dKPNaFF0SLXHZCfMjMcPFrJ&content="+title.trim()+"库存为"+jsonArray4.get("quantity")+"&uid=UID_yV8nb3gdc7I6eYSBRWY0IQP3bcgk","UTF-8",2);
                         System.out.println(dyBuyCart.post());
-                        System.out.println(dyBuyCart2.post());
-                        System.out.println(dyBuyCart3.post());
-                        System.out.println(dyBuyCart4.post());
-                        System.out.println(dyBuyCart5.post());
+//                        System.out.println(dyBuyCart2.post());
+//                        System.out.println(dyBuyCart3.post());
+//                        System.out.println(dyBuyCart4.post());
+//                        System.out.println(dyBuyCart5.post());
                         String message =
                                 " { \"appToken\":\"AT_Q45yzpNW3dKPNaFF0SLXHZCfMjMcPFrJ\"," +
                                         "  \"content\":\"商品名称：" + itemName + " 库存变化为 " + num + " -> " + StockNum + " \"," +
